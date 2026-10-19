@@ -1,0 +1,151 @@
+# Instabilities of viscous flows
+
+Lecture 14 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture14.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Separate existence from stability, derive the Orr–Sommerfeld eigenvalue problem for plane Poiseuille flow, interpret complex frequencies, and distinguish linear instability from finite amplitude transition and nonlinear saturation.
+:::
+
+## A solution need not be the observed flow {#sec-l14-base}
+
+Between stationary parallel plates at $y=\pm h$, pressure driven Poiseuille flow is
+
+$$
+\mathbf v_0=U(y)\hat{\mathbf x},\qquad
+U(y)=U_{\max}\left(1-\frac{y^2}{h^2}\right).
+$$ {#eq-l14-base}
+
+The advective acceleration vanishes exactly, so this profile solves the nonlinear equations at any imposed pressure gradient. Nevertheless, a real apparatus contains small disturbances from vibrations, inlet fluctuations, wall roughness, and thermal noise. The physical question is whether these disturbances decay or become comparable with the base flow.
+
+Write $\mathbf v=\mathbf v_0+\epsilon\mathbf u+O(\epsilon^2)$ and $P=P_0+\epsilon p+O(\epsilon^2)$. The formal expansion diagnoses the initial evolution while $\epsilon\mathbf u$ remains small. It cannot by itself predict a fully developed turbulent state.
+
+## Linearization and elimination of pressure {#sec-l14-linear}
+
+Keeping first order terms gives
+
+$$
+\partial_t\mathbf u+U\partial_x\mathbf u
++u_yU'\hat{\mathbf x}
+=-\frac{\nabla p}{\rho}+\nu\nabla^2\mathbf u,
+\qquad \nabla\cdot\mathbf u=0.
+$$ {#eq-l14-linear}
+
+The term $u_yU'$ is essential: a displaced fluid parcel encounters a different background streamwise speed. This term allows perturbations to extract energy from shear.
+
+For two dimensional disturbances introduce a stream function $\psi$ by $u_x=\partial_y\psi$ and $u_y=-\partial_x\psi$. The perturbation vorticity is $-\nabla^2\psi$. Taking the curl of @eq-l14-linear eliminates pressure and yields
+
+$$
+(\partial_t+U\partial_x)\nabla^2\psi
+-U''\partial_x\psi=\nu\nabla^4\psi.
+$$ {#eq-l14-vorticity-linear}
+
+**Supplemental derivation of the shear curvature term.** The base vorticity is $\omega_0=-U'$. In the linearized vorticity equation, perturbations advect it through $u_y\partial_y\omega_0=(-\psi_x)(-U'')=U''\psi_x$. Substituting $\delta\omega=-\nabla^2\psi$ and multiplying by $-1$ produces the minus sign in @eq-l14-vorticity-linear. This route avoids a long component calculation.
+
+## Orr–Sommerfeld as an eigenvalue problem {#sec-l14-os}
+
+The base flow is invariant in $x$ and $t$. Seek a normal mode
+
+$$
+\psi(x,y,t)=\phi(y)e^{ikx-i\omega t},\qquad k\in\mathbb R.
+$$
+
+With $D=d/dy$,
+
+$$
+(-i\omega+ikU)(D^2-k^2)\phi-ikU''\phi
+=\nu(D^2-k^2)^2\phi.
+$$ {#eq-l14-os-dimensional}
+
+This fourth order equation requires four wall conditions. No slip and no penetration give $\phi=\phi'=0$ at $y=\pm h$ for $k\ne0$. The exceptional streamwise uniform case can be treated separately without dividing by $k$.
+
+Nondimensionalize lengths with $h$, speeds with $U_{\max}$, and time with $h/U_{\max}$. Suppress hats and define $\mathrm{Re}=U_{\max}h/\nu$. Then
+
+$$
+-i\omega(D^2-k^2)\phi
+=\left[-ik(1-y^2)(D^2-k^2)-2ik
++\frac{1}{\mathrm{Re}}(D^2-k^2)^2\right]\phi,
+\quad -1<y<1.
+$$ {#eq-l14-os}
+
+This is the Orr–Sommerfeld equation. It has the generalized eigenvalue form $A\phi=-i\omega B\phi$, with $B=D^2-k^2$. Spectral methods expand $\phi$ in a basis or interpolate it on a grid, impose wall conditions, and solve a matrix eigenvalue problem. One must check numerical convergence: a discrete approximation also creates poorly resolved or spurious eigenvalues.
+
+For each real $k$, eigenfrequencies are generally complex: $\omega=\omega_r+i\omega_i$. Our convention gives
+
+$$
+e^{-i\omega t}=e^{-i\omega_rt}e^{\omega_it}.
+$$
+
+Thus $\omega_i>0$ means exponential growth. Taking $k$ real asks about temporal instability of spatially bounded Fourier components; a spatial growth problem would use different choices and boundary data. Positive growth is compatible with microscopic dissipation because the pressure driven base flow is an externally maintained source of perturbation energy.
+
+A practical spectral calculation can use functions $(1-y^2)^2T_n(y)$, where $T_n$ are Chebyshev polynomials. The prefactor enforces both wall conditions before solving for coefficients. Projecting the differential equation onto a finite basis produces matrices for $A$ and $B$. Increase the basis size and follow the same candidate eigenvalue until its position and eigenfunction converge; a visually plausible eigenvalue plot at one resolution is insufficient. The neutral curve is then found by varying $k$ and Reynolds number until the largest converged $\omega_i$ crosses zero. This procedure explains why the threshold below is a numerical result with specified geometry and normalization.
+
+## What the linear calculation establishes {#sec-l14-threshold}
+
+For plane Poiseuille flow with the definition above, the classical numerical linear threshold is approximately
+
+$$
+\mathrm{Re}_c\approx5772.
+$$
+
+Above it, a band of streamwise wave numbers has growing two dimensional modes. The boundary of this band is a neutral stability curve $\omega_i(k,\mathrm{Re})=0$. This is a result of solving the eigenvalue problem, not dimensional analysis or a universal constant for all channel flows. Using full channel width or mean speed changes the quoted Reynolds number.
+
+A generic initial perturbation contains many wave numbers, so any growing component eventually matters if one waits long enough within the model. Once it grows, linearization fails; instability establishes departure from the base state, without uniquely determining the final state.
+
+Experiments can show persistent waves, localized puffs, and turbulent motion below a linear instability threshold. Geometry matters: a plane channel and a circular pipe have different linear spectra and different transition scenarios. The lecture's sketches illustrate a general distinction between laminar solutions, finite amplitude structures, and turbulence, rather than one universal sequence at fixed Reynolds numbers.
+
+## Supplemental derivation: where perturbation energy comes from {#sec-l14-energy}
+
+Multiply @eq-l14-linear by $\mathbf u$ and integrate over a periodic channel cell with no slip walls. Pressure and advection terms become vanishing boundary integrals. The kinetic perturbation energy obeys
+
+$$
+\frac{d}{dt}\frac12\int|\mathbf u|^2dV
+=-\int U'u_xu_y\,dV-\nu\int|\nabla\mathbf u|^2dV.
+$$ {#eq-l14-energy}
+
+Viscosity always removes energy. The shear production term can have either sign; correlated streamwise and transverse velocities can draw energy from the base flow. This also explains why the absence of exponentially growing eigenmodes is weaker than a general nonlinear stability statement. Nonorthogonal modes may exhibit transient growth, and finite disturbances can alter the flow before eventual linear decay would occur.
+
+## Nonlinear amplitude models {#sec-l14-amplitude}
+
+Near a simple instability let $\delta=\mathrm{Re}-\mathrm{Re}_c$. Assume one critical mode has complex amplitude $A(t)$ and all other modes can be eliminated. Translation in $x$ changes the phase of $A$, so a local amplitude equation must respect $A\mapsto e^{i\theta}A$. A schematic model is
+
+$$
+\dot A=(c\delta-i\omega_r)A
+-\frac{\alpha}{2}|A|^2A-\frac{\beta}{2}|A|^4A+\cdots,
+\qquad c>0.
+$$ {#eq-l14-amplitude}
+
+For clarity take $\alpha,\beta$ real; imaginary parts would also shift frequency. Writing $I=|A|^2$ removes the phase:
+
+$$
+\dot I=2c\delta I-\alpha I^2-\beta I^3.
+$$ {#eq-l14-intensity}
+
+If $\alpha>0$, a stable small amplitude branch emerges for $\delta>0$, with $I\simeq2c\delta/\alpha$ and $|A|\propto\sqrt\delta$. This is a supercritical saturation scenario.
+
+If $\alpha<0$ and $\beta>0$, the cubic contribution amplifies rather than limits growth. Nonzero stationary intensities are
+
+$$
+I_\pm=\frac{|\alpha|\pm\sqrt{\alpha^2+8\beta c\delta}}{2\beta}.
+$$
+
+For $-\alpha^2/(8\beta c)<\delta<0$, the zero state is linearly stable, the smaller positive branch is unstable, and the larger branch is stable within this model. A sufficiently large perturbation crosses the unstable threshold and reaches the finite amplitude state. This is a subcritical, hysteretic possibility.
+
+These amplitude equations are symmetry constrained phenomenology. Their coefficient signs and range of validity require calculation or measurement; they are not a derivation of turbulence or proof of what every Poiseuille experiment does. Their purpose is to expose why nonlinear behavior can begin before a laminar state becomes linearly unstable.
+
+## Common pitfalls
+
+Always state the $e^{-i\omega t}$ convention before identifying growth. Do not confuse the existence of a laminar profile with its stability, or a linear threshold with a universal experimental transition. A one mode amplitude equation is justified only near an appropriate bifurcation with a suitable separation from the other modes.
+
+## Exercises with solutions {#sec-l14-exercises}
+
+1. **Growth time.** A mode has $\omega=2+0.05i$ in chosen time units. When does its amplitude grow by a factor of ten?
+
+   **Solution.** $e^{0.05t}=10$, so $t=\log10/0.05\approx46.1$. The real part changes its phase, not its growth rate.
+
+2. **Boundary conditions.** Why does $\phi=0$ alone fail to enforce no slip?
+
+   **Solution.** $u_y=-ik\phi$ vanishes, ensuring no penetration, but $u_x=\phi'$ may remain nonzero. The second condition $\phi'=0$ removes tangential slip.
+
+3. **Subcritical branches.** For $c=1$, $\alpha=-2$, $\beta=1$, find the saddle node and the finite intensities at $\delta=-1/4$.
+
+   **Solution.** The saddle node is $\delta=-1/2$. At $-1/4$, $I_\pm=1\pm1/\sqrt2$. Differentiating the right side of @eq-l14-intensity shows the lower branch unstable and upper branch stable; $I=0$ is also stable.

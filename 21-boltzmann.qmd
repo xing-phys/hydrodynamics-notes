@@ -1,0 +1,142 @@
+# Boltzmann equation
+
+Lecture 21 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture21.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Prove the classical H theorem; determine equilibrium distributions from collision invariants; obtain conservation equations by taking kinetic moments; calculate the ideal-gas stress and energy current.
+:::
+
+## Reversible streaming and irreversible collisions {#sec-l21-equation}
+
+The Boltzmann equation for a one-particle occupation is
+
+$$
+\partial_t f+\nabla_p H_1\cdot\nabla_x f
+-\nabla_x H_1\cdot\nabla_p f=C[f],
+$$ {#eq-l21-boltzmann}
+
+where $H_1=\varepsilon(\mathbf p)+U(\mathbf x)$. Streaming preserves fine-grained phase-space volume. The collision operator incorporates the loss of incoming many-particle correlations through molecular chaos. These two pieces have different implications for entropy.
+
+For elastic binary collisions, abbreviate $f_i=f(\mathbf x,\mathbf p_i)$ and use a nonnegative rate $R_{12\to34}$. The operator is an integral of $R_{34\to12}f_3f_4-R_{12\to34}f_1f_2$. For the proof below we assume exchange symmetry of identical particles and microscopic reversibility, $R_{12\to34}=R_{34\to12}$. In the notes this follows from time reversal together with inversion, so that reversed momenta can be relabeled without changing the rate. More general settings require the appropriate detailed-balance statement.
+
+## Entropy production: the H theorem {#sec-l21-h-theorem}
+
+Take Boltzmann's constant to be one. The classical entropy, up to a term proportional to conserved particle number, is
+
+$$
+S=-\int d^dx\,d^dp\,f\log f.
+$$ {#eq-l21-entropy}
+
+A reference occupation may be inserted inside the logarithm to make its argument dimensionless. It changes only an additive conserved term. Differentiating gives $\dot S=-\int(1+\log f)\partial_t f$. Number conservation removes the $1$ term, and integration by parts removes streaming for periodic boundaries, sufficient decay, or closed no-flux boundaries.
+
+Write $X=f_1f_2$ and $Y=f_3f_4$. Then
+
+$$
+\dot S=\frac14\int d^dx\int_{1234}
+R_{12\to34}(X-Y)\log\frac{X}{Y}\ge0.
+$$ {#eq-l21-h-theorem}
+
+To see the factor $1/4$, first average the expression with the one obtained by $1\leftrightarrow2$, replacing $\log f_1$ by $(\log f_1+\log f_2)/2$. Next interchange incoming and outgoing labels. Averaging again replaces this by one quarter of $\log f_1+\log f_2-\log f_3-\log f_4$. The sign follows because the logarithm is increasing: $(X-Y)(\log X-\log Y)\ge0$.
+
+This is a kinetic entropy theorem under stated closure and reversibility assumptions. It does not contradict reversible Hamiltonian evolution of the full distribution. The reduced description discards correlations produced by past encounters; a specially prepared time-reversed correlated state need not satisfy molecular chaos.
+
+## Equilibrium is fixed by collision invariants {#sec-l21-equilibrium}
+
+Equality in @eq-l21-h-theorem requires $f_1f_2=f_3f_4$ for every allowed collision with nonzero rate. Hence
+
+$$
+\log f_1+\log f_2=\log f_3+\log f_4.
+$$
+
+A function additive and conserved in every collision is called a collision invariant. For a generic single-species gas with only number, energy, and momentum conserved, these functions span $1$, $p_i$, and $\varepsilon(\mathbf p)$. Therefore
+
+$$
+f_{\mathrm{eq}}(\mathbf p)=
+\exp\left[-\frac{\varepsilon(\mathbf p)-\mu-\mathbf u\cdot\mathbf p}{T}\right].
+$$ {#eq-l21-maxwell}
+
+The coefficients are identified as temperature, chemical potential, and drift velocity by thermodynamics. Extra conserved quantities, integrability, disconnected collision channels, or special one-dimensional kinematics enlarge the stationary family. The assertion that only these invariants exist is physical input, not a consequence of positivity alone.
+
+Quantum statistics changes both entropy and gain/loss factors. With $s=+1$ for bosons and $s=-1$ for fermions, the entropy density in occupation space is
+
+$$
+s(f)=-f\log f+s(1+sf)\log(1+sf),
+$$ {#eq-l21-quantum-entropy}
+
+and collision balance fixes $\log[f/(1+sf)]$ to be a collision invariant. This gives
+
+$$
+f_{\mathrm{eq}}=\frac{1}{\exp[(\varepsilon-\mu-\mathbf u\cdot\mathbf p)/T]-s}.
+$$
+
+Fermions obey $0\le f\le1$. For bosons the chemical potential must also be compatible with a nonnegative occupation; a condensate, when present, requires an additional treatment beyond an ordinary smooth distribution.
+
+## Taking moments gives conservation laws {#sec-l21-moments}
+
+For any collision invariant $a(\mathbf p)$,
+
+$$
+\int d^dp\,a(\mathbf p)C[f]=0.
+$$ {#eq-l21-invariant}
+
+The proof uses the same incoming/outgoing symmetrization: the integral is proportional to $a_1+a_2-a_3-a_4$. In an unforced homogeneous medium define
+
+$$
+\begin{aligned}
+n&=\int_p f,& J_i&=\int_p v_i f,\\
+g_j&=\int_p p_jf,&\tau_{ij}&=\int_p v_i p_jf,\\
+\mathcal E&=\int_p\varepsilon f,&Q_i&=\int_p v_i\varepsilon f,
+\end{aligned}
+$$ {#eq-l21-moments}
+
+where $v_i=\partial\varepsilon/\partial p_i$ and $\int_p=\int d^dp$. Integrating @eq-l21-boltzmann against $1,p_j,\varepsilon$ gives the continuity equations for $n,g_j,\mathcal E$. With external $U$, momentum has force density $-n\nabla U$, and kinetic energy alone is not generally conserved.
+
+At long times and long distances collisions rapidly erase deviations except those parametrized by the conserved densities. Thus use the local equilibrium form @eq-l21-maxwell with $T,\mu,\mathbf u$ varying slowly in space and time. Its collision operator vanishes pointwise, but its streaming derivative generally does not. Projecting that streaming derivative onto the conserved moments yields ideal hydrodynamics. The remaining part generates a small nonequilibrium correction and, at the next order, viscosity and heat conduction.
+
+## Supplementary derivation: all ideal-gas currents {#sec-l21-ideal-gas}
+
+Let $\varepsilon=p^2/(2m)$. Complete the square by setting $\mathbf q=\mathbf p-m\mathbf u$:
+
+$$
+f_{\mathrm{le}}=e^{(\mu+mu^2/2)/T}e^{-q^2/(2mT)},\qquad
+n=(2\pi mT)^{d/2}e^{(\mu+mu^2/2)/T}.
+$$ {#eq-l21-gaussian}
+
+An overall phase-space measure factor can be restored consistently. The Gaussian is even in $\mathbf q$, with averages $\langle q_i\rangle=0$ and $\langle q_iq_j\rangle=mT\delta_{ij}$. Direct substitution gives
+
+$$
+J_i=nu_i,\quad g_i=mnu_i,\quad
+\tau_{ij}=mnu_iu_j+nT\delta_{ij},\quad
+\mathcal E=\frac{d}{2}nT+\frac12mnu^2.
+$$ {#eq-l21-ideal-currents}
+
+The pressure is therefore $P=nT$. To compute the energy current, expand
+
+$$
+Q_i=\frac{1}{2m^2}\int_p(q_i+mu_i)
+(q^2+2m\mathbf u\cdot\mathbf q+m^2u^2)f_{\mathrm{le}}.
+$$
+
+Only terms even in $\mathbf q$ survive. The term $mu_iq^2$ contributes $(d/2)nTu_i$; the cross term $2mq_i\mathbf u\cdot\mathbf q$ contributes $nTu_i$; the flow-energy term contributes $(mnu^2/2)u_i$. Hence
+
+$$
+Q_i=(\mathcal E+P)u_i.
+$$ {#eq-l21-enthalpy-current}
+
+The additional $Pu_i$ is pressure work. It explains why the convected energy flux is enthalpy times velocity rather than energy density times velocity. These moment calculations reproduce the symmetry-derived ideal-fluid constitutive relations and show exactly where the equation of state enters.
+
+::: {.callout-warning title="Common pitfalls"}
+Local equilibrium does not mean the distribution solves the full Boltzmann equation without corrections. The collision operator vanishes locally; streaming supplies the hydrodynamic equations and dissipative corrections. Also, the chemical potential in @eq-l21-gaussian is conjugate to number at fixed laboratory momentum; the rest-frame combination is $\mu+mu^2/2$.
+:::
+
+## Exercises and solutions {#sec-l21-exercises}
+
+1. Show that $a=\varepsilon$ satisfies @eq-l21-invariant for elastic binary collisions.
+2. Derive the classical entropy-production integrand when $f_1f_2=4$ and $f_3f_4=1$; check its sign.
+3. Compute $\tau_{xx}$ for a three-dimensional equilibrium gas moving along $x$ with speed $u$.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. The symmetrized integral contains $\varepsilon_1+\varepsilon_2-\varepsilon_3-\varepsilon_4$, which vanishes on the energy-conserving support of $R$.
+2. The factor is $(4-1)\log4=3\log4>0$; the full expression also includes $R/4$ and integration measures.
+3. $\tau_{xx}=mnu^2+nT$. The first term is transport of average momentum, and the second is the thermal pressure.
+:::

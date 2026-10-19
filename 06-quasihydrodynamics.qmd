@@ -1,0 +1,176 @@
+# Quasihydrodynamics and correlation functions
+
+::: {.lecture-meta}
+Lecture 6 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture6.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Understand drift with combined parity and time reversal; separate hydrodynamic and gapped modes in a two-species kinetic model; identify the validity scales of hydrodynamics; and compute density fluctuations and causal response from the Gaussian theory.
+:::
+
+## Combined parity and time reversal permits drift {#sec-l06-pt}
+
+The diffusion action assumed time reversal by itself. In one dimension, a medium may preserve only the combined transformation $PT$, where $x\to-x$ and $t\to-t$. The density remains even, while the response field transforms with the same equilibrium shift as before. The additional local term
+
+$$
+\Delta\mathcal L=(\partial_x\pi)f(\mu)
+$$
+
+is then allowed. Under the combined transformation, its change is proportional to $-i(\partial_x\mu)f(\mu)=-i\partial_xV(\mu)$, where $V'=f$. This is a total derivative and does not affect the action for periodic boundaries or suitable decay. Boundary conditions are part of this symmetry argument.
+
+Writing $F(\rho)=f(\mu(\rho))$, the deterministic equation becomes
+
+$$
+\partial_t\rho-\partial_xF(\rho)-D\partial_x^2\rho=0.
+$$
+
+Linearizing about $\rho_0$ and defining $v=-F'(\rho_0)$ gives
+
+$$
+\partial_t\delta\rho+v\partial_x\delta\rho=D\partial_x^2\delta\rho,
+\qquad
+\omega=vk-iDk^2.
+$$ {#eq-l06-drift}
+
+A localized Gaussian packet now spreads while its center moves by $vt$. The real part of the frequency describes translation; the negative imaginary part describes decay. A term with one spatial derivative need not be dissipative.
+
+## A microscopic cartoon: left and right movers {#sec-l06-two-species}
+
+Why keep only a conserved density? Consider right- and left-moving particles with speeds $+v$ and $-v$. Collisions switch their direction at rate $\alpha$, conserving total number but not the difference between the species. Include a background diffusion coefficient $D\geq0$:
+
+$$
+\begin{aligned}
+\partial_t\rho_L-v\partial_x\rho_L-D\partial_x^2\rho_L
+&=-\alpha(\rho_L-\rho_R),\\
+\partial_t\rho_R+v\partial_x\rho_R-D\partial_x^2\rho_R
+&=-\alpha(\rho_R-\rho_L).
+\end{aligned}
+$$ {#eq-l06-two-species}
+
+At the action level, the two species have separate advective/diffusive terms. Collisions add a motif proportional to
+
+$$
+i\gamma(\pi_L-\pi_R)
+[\pi_L-\pi_R-i(\mu_L-\mu_R)].
+$$
+
+It is invariant under a common response shift $\pi_L\to\pi_L+c$, $\pi_R\to\pi_R+c$, preserving total charge. Independent shifts are broken, correctly allowing the relative charge to relax. The positive coefficient $\gamma$ links collision damping to collision noise.
+
+For modes $e^{ikx-i\omega t}$, the density evolution matrix has diagonal entries $-Dk^2-\alpha\pm ikv$ and off-diagonal entries $\alpha$. Its eigenfrequencies are
+
+$$
+\omega_\pm=-i(\alpha+Dk^2)\pm\sqrt{v^2k^2-\alpha^2}.
+$$ {#eq-l06-poles}
+
+At $k=0$, one mode has $\omega=0$ and the other has $\omega=-2i\alpha$. At small $k$, choose branches so that
+
+$$
+\begin{aligned}
+\omega_{\mathrm{hyd}}&=-i\left(D+\frac{v^2}{2\alpha}\right)k^2
+-i\frac{v^4}{8\alpha^3}k^4+\cdots,\\
+\omega_{\mathrm{gap}}&=-2i\alpha-i\left(D-\frac{v^2}{2\alpha}\right)k^2+\cdots.
+\end{aligned}
+$$ {#eq-l06-small-k}
+
+The source's leading gapped-mode annotation misses a factor of two; the exact matrix fixes the gap to $2\alpha$. Both exact branches have nonpositive decay rates for $D,\alpha\geq0$. A negative coefficient of $k^2$ in the expansion of a gapped branch does not by itself imply an instability outside that expansion's regime.
+
+## Supplemental derivation: integrate out the fast imbalance {#sec-l06-elimination}
+
+Define total density $n=\rho_L+\rho_R$ and imbalance $q=\rho_R-\rho_L$. Equation @eq-l06-two-species becomes
+
+$$
+\partial_tn+v\partial_xq=D\partial_x^2n,
+\qquad
+\partial_tq+v\partial_xn=D\partial_x^2q-2\alpha q.
+$$
+
+For times much longer than $1/(2\alpha)$ and wavelengths much longer than $v/(2\alpha)$, the imbalance approximately follows the slowly varying density:
+
+$$
+q\simeq-\frac{v}{2\alpha}\partial_xn.
+$$
+
+Substitution gives
+
+$$
+\partial_tn=D_{\mathrm{eff}}\partial_x^2n,
+\qquad D_{\mathrm{eff}}=D+\frac{v^2}{2\alpha}.
+$$ {#eq-l06-effective-diffusion}
+
+The ballistic travel between direction-changing collisions generates an additional random-walk diffusivity. For $D=0$, exact elimination yields the telegrapher equation $\partial_t^2n+2\alpha\partial_tn=v^2\partial_x^2n$, which retains the short-time propagating behavior discarded by diffusion.
+
+A practical hydrodynamic regime is $|\omega|/\alpha\ll1$ and $|k|v/\alpha\ll1$. The mean-free-path scale is of order $\ell=v/\alpha$; numerical factors depend on whether a “collision time” means one direction change or relaxation of the imbalance. The $k^4$ term in @eq-l06-small-k becomes important when $k\ell$ is no longer small.
+
+If $\alpha$ is itself small compared with other microscopic rates, the imbalance is an **almost conserved** variable worth retaining. This is quasihydrodynamics: an effective theory that tracks a few weakly relaxing quantities in addition to exact conserved densities. Its extra pole has a small but nonzero gap. Taking $\alpha\to0$ after discarding that pole is singular; the system then has two conserved propagating species rather than one diffusive density.
+
+## What experiments measure: fluctuations and response {#sec-l06-correlators}
+
+For a quantum observable $A$, a symmetric correlation function averages the anticommutator, $G^S_{AA}(x,t)=\langle\{A(x,t),A(0,0)\}\rangle/2$. A retarded correlator contains a step function and a commutator; its overall sign depends on the convention for coupling the source. Here define $G^R$ operationally as the causal response to a source $h$ entering $\Phi\to\Phi-\int h\rho$.
+
+In the classical hydrodynamic limit, commuting density fields give $G^S_{\rho\rho}(x,t)=\langle\delta\rho(x,t)\delta\rho(0,0)\rangle$. Spatial and temporal translation invariance allow Fourier transformation. Any observable with nonzero overlap with a conserved density can inherit the density's slow poles; symmetry can make that overlap vanish.
+
+For the Gaussian diffusion action, with $D=\sigma/\chi$,
+
+$$
+\mathcal L=\pi\partial_t\rho+i\sigma(\nabla\pi)^2
++D\nabla\pi\cdot\nabla\rho.
+$$
+
+With Fourier convention $e^{i\mathbf k\cdot\mathbf x-i\omega t}$, symmetrize its quadratic form as $S=\frac12\int_{k,\omega}(\rho,\pi)_{-k,-\omega}M(\rho,\pi)_{k,\omega}^{\mathsf T}$, where
+
+$$
+M=\begin{pmatrix}
+0&i\omega+Dk^2\\
+-i\omega+Dk^2&2i\sigma k^2
+\end{pmatrix}.
+$$ {#eq-l06-matrix}
+
+Gaussian integration with weight $e^{iS}$ gives the covariance matrix $(-iM)^{-1}$. Its density-density element is
+
+$$
+G^S_{\rho\rho}(k,\omega)=\frac{2\sigma k^2}{\omega^2+(Dk^2)^2}.
+$$ {#eq-l06-symmetric}
+
+One need not know functional integration to check this result: each nonzero Fourier density mode is an Ornstein–Uhlenbeck process with decay rate $Dk^2$ and conserved noise strength $2\sigma k^2$.
+
+## Supplemental derivation: fix the response normalization {#sec-l06-response}
+
+The source changes $\mu$ to $\rho/\chi-h$. The mean density equation becomes
+
+$$
+(\partial_t-D\nabla^2)\langle\rho\rangle=-\sigma\nabla^2h.
+$$
+
+Thus
+
+$$
+G^R_{\rho\rho}(k,\omega)
+=\frac{\delta\langle\rho\rangle}{\delta h}
+=\frac{\sigma k^2}{Dk^2-i\omega}.
+$$ {#eq-l06-retarded}
+
+The pole lies at $\omega=-iDk^2$, in the lower half-plane, as causality requires for a stable mode. The numerator matters: the response is not just the inverse diffusion operator. Its static limit is $\chi$, whereas a uniform time-dependent source cannot change an exactly conserved total charge in a closed system. Therefore the $k\to0$ and $\omega\to0$ limits do not commute.
+
+Integrating @eq-l06-symmetric over frequency gives $\int d\omega\,G^S/(2\pi)=\sigma/D=\chi$. In time, the mode covariance is $\chi e^{-Dk^2|t|}$. With the dimensionless source convention used here,
+
+$$
+G^S=\frac2\omega\operatorname{Im}G^R.
+$$
+
+A source with energy units instead contributes the familiar factor of $T$. These formulas assume nonzero $k$ in a large or grand-canonical system; a fixed total charge removes the zero-mode variance.
+
+## Common pitfalls {#sec-l06-pitfalls}
+
+A hydrodynamic mode is defined by its frequency tending to zero with $k$, not merely by looking visually slow. A response-field propagator and a physical susceptibility differ by source vertices. Finally, the diffusion approximation cannot resolve a mean free path or the short-time ballistic regime it has integrated out.
+
+## Check your understanding {#sec-l06-exercises}
+
+1. Find the $k=0$ eigenvectors of the two-species model and explain their conservation properties.
+2. Compute the late-time real-space packet for drift diffusion with initial condition $\delta\rho(x,0)=Q\delta(x)$.
+3. Evaluate the static response and equal-time covariance from @eq-l06-retarded and @eq-l06-symmetric.
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. $(1,1)$ is conserved with frequency zero; $(1,-1)$ is the imbalance and decays at rate $2\alpha$.
+2. $\delta\rho=Q(4\pi Dt)^{-1/2}\exp[-(x-vt)^2/(4Dt)]$. Its total excess charge remains $Q$.
+3. At nonzero $k$, $G^R(k,0)=\sigma/D=\chi$. The frequency integral of $G^S$ is also $\chi$, confirming consistency with the Gaussian equilibrium ensemble.
+:::

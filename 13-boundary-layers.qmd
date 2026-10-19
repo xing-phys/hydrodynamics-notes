@@ -1,0 +1,154 @@
+# Boundary layers
+
+Lecture 13 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture13.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Explain why weak viscosity is essential near a wall, solve an oscillatory viscous layer, derive the flat plate boundary layer and Blasius equation, and calculate the scaling of skin friction drag.
+:::
+
+## Small viscosity is a singular limit {#sec-l13-singular}
+
+Consider steady incompressible flow past a thin flat plate aligned with a uniform incident velocity $U\hat{\mathbf x}$. Let $x$ measure distance from the leading edge and $y$ distance from one face. Inviscid uniform flow satisfies no penetration but has tangential speed $U$ at the plate. A viscous fluid instead satisfies $u=v=0$ at $y=0$.
+
+If viscosity is small, the transition between these conditions occurs in a narrow boundary layer. The velocity gradient inside that layer is large, allowing the viscous term to remain comparable to inertia even when the bulk Reynolds number $\mathrm{Re}_L=UL/\nu$ is large. Setting $\nu=0$ before resolving the wall therefore loses a boundary condition and a physical region.
+
+The plate has no unique intrinsic length if treated as semi-infinite. Local properties depend on distance $x$ from the leading edge. We will find a thickness that increases downstream, corresponding to the time available for momentum diffusion into the fluid.
+
+## Warm-up: oscillatory shear {#sec-l13-oscillatory}
+
+First consider an infinite wall and a flow invariant in $x$. Incompressibility and no penetration imply $v_y=0$. The nonlinear term vanishes, leaving a diffusion equation for tangential momentum. If a wall oscillates at frequency $\omega>0$ while fluid at infinity rests,
+
+$$
+\partial_tu=\nu\partial_y^2u,
+\qquad u(0,t)=\operatorname{Re}[U_we^{-i\omega t}],
+\qquad u(\infty,t)=0.
+$$
+
+Write $u=\operatorname{Re}[\hat u(y)e^{-i\omega t}]$. Then $\hat u''=(-i\omega/\nu)\hat u$ and the decaying solution is
+
+$$
+\hat u(y)=U_w\exp\left[-(1-i)\frac{y}{\delta_\omega}\right],
+\qquad \delta_\omega=\sqrt{\frac{2\nu}{\omega}}.
+$$ {#eq-l13-stokes-layer}
+
+Amplitude decays exponentially and phase changes with distance from the wall. The characteristic thickness is $\sqrt{\nu/\omega}$, up to the chosen convention for the factor $\sqrt2$.
+
+The lecture's equivalent setup holds the wall fixed and drives a uniform oscillatory flow $U_\infty(t)$ at large $y$. Its pressure gradient must accelerate the exterior fluid: $-\partial_xP/\rho=\partial_tU_\infty$. Subtracting the exterior velocity reduces the problem to the same diffusion equation. For $U_\infty=\operatorname{Re}[\hat Ue^{-i\omega t}]$,
+
+$$
+\hat u(y)=\hat U\left[1-e^{-(1-i)y/\delta_\omega}\right].
+$$
+
+Without that pressure forcing, prescribing a spatially uniform oscillatory velocity at infinity would not solve the momentum equation. Both setups demonstrate that the viscous region narrows as $\nu\to0$ while remaining indispensable at the wall.
+
+## Deriving the steady boundary layer equations {#sec-l13-prandtl}
+
+For the plate problem, compare streamwise advection $U^2/x$ with transverse diffusion $\nu U/\delta^2$. Their balance gives
+
+$$
+\delta(x)\sim\sqrt{\frac{\nu x}{U}},\qquad
+\frac{\delta}{x}\sim\mathrm{Re}_x^{-1/2},\qquad
+\mathrm{Re}_x=\frac{Ux}{\nu}.
+$$ {#eq-l13-thickness}
+
+Continuity, $\partial_xu+\partial_yv=0$, then gives $v\sim U\delta/x\ll U$. Both $u\partial_xu$ and $v\partial_yu$ scale as $U^2/x$, so neither can be dropped. In contrast, $\partial_x^2u/\partial_y^2u\sim(\delta/x)^2\ll1$. To leading order,
+
+$$
+u\partial_xu+v\partial_yu
+=-\frac{\partial_xP_e}{\rho}+\nu\partial_y^2u,
+\qquad \partial_xu+\partial_yv=0.
+$$ {#eq-l13-boundary-layer}
+
+$P_e(x)$ is the exterior pressure, approximately uniform across the thin layer. For a flat plate in a uniform exterior flow, $\partial_xP_e=0$.
+
+Introduce a stream function $u=\partial_y\psi$, $v=-\partial_x\psi$. The zero pressure gradient equation becomes
+
+$$
+\psi_y\psi_{xy}-\psi_x\psi_{yy}=\nu\psi_{yyy}.
+$$ {#eq-l13-psi}
+
+The boundary conditions are $\psi_y=\psi_x=0$ at the wall and $\psi_y\to U$ outside the layer. They encode no slip, no penetration, and matching to the outer solution.
+
+## Supplemental derivation: similarity and Blasius's equation {#sec-l13-blasius}
+
+A similarity solution assumes that profiles at different $x$ collapse when $y$ is measured in units of $\delta(x)$. To see why the exponents are fixed, nondimensionalize with $X=Ux/\nu$, $Y=Uy/\nu$, $\Psi=\psi/\nu$, then try $\Psi=X^\alpha f(Y/X^\beta)$. Balancing the powers in @eq-l13-psi gives $\alpha=1-\beta$. Requiring the far field speed $\partial_Y\Psi$ to be independent of $X$ gives $\alpha=\beta$. Thus both equal $1/2$.
+
+In dimensional variables choose
+
+$$
+\psi=\sqrt{\nu Ux}\,f(\zeta),
+\qquad \zeta=y\sqrt{\frac{U}{\nu x}}.
+$$
+
+Differentiate carefully:
+
+$$
+u=Uf'(\zeta),\qquad
+v=\frac12\sqrt{\frac{\nu U}{x}}[\zeta f'(\zeta)-f(\zeta)].
+$$
+
+Inserting these into @eq-l13-boundary-layer cancels the terms proportional to $\zeta f'f''$ and leaves
+
+$$
+f'''+\frac12ff''=0,
+\qquad f(0)=f'(0)=0,\qquad f'(\infty)=1.
+$$ {#eq-l13-blasius}
+
+The wall conditions fix $f(0)$ and $f'(0)$; matching fixes the remaining shooting parameter $f''(0)$. Numerical integration gives approximately $0.332$. This number is a numerical property of the laminar similarity equation, not an adjustable empirical turbulence parameter. The profile has $f\propto\zeta^2$ close to the wall and $f'\to1$ far away. Different operational definitions of thickness yield different constants multiplying @eq-l13-thickness; for example the point where $u=0.99U$ is at approximately $5\sqrt{\nu x/U}$.
+
+## Checking the neglected terms {#sec-l13-consistency}
+
+A dominant balance must be checked after deriving a candidate solution. The streamwise derivatives are small relative to transverse derivatives when $\delta/x\ll1$, equivalent to $x\gg\nu/U$. The approximation fails in a small region near the leading edge.
+
+The transverse momentum equation gives a pressure change across the layer of order $\Delta P/\rho\sim U^2(\delta/x)^2$. Its streamwise gradient is smaller than streamwise inertia by the same small ratio. This justifies using constant exterior pressure at leading order for this geometry. The conclusion would change if the outer inviscid flow imposed a substantial pressure gradient, as on a curved body. Adverse pressure gradients can cause separation; the zero pressure gradient Blasius solution does not capture that process.
+
+## Wall stress and drag {#sec-l13-drag}
+
+The wall shear stress on one face is
+
+$$
+\tau_w(x)=\eta\left.\partial_yu\right|_0
+=\eta U\sqrt{\frac{U}{\nu x}}\,f''(0).
+$$
+
+Integrating from the leading edge to length $L$ gives the force per transverse width on one face:
+
+$$
+\frac{F_{\mathrm{one}}}{b}=2\eta U\sqrt{\frac{UL}{\nu}}f''(0).
+$$ {#eq-l13-friction}
+
+The integrable $x^{-1/2}$ singularity reflects the ideal sharp leading edge. For a plate with two wetted faces, double this force. If $A$ denotes total wetted area, either convention gives
+
+$$
+F=\frac12\rho U^2A C_D,\qquad
+C_D=\frac{4f''(0)}{\sqrt{\mathrm{Re}_L}}
+\approx\frac{1.328}{\sqrt{\mathrm{Re}_L}}.
+$$ {#eq-l13-drag-coefficient}
+
+This is laminar skin friction drag. Creeping flow around a sphere instead has a coefficient proportional to $\mathrm{Re}^{-1}$, with its numerical coefficient depending on the reference area. The comparison concerns scaling regimes, not a universal drag curve shared by every geometry. In practice a plate boundary layer can become unstable and turbulent downstream, changing its stress and drag.
+
+**Supplemental integral check.** Define the momentum thickness
+
+$$
+\theta_m(x)=\int_0^\infty\frac{u}{U}\left(1-\frac{u}{U}\right)dy.
+$$
+
+Integrating the zero pressure gradient boundary layer equation across the layer gives $d\theta_m/dx=\tau_w/(\rho U^2)$. Thus the accumulated skin friction per width is $F_{\mathrm{one}}/b=\rho U^2\theta_m(L)$, provided the leading edge contribution vanishes. Using the similarity stress gives $\theta_m=2f''(0)\sqrt{\nu x/U}$. This relation measures the momentum deficit carried by the layer and verifies the force obtained directly from wall shear. It also distinguishes a useful integral thickness from a convention such as the location where velocity reaches $99\%$ of its exterior value.
+
+## Common pitfalls
+
+A small normal velocity can still make an essential nonlinear contribution because its transverse derivative is large. The boundary layer thickness is not a sharp physical edge. The Blasius solution requires a laminar, attached, approximately two dimensional layer with a uniform outer speed. A large Reynolds number does not justify applying that solution after transition.
+
+## Exercises with solutions {#sec-l13-exercises}
+
+1. **Diffusion estimate.** Explain @eq-l13-thickness without using Navier–Stokes.
+
+   **Solution.** Fluid at position $x$ has spent time $t\sim x/U$ passing the plate. Momentum diffuses a distance $\sqrt{\nu t}$ in that time, giving $\delta\sim\sqrt{\nu x/U}$.
+
+2. **Doubling plate length.** At fixed $U$, how do total laminar drag and average drag coefficient change when $L$ doubles?
+
+   **Solution.** @eq-l13-friction gives $F\propto\sqrt L$, so force increases by $\sqrt2$. Since area doubles, $C_D$ decreases by $1/\sqrt2$. The longer plate still experiences more total drag.
+
+3. **Oscillation frequency.** A fluid has $\nu=10^{-6}\ \mathrm{m^2\,s^{-1}}$ and $\omega=2\ \mathrm{s^{-1}}$. Find the amplitude decay distance.
+
+   **Solution.** @eq-l13-stokes-layer gives $\delta_\omega=10^{-3}\ \mathrm m$. At one millimeter the oscillatory velocity amplitude is reduced by $e^{-1}$ and its phase changes by one radian.

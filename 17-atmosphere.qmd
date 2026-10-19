@@ -1,0 +1,160 @@
+# Atmospheric fluid flows
+
+Lecture 17 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture17.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Derive the rotating frame fluid equation, estimate Reynolds and Rossby numbers, understand geostrophy and Taylor–Proudman columns, solve an Ekman layer, and relate weather and ocean currents to pressure and surface height.
+:::
+
+## Navier–Stokes in a rotating frame {#sec-l17-rotating}
+
+Let a coordinate frame rotate at constant angular velocity $\boldsymbol\Omega$. Differentiating the transformation between rotating and inertial coordinates twice produces two extra accelerations. In rotating coordinates, the apparent force per unit mass is
+
+$$
+-2\boldsymbol\Omega\times\mathbf v
+-\boldsymbol\Omega\times(\boldsymbol\Omega\times\mathbf r).
+$$
+
+The first is Coriolis acceleration and depends on velocity. The second is centrifugal acceleration and depends on position. For constant rotation,
+
+$$
+-\boldsymbol\Omega\times(\boldsymbol\Omega\times\mathbf r)
+=\nabla\left(\frac12|\boldsymbol\Omega\times\mathbf r|^2\right).
+$$
+
+In a constant density fluid it can be absorbed into a modified pressure $P'=P-\rho|\boldsymbol\Omega\times\mathbf r|^2/2$. The incompressible equation is then
+
+$$
+\partial_t\mathbf v+(\mathbf v\cdot\nabla)\mathbf v
+=-\frac{\nabla P'}{\rho}+\nu\nabla^2\mathbf v
+-2\boldsymbol\Omega\times\mathbf v.
+$$ {#eq-l17-rotating-ns}
+
+The Coriolis term cannot generally be absorbed into pressure. Its force is perpendicular to velocity, so it does no instantaneous mechanical work on a fluid parcel; nevertheless, it strongly changes trajectories and force balance.
+
+## Two dimensionless comparisons {#sec-l17-numbers}
+
+The Reynolds number compares inertia with viscosity, while a Rossby number compares inertia with rotation:
+
+$$
+\mathrm{Re}=\frac{UL}{\nu},\qquad
+\mathrm{Ro}_\Omega=\frac{U}{\Omega L}.
+$$ {#eq-l17-numbers}
+
+Some conventions include a factor two. In a local latitude plane the usual definition is $\mathrm{Ro}=U/(|f|L)$ with Coriolis parameter $f=2\Omega\sin\lambda$, where $\lambda$ is latitude. State which definition is used before comparing numbers.
+
+For a weather system with $U\sim10\ \mathrm{m\,s^{-1}}$ and $L\sim1000\ \mathrm{km}$, molecular viscosity $\nu\sim10^{-5}\ \mathrm{m^2\,s^{-1}}$ gives $\mathrm{Re}\sim10^{12}$. Earth's $\Omega\approx7.3\times10^{-5}\ \mathrm{s^{-1}}$ gives $\mathrm{Ro}_\Omega\sim0.1$. The bulk can therefore have weak molecular viscous effects and strong rotational effects simultaneously. Actual near surface transport involves turbulent mixing and is not well described by molecular viscosity alone.
+
+For a steady flow with small Rossby number away from walls, leading balance is geostrophic:
+
+$$
+\nabla P'=-2\rho\boldsymbol\Omega\times\mathbf v.
+$$ {#eq-l17-geostrophic}
+
+A typical pressure difference is $\Delta P\sim\rho\Omega UL$, up to the factor two and latitude dependence. For air this is of order $10^3\ \mathrm{Pa}$ over the weather system, a few percent of atmospheric pressure. Slow flow can therefore coexist with measurable pressure gradients.
+
+## Taylor–Proudman columns {#sec-l17-taylor-proudman}
+
+Take the curl of @eq-l17-geostrophic for uniform density and constant $\boldsymbol\Omega$. The curl of a gradient vanishes. The identity
+
+$$
+\nabla\times(\boldsymbol\Omega\times\mathbf v)
+=\boldsymbol\Omega(\nabla\cdot\mathbf v)
+-(\boldsymbol\Omega\cdot\nabla)\mathbf v
+$$
+
+then gives
+
+$$
+(\boldsymbol\Omega\cdot\nabla)\mathbf v=0.
+$$ {#eq-l17-taylor-proudman}
+
+This is the Taylor–Proudman result in the steady, inviscid, homogeneous, small Rossby number limit. Velocity changes weakly along the rotation axis. With $\boldsymbol\Omega=\Omega\hat{\mathbf z}$, it is approximately independent of $z$. If a horizontal boundary imposes $v_z=0$, that condition extends along an ideal column, leaving a nearly two dimensional horizontal flow.
+
+The assumptions matter. Strong time dependence, stratification and baroclinicity, finite Rossby number, and viscous boundary layers can allow vertical variation. Earth's atmosphere is not a uniform incompressible cylinder, so applying the theorem to weather requires additional hydrostatic and thin layer reasoning.
+
+## Supplemental derivation: the Ekman spiral {#sec-l17-ekman}
+
+A geostrophic bulk flow cannot satisfy no slip at a stationary wall. Consider a horizontal wall at $z=0$, rotation $\Omega\hat{\mathbf z}$ with $\Omega>0$, and exterior velocity $U\hat{\mathbf y}$. Let $f=2\Omega$ and keep constant pressure gradient through a thin wall layer. Neglect inertia while retaining viscosity and Coriolis acceleration.
+
+Write $u=v_x$ and $v_y=U+w$. The exterior geostrophic pressure gradient cancels the term from $U$. The remaining equations are
+
+$$
+\nu u''=-fw,\qquad \nu w''=fu,
+$$
+
+with $u(0)=0$, $w(0)=-U$, and $u,w\to0$ at infinity. Define $q=u+iw$. Then $\nu q''=ifq$. Choosing the root with positive real part and imposing decay gives
+
+$$
+q(z)=-iU\exp\left[-(1+i)\frac{z}{\delta_E}\right],
+\qquad \delta_E=\sqrt{\frac{2\nu}{f}}=\sqrt{\frac{\nu}{\Omega}}.
+$$
+
+Taking real and imaginary parts,
+
+$$
+\begin{aligned}
+v_x&=-Ue^{-z/\delta_E}\sin(z/\delta_E),\\
+v_y&=U\left[1-e^{-z/\delta_E}\cos(z/\delta_E)\right].
+\end{aligned}
+$$ {#eq-l17-ekman}
+
+Both magnitude and direction change with height: an Ekman spiral. Its thickness arises from $\nu U/\delta_E^2\sim\Omega U$, rather than the streamwise advection balance of a flat plate boundary layer. Reversing rotation reverses the transverse deflection.
+
+The transverse flow integrated across the layer is nonzero. In a finite vessel, continuity couples this transport to weak vertical and return flows, allowing rotating fluids to adjust and mix through boundary effects. This is the origin of the apparently disproportionate role of walls in processes such as spin up. In turbulent geophysical boundary layers an effective transport coefficient may replace $\nu$, so the molecular prediction alone should not be used as a realistic atmospheric layer thickness.
+
+## Gravity and the thin atmosphere {#sec-l17-gravity}
+
+Gravity is much larger than Coriolis acceleration vertically: $g/(\Omega U)\sim10^4$ for the preceding scales. The leading vertical balance is hydrostatic, with a small centrifugal correction. For a nearly spherical Earth of radius $R$ and colatitude $\theta$, the effective potential is approximately
+
+$$
+\Phi_{\mathrm{eff}}=gr-\frac12\Omega^2R^2\sin^2\theta.
+$$ {#eq-l17-effective-potential}
+
+Surfaces of constant effective potential define the local level surface; height should be measured relative to this surface, not an exactly spherical radius. With uniform density, $P+\rho\Phi_{\mathrm{eff}}$ is constant in a static fluid. For a compressible atmosphere the hydrostatic equation must instead be integrated with its changing density.
+
+Introduce local east, north, and vertical coordinates. The atmosphere's height is small relative to horizontal weather scales, so continuity generally permits much smaller vertical than horizontal velocity. To leading order only the vertical component of Earth's rotation affects horizontal Coriolis acceleration. It is $\Omega\cos\theta=\Omega\sin\lambda$. Thus horizontal motion approximately obeys
+
+$$
+\partial_t\mathbf v_h+(\mathbf v_h\cdot\nabla_h)\mathbf v_h
+=-\frac{\nabla_h\Pi}{\rho}+\nu\nabla_h^2\mathbf v_h
+-f\hat{\mathbf z}\times\mathbf v_h.
+$$ {#eq-l17-local}
+
+Here $\Pi$ represents the pressure variation after the leading vertical hydrostatic balance is separated. A local constant $f$ approximation is suitable only over regions with sufficiently small latitude variation. Near the equator $f\to0$, and this geostrophic approximation fails even when rotation remains important in more complete equations.
+
+## Weather and ocean height {#sec-l17-examples}
+
+In local geostrophic balance,
+
+$$
+\mathbf v_h=\frac{1}{\rho f}\hat{\mathbf z}\times\nabla_h\Pi.
+$$ {#eq-l17-pressure-velocity}
+
+Velocity is approximately parallel to isobars. In the Northern Hemisphere, a low pressure center has an outward pressure gradient and counterclockwise circulation. In the Southern Hemisphere the sign of $f$ changes and the circulation reverses. Friction and inertia create departures, including flow across isobars; these effects are essential near the ground and in intense compact vortices.
+
+For an ocean with nearly constant surface atmospheric pressure, a surface height $h_s(x,y)$ creates a horizontal hydrostatic pressure gradient $\nabla_h\Pi\simeq\rho g\nabla_hh_s$. An eastward current $U\hat{\mathbf x}$ satisfies
+
+$$
+\partial_yh_s=-\frac{fU}{g}.
+$$ {#eq-l17-ocean-slope}
+
+For $U\sim0.1\ \mathrm{m\,s^{-1}}$ and $f\sim10^{-4}\ \mathrm{s^{-1}}$, the slope is about $10^{-6}$: a height difference of approximately one meter across $1000\ \mathrm{km}$. The sign follows the coordinate convention; the measurable magnitude connects currents to sea surface topography.
+
+## Common pitfalls
+
+The centrifugal contribution changes the effective level surface, whereas Coriolis depends on velocity. Small Rossby number and small Reynolds number describe different limits. Taylor–Proudman requires restrictive assumptions. Geostrophic motion follows isobars only to leading order and becomes unreliable near the equator or where friction and inertia compete with rotation.
+
+## Exercises with solutions {#sec-l17-exercises}
+
+1. **Geostrophic speed.** At $f=10^{-4}\ \mathrm{s^{-1}}$ and $\rho=1\ \mathrm{kg\,m^{-3}}$, pressure changes by $1000\ \mathrm{Pa}$ over $1000\ \mathrm{km}$. Estimate speed.
+
+   **Solution.** $U\sim\Delta P/(\rho fL)=10\ \mathrm{m\,s^{-1}}$. Pressure contours determine the leading flow direction through @eq-l17-pressure-velocity.
+
+2. **Ekman transport.** Integrate the transverse velocity in @eq-l17-ekman over height.
+
+   **Solution.** With $s=z/\delta_E$, $\int_0^\infty v_xdz=-U\delta_E\int_0^\infty e^{-s}\sin s\,ds=-U\delta_E/2$. It is finite despite $v_x\to0$ in the bulk.
+
+3. **Latitude.** What happens to the local Rossby number for fixed $U,L$ as latitude approaches zero?
+
+   **Solution.** $\mathrm{Ro}=U/(2\Omega|\sin\lambda|L)$ grows without bound. A constant $f$ geostrophic model ceases to be a controlled local approximation near the equator.

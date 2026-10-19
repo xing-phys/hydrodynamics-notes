@@ -1,0 +1,152 @@
+# Diffusion
+
+::: {.lecture-meta}
+Lecture 5 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture5.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Explain why conserved densities are slow; construct a local MSR field theory for diffusion; derive the continuity equation, Einstein relation, and current fluctuations; and establish diffusive scaling and the irrelevance of ordinary nonlinear corrections.
+:::
+
+## From stochastic particles to hydrodynamic fields {#sec-l05-slow}
+
+A dye cloud in water contains many molecules. We do not follow each molecule; we retain a coarse-grained density $\rho(\mathbf x,t)$. Its spatial integral $N=\int d^dx\,\rho$ is conserved in a closed system. A density fluctuation in a large region cannot disappear instantly, because charge must cross that region's boundary.
+
+For a region of size $R$, its charge scales as $R^d$, whereas the number of molecules close enough to cross its boundary in a short microscopic interval scales as $R^{d-1}$. The maximal relative rate therefore decreases at least as $1/R$. This counting motivates the **hydrodynamic postulate**: long-wavelength fluctuations of locally conserved quantities are slow. The precise diffusive $R^2$ relaxation time will follow from locality and the constitutive law, not from this surface-to-volume estimate alone.
+
+The postulate has assumptions. The system should reach local equilibrium on a finite microscopic time, and there should be no extra comparably slow order parameter, integrability constraint, or nearly conserved variable. Later chapters explore what happens when these assumptions need refinement.
+
+## Functional derivatives and conservation {#sec-l05-field-theory}
+
+Discretize space into cells, introduce a response variable for each density, and then take a continuum limit. The action is
+
+$$
+S=\int dt\,d^dx\,\mathcal L,
+\qquad
+\mathcal L=\pi\partial_t\rho-\mathcal H.
+$$
+
+For a functional $F[\rho]$, its derivative is defined by $\delta F=\int d^dx\,[\delta F/\delta\rho(\mathbf x)]\delta\rho(\mathbf x)$. If $F=\int f(\rho,\nabla\rho)d^dx$, integration by parts gives
+
+$$
+\frac{\delta F}{\delta\rho}
+=\frac{\partial f}{\partial\rho}
+-\partial_i\frac{\partial f}{\partial(\partial_i\rho)}.
+$$
+
+For $N=\int\rho$, the derivative is one. Strong charge conservation is thus the shift symmetry $\pi(\mathbf x,t)\to\pi(\mathbf x,t)+c$, with constant $c$. Local terms in $\mathcal H$ must involve gradients of $\pi$. This is the response-field version of a continuity equation.
+
+## The equilibrium functional and susceptibility {#sec-l05-static}
+
+Expand around a uniform state and use $\rho$ temporarily for its density deviation. Local equilibrium away from a critical point suggests
+
+$$
+\Phi[\rho]=\int d^dx\left[\frac{\rho^2}{2\chi}
++\frac{u_3}{3!}\rho^3+\cdots+\frac K2(\nabla\rho)^2+\cdots\right].
+$$ {#eq-l05-static}
+
+The positive coefficient $\chi$ is the susceptibility in the convention $P_{\mathrm{eq}}\propto e^{-\Phi}$. A term linear in $\rho$ is constant within a fixed-total-charge sector and does not affect its dynamics. To leading order,
+
+$$
+\mu(\mathbf x)=\frac{\delta\Phi}{\delta\rho(\mathbf x)}=\frac\rho\chi.
+$$
+
+The central limit theorem supplies useful intuition. A coarse cell contains many weakly correlated microscopic regions; its total-density fluctuation is approximately Gaussian, and its relative fluctuation decreases with cell size. This reasoning requires finite static correlation length. Near a critical point, the gradient term and nonlinearities may become essential.
+
+Temperature factors are absorbed into $\Phi$ and $\chi$ here. If $\widetilde\mu$ is a physical chemical potential, the source conjugate to $\rho$ in $\Phi$ is dimensionless, typically $\widetilde\mu/T$. Keeping this convention explicit prevents missing factors in fluctuation–dissipation relations.
+
+## Construct the leading action {#sec-l05-action}
+
+Density is even under time reversal, so $\pi\to-\pi+i\mu$. Charge conservation allows $\partial_i\pi$, and the time-reversal-invariant quadratic combination is $\partial_i\pi\,\partial_i(\pi-i\mu)$. The leading isotropic action is
+
+$$
+\mathcal L=\pi\partial_t\rho
++i\sigma(\rho)\partial_i\pi\,\partial_i(\pi-i\mu),
+\qquad\sigma\geq0.
+$$ {#eq-l05-action}
+
+The nonnegative transport coefficient $\sigma$ fixes both dissipative mobility and current fluctuations. As in the finite-dimensional MSR theory, state-dependent coefficients require a consistent stochastic discretization for exact noise-induced drifts. At the linear Gaussian order used below, $\sigma=\sigma_0$ is constant and this issue disappears.
+
+Varying with respect to $\pi$ and setting $\pi=0$ gives
+
+$$
+\partial_t\rho=\partial_i(\sigma\partial_i\mu).
+$$
+
+Linearizing around a uniform density $\rho_0$, with $\mu=\delta\rho/\chi$ and $\sigma_0=\sigma(\rho_0)$, yields
+
+$$
+\partial_t\delta\rho=D\nabla^2\delta\rho,
+\qquad D=\frac{\sigma_0}{\chi}.
+$$ {#eq-l05-einstein}
+
+The last equality is an Einstein relation: a kinetic mobility divided by a static susceptibility determines the diffusion coefficient. Positive mobility and thermodynamic stability give $D\geq0$.
+
+## Constitutive relation and fluctuating current {#sec-l05-current}
+
+Integrating by parts makes the conservation structure explicit. A conserved-density action has the form $\mathcal L=\pi\partial_t\rho-\partial_i\pi\,\widetilde J_i$, with response dependence in $\widetilde J$ encoding fluctuations. Equivalently, the linear theory is the Langevin field equation
+
+$$
+\partial_t\rho+\partial_iJ_i=0,
+\qquad
+J_i=-\sigma_0\partial_i\mu+\xi_i
+=-D\partial_i\rho+\xi_i,
+$$ {#eq-l05-current}
+
+$$
+\langle\xi_i(\mathbf x,t)\xi_j(\mathbf x',t')\rangle
+=2\sigma_0\delta_{ij}\delta^{(d)}(\mathbf x-\mathbf x')\delta(t-t').
+$$ {#eq-l05-current-noise}
+
+The deterministic current flows down a chemical-potential gradient. The density noise is a **divergence** of current noise, ensuring total charge is conserved in every realization with periodic or no-flux boundaries. Adding unconstrained scalar white noise directly to $\partial_t\rho$ would violate this strong conservation.
+
+This is the same differential equation encountered for a single walker's probability in lecture 2, but its meaning differs. Here $\rho$ is a many-body density that itself fluctuates. It is not the probability distribution over positions of one tagged particle.
+
+## Spreading and hydrodynamic modes {#sec-l05-modes}
+
+For an initial disturbance in one dimension,
+
+$$
+\delta\rho(x,t)=\int dy\,
+\frac{e^{-(x-y)^2/(4Dt)}}{\sqrt{4\pi Dt}}\delta\rho(y,0).
+$$
+
+The width grows as $\sqrt{Dt}$ while total excess charge remains fixed. On a periodic interval of length $L$, an initial cosine $A\cos(2\pi x/L)$ becomes $Ae^{-4\pi^2Dt/L^2}\cos(2\pi x/L)$. This is a useful worked example of long-wavelength slowing.
+
+More generally, substitute $\delta\rho\propto e^{i\mathbf k\cdot\mathbf x-i\omega t}$ into @eq-l05-einstein:
+
+$$
+\omega(\mathbf k)=-iDk^2.
+$$ {#eq-l05-mode}
+
+The convention $e^{-i\omega t}$ means $\operatorname{Im}\omega<0$ gives decay. A hydrodynamic mode has $\omega\to0$ as $k\to0$; conservation protects this slow limit. These damped modes are also called quasinormal modes in the lecture notes.
+
+## Supplemental derivation: why the leading theory is universal {#sec-l05-scaling}
+
+Rescale toward large distances by $\mathbf x\to\mathbf x/\lambda$ and $t\to t/\lambda^z$, with $\lambda\to0$. Define scaling dimensions by $\rho\to\lambda^{[\rho]}\rho$. Requiring the Gaussian equilibrium functional $\int\rho^2d^dx$ to stay invariant gives $[\rho]=d/2$. Time reversal relates the dimensions of $\pi$ and $\mu=\rho/\chi$, hence $[\pi]=d/2$.
+
+The noise term $\int dt\,d^dx\,\sigma_0(\nabla\pi)^2$ then scales as $\lambda^{2-z}$. Keeping it invariant fixes
+
+$$
+z=2,\qquad[\rho]=[\pi]=\frac d2.
+$$ {#eq-l05-scaling}
+
+Thus times scale as lengths squared, agreeing with @eq-l05-mode. An extra density field brings a positive power $\lambda^{d/2}$; two extra spatial derivatives bring $\lambda^2$. Ordinary analytic density nonlinearities, higher spatial derivatives, and higher noise cumulants built from extra response gradients therefore vanish relative to the Gaussian terms at sufficiently long distances for $d>0$ in this simple single-density theory.
+
+“Irrelevant” means subleading in this limit, not exactly zero at finite scales. The conclusion depends on the specified symmetries and noncritical equilibrium functional. Coupling to momentum, a critical order parameter, or a symmetry-allowed nonlinear advective term can change the scaling analysis. Hydrodynamics is valid at long times and wavelengths compared with microscopic relaxation scales, and this power counting explains its predictive economy within that regime.
+
+## Common pitfalls {#sec-l05-pitfalls}
+
+A conserved **global** number alone does not guarantee local hydrodynamics if transport is nonlocal. The effective density is coarse grained, so spatial delta functions in its covariance have a short-distance cutoff. Finally, $D$ and $\sigma$ are different quantities: confusing them discards the susceptibility.
+
+## Check your understanding {#sec-l05-exercises}
+
+1. What happens to the zero-wave-number mode under the deterministic equation and under conserved current noise?
+2. Find the decay rate of a Fourier mode of wave number $k$ when $\Phi$ includes $K(\nabla\rho)^2/2$ and $\sigma$ is constant.
+3. At Gaussian order, how does the equilibrium variance of the average density in a cell of volume $V$ scale with $V$?
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. Both contributions to $\partial_t\rho$ are spatial divergences. Their integral vanishes with closed boundaries, so the zero mode is constant on every realization.
+2. $\mu=\rho/\chi-K\nabla^2\rho$, giving $\omega=-i\sigma(k^2/\chi+Kk^4)$. The $k^4$ correction is subleading for finite positive $\chi$.
+3. The Gaussian functional gives $\langle\rho(\mathbf x)\rho(\mathbf y)\rangle=\chi\delta^{(d)}(\mathbf x-\mathbf y)$ away from the fixed-charge zero-mode constraint. Averaging twice over the cell gives variance $\chi/V$, so the root-mean-square fluctuation decreases as $V^{-1/2}$.
+:::

@@ -1,0 +1,154 @@
+# Superfluids with energy and momentum
+
+Lecture 25 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture25.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Extend superfluid hydrodynamics to conserved energy and momentum; explain the thermodynamic origin of the normal and superfluid densities; derive first and second sound under explicit approximations; organize the additional bulk dissipative coefficients and their positivity bounds.
+:::
+
+## What are the two fluids? {#sec-l25-variables}
+
+A finite-temperature superfluid has both a phase stiffness and thermal excitations. The normal velocity $\mathbf v_n$ describes entropy transport; the superfluid velocity $\mathbf v_s$ is fixed by the phase gradient. They can differ. The resulting Landau–Tisza description is called two-fluid hydrodynamics, but the two components are not independently conserved chemical species.
+
+Use mass units with particle mass set to one. The hydrodynamic fields are mass density $\rho$, energy density $\mathcal E$, momentum density $\mathbf g$, and phase. Define the physical phase convention by $\mathbf v_s=\nabla\theta$ and $\partial_t\theta=-\mu$ at linear order. The microscopic chemical potential is then per unit mass. Restoring the particle mass gives $\mathbf v_s=\hbar\nabla\theta/m$.
+
+The entropy functional now depends on $\nabla\theta$ at zeroth hydrodynamic order: a uniform superflow carries energy even when its spatial derivative vanishes. If $s=s(\rho,\mathcal E,g_i,u_i)$, where $u_i=\partial_i\theta$, its differential defines conjugate quantities schematically through
+
+$$
+ds=\frac1T\,d\mathcal E-\frac\mu T\,d\rho
+-\frac{v_{n,i}}T\,dg_i-\frac{h_i}T\,du_i.
+$$ {#eq-l25-thermodynamics}
+
+The vector $h_i$ is conjugate to the phase gradient. Only its divergence enters the phase functional derivative, since varying $\theta$ gives $\delta u_i=\partial_i\delta\theta$. This is why phase equations contain one derivative fewer than one might expect from a naive count of the phase itself.
+
+## Constitutive relations from equilibrium consistency {#sec-l25-constitutive}
+
+The response-field action imposes conservation of mass, energy, and momentum and an equation for the phase. Under thermal time reversal, physical and response fields transform so that the change of action is a total entropy derivative. As in the anisotropic-fluid construction, the ideal terms are constrained by requiring the remaining spatial expression to be a divergence.
+
+One can begin with the rotationally invariant ansatz
+
+$$
+\begin{aligned}
+J_i&=A v_i+B u_i,\\
+Q_i&=A'v_i+B'u_i,\\
+\tau_{ij}&=P\delta_{ij}+Cv_iv_j
++D(v_iu_j+u_iv_j)+Eu_iu_j,
+\end{aligned}
+$$ {#eq-l25-ansatz}
+
+with a Josephson term depending on $T,\mu,v^2,u^2,\mathbf u\cdot\mathbf v$. Comparing independent gradients fixes relations among these scalar functions. The integrability identity $\partial_i u_j=\partial_j u_i$ is essential: a smooth phase gradient is irrotational. Matching the derivative motifs eliminates an independent mixed-stress coefficient in the variables used in the notes and relates the $u_iu_j$ coefficient to a pressure derivative. The remaining freedom is thermodynamic, rather than a collection of unrelated currents.
+
+For a Galilean-invariant isotropic fluid, the resulting standard physical form is
+
+$$
+\mathbf J=\mathbf g=\rho_n\mathbf v_n+\rho_s\mathbf v_s,
+\qquad\rho_n+\rho_s=\rho,
+$$ {#eq-l25-current}
+
+$$
+\tau_{ij}=P\delta_{ij}
++\rho_nv_{n,i}v_{n,j}+\rho_sv_{s,i}v_{s,j}.
+$$ {#eq-l25-stress}
+
+The absence of a mixed term is a statement about this choice of velocities. Rewriting the stress using total velocity and relative velocity produces cross terms. In a normal-frame pressure potential the leading relative-flow dependence can be written $P=P_0-\rho_s|\mathbf v_s-\mathbf v_n|^2/2+\cdots$, with the conjugate chemical-potential convention held fixed. This identifies superfluid density as a thermodynamic stiffness derivative. It is not generally the condensate density.
+
+The nonlinear Josephson relation in a conventional Galilean phase convention is
+
+$$
+\partial_t\theta+\mu+\frac12v_s^2=0.
+$$ {#eq-l25-josephson}
+
+Intermediate phase-gradient signs vary with the definition of the phase and thermodynamic chemical potential. We use @eq-l25-current and @eq-l25-josephson together throughout. This also fixes the physical meaning of the linear variables when comparing the handwritten generating-current algebra with the final wave equations.
+
+## Linearized equations and entropy transport {#sec-l25-linear}
+
+Expand about a uniform state at rest. The equations are
+
+$$
+\begin{aligned}
+\partial_t\delta\rho+\nabla\cdot(\rho_n\delta\mathbf v_n+
+\rho_s\delta\mathbf v_s)&=0,\\
+\partial_t\delta s+s\nabla\cdot\delta\mathbf v_n&=0,\\
+\partial_t(\rho_n\delta\mathbf v_n+\rho_s\delta\mathbf v_s)
++\nabla\delta P&=0,\\
+\partial_t\delta\mathbf v_s+\nabla\delta\mu&=0.
+\end{aligned}
+$$ {#eq-l25-linear}
+
+The entropy equation follows from the energy equation and the thermodynamic identities
+
+$$
+\mathcal E+P=Ts+\mu\rho,\qquad dP=s\,dT+\rho\,d\mu.
+$$
+
+Indeed, the linear energy current is
+
+$$
+\delta\mathbf Q=Ts\,\delta\mathbf v_n+\mu\,\delta\mathbf g
+=(\mathcal E+P-\mu\rho_s)\delta\mathbf v_n
++\mu\rho_s\delta\mathbf v_s.
+$$ {#eq-l25-energy-current}
+
+Entropy moves with the normal component; the superfluid component carries mass without independently carrying entropy at this order. These equations display four longitudinal variables, which generally yield two pairs of sound modes. With thermodynamic cross susceptibilities retained, the two pairs mix density and entropy fluctuations.
+
+## Supplementary derivation: first and second sound {#sec-l25-sound}
+
+To obtain transparent formulas, neglect thermal expansion so pressure depends predominantly on density and temperature predominantly on entropy at fixed density. These are model approximations, useful for some fluids and temperature ranges, not identities of all superfluids.
+
+Define total mass current $\mathbf g$. Differentiating mass conservation and using momentum conservation yields
+
+$$
+\partial_t^2\delta\rho=\nabla^2\delta P
+\simeq c_1^2\nabla^2\delta\rho,
+\qquad c_1^2\simeq\left(\frac{\partial P}{\partial\rho}\right)_s.
+$$ {#eq-l25-first-sound}
+
+Under negligible expansion this agrees with the conventional adiabatic derivative at fixed entropy per mass to the working accuracy. First sound is mainly a density wave; the two velocities are approximately in phase.
+
+For the second mode take $\delta\rho\simeq0$, hence $\mathbf g\simeq0$ and $\mathbf v_s=-(\rho_n/\rho_s)\mathbf v_n$. Subtracting the Josephson equation from the momentum equation and using Gibbs–Duhem gives
+
+$$
+\rho_n\partial_t(\mathbf v_n-\mathbf v_s)=-s\nabla\delta T.
+$$
+
+Since $\mathbf v_n-\mathbf v_s=(\rho/\rho_s)\mathbf v_n$, combine this equation with entropy conservation:
+
+$$
+\partial_t^2\delta s=c_2^2\nabla^2\delta s,\qquad
+c_2^2=\frac{\rho_s}{\rho_n}\frac{s^2}{\rho}
+\left(\frac{\partial T}{\partial s}\right)_\rho
+=\frac{\rho_s}{\rho_n}\frac{s^2T}{\rho c_V},
+$$ {#eq-l25-second-sound}
+
+where $c_V=T(\partial s/\partial T)_\rho$ is heat capacity per volume. Second sound is mainly an entropy/temperature wave with counterflow and small total mass current. It disappears as stiffness vanishes, subject to the other thermodynamic quantities having a regular limit.
+
+The formula involving $1/\rho_n$ cannot be applied blindly as $\rho_n\to0$. In the pure superfluid the surviving equations are density continuity and Josephson dynamics. They give $c^2=\rho_s/\chi$ with $\chi=\partial\rho/\partial\mu$, recovering the preceding chapter. A disappearing entropy degree of freedom should not be treated as a finite-temperature counterflow mode with a divergent speed.
+
+## Dissipation and positivity {#sec-l25-dissipation}
+
+Shear viscosity and thermal conduction remain, but the scalar sector has a second dissipative channel. Define normal compression $X=\nabla\cdot\mathbf v_n$ and relative-superflow compression $Y=\nabla\cdot[\rho_s(\mathbf v_s-\mathbf v_n)]$. A standard linear constitutive parametrization contains
+
+$$
+\delta P_{\mathrm{diss}}=-\zeta_2X-\zeta_1Y,\qquad
+\delta\mu_{\mathrm{diss}}=-\zeta_1X-\zeta_3Y,
+$$ {#eq-l25-bulk}
+
+with reciprocal cross coefficients after matching thermodynamic conventions. The scalar contribution to entropy production is proportional to
+
+$$
+\zeta_2X^2+2\zeta_1XY+\zeta_3Y^2\ge0.
+$$
+
+Consequently $\zeta_2,\zeta_3\ge0$ and $\zeta_1^2\le\zeta_2\zeta_3$, alongside $\eta,\kappa\ge0$. These are the additional diagonal and cross response-field terms in the source, expressed in standard two-fluid variables. The cross coefficient need not be positive; its magnitude is bounded by positivity of the full matrix. These terms attenuate both sound modes and show why two-fluid language is a constitutive description rather than two independent ideal currents at every order.
+
+## Exercises and solutions {#sec-l25-exercises}
+
+1. Show that pure counterflow satisfies $\rho_n\mathbf v_n+\rho_s\mathbf v_s=0$ while carrying entropy current.
+2. Derive the determinant bound on the bulk coefficients by minimizing the entropy-production quadratic form over $X$ at fixed $Y$.
+3. State which thermodynamic response must be restored when first and second sound mix strongly.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. Choose $\mathbf v_s=-(\rho_n/\rho_s)\mathbf v_n$. The mass current vanishes, but the entropy current remains $s\mathbf v_n$ whenever $s\ne0$.
+2. For $\zeta_2>0$, the minimum occurs at $X=-\zeta_1Y/\zeta_2$, leaving $(\zeta_3-\zeta_1^2/\zeta_2)Y^2\ge0$. If $\zeta_2=0$, positivity instead forces $\zeta_1=0$.
+3. Retain the density–entropy or pressure–temperature cross derivatives, equivalently thermal expansion, and solve the full longitudinal susceptibility/evolution matrix rather than the decoupled approximations.
+:::

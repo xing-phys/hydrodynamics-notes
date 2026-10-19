@@ -1,0 +1,149 @@
+# Superfluids
+
+Lecture 24 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture24.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Identify the phase as an additional hydrodynamic variable; derive its conjugacy to density and its sound mode; include dissipative phase and density relaxation; distinguish true long-range order from two-dimensional superfluidity with algebraic order.
+:::
+
+## A broken symmetry adds a slow field {#sec-l24-goldstone}
+
+A fluid retains translation symmetry, whereas a crystal selects a spatial pattern. The resulting displacement field is slow even though it is not a conserved density. A superfluid provides a simpler example of this general principle: spontaneous breaking of a global continuous $U(1)$ symmetry introduces a phase field, the Goldstone mode.
+
+Start from the nonrelativistic complex-field model
+
+$$
+\mathcal L=i\psi^*\partial_t\psi
+-\frac{|\nabla\psi|^2}{2m}-e(|\psi|^2).
+$$ {#eq-l24-schrodinger}
+
+It is invariant under $\psi\mapsto e^{i\alpha}\psi$ for constant $\alpha$, giving conserved number $Q=\int\rho$ with $\rho=|\psi|^2$. Write $\psi=\sqrt\rho\,e^{i\phi}$. Dropping the total time derivative $i\partial_t\rho/2$ gives
+
+$$
+\mathcal L=-\rho\partial_t\phi
+-\frac{\rho}{2m}(\nabla\phi)^2
+-\frac{(\nabla\rho)^2}{8m\rho}-e(\rho).
+$$ {#eq-l24-madelung}
+
+The last gradient term is often called quantum pressure. It is higher order in a long-wavelength expansion about nonzero uniform density, but becomes important near vortex cores and sharp density variations. The phase has a shift symmetry $\phi\mapsto\phi+\alpha$ and is conjugate to density. With the sign convention of @eq-l24-madelung, $\{\rho(\mathbf x),\phi(\mathbf y)\}=\delta(\mathbf x-\mathbf y)$.
+
+## Stiffness and the Josephson equation {#sec-l24-hamiltonian}
+
+The coarse-grained Hamiltonian has the form
+
+$$
+H=\int d^dx\left[e(\rho)+\frac K2(\nabla\phi)^2+\cdots\right],
+$$ {#eq-l24-hamiltonian}
+
+with phase stiffness $K>0$. In the simple microscopic model $K=\rho/m$, but in a finite-temperature interacting system stiffness is an independent constitutive property. Nonzero total density does not by itself imply superfluid stiffness.
+
+Hamilton's equations are
+
+$$
+\partial_t\phi=-\mu,\qquad
+\partial_t\rho=-\nabla\cdot(K\nabla\phi),
+\qquad\mu=\frac{\delta H}{\delta\rho}.
+$$ {#eq-l24-josephson}
+
+The first is the Josephson relation. A spatially uniform equilibrium phase may rotate at frequency $-\mu_0$; subtract this uniform rotation before linearizing. The second identifies a supercurrent $\mathbf J_s=K\nabla\phi$ with our phase convention.
+
+An illustrative potential $e(\rho)=-a\rho+b\rho^2$ with $b>0$ favors $\rho_0=a/(2b)$ when $a>0$, while the physical constraint $\rho\ge0$ favors zero density for $a<0$. This is a simple mean-field model of symmetry breaking. It is not a general criterion for superfluidity: normal fluids can have finite density with zero stiffness.
+
+In a normal fluid a formally introduced phase can become a redundant field with the larger freedom $\phi\mapsto\phi+f(\mathbf x)$. A stiffness term forbids this arbitrary spatial shift and retains only the global $U(1)$ shift. Neighboring phases then have a physical relative orientation and an energy cost.
+
+## Supplementary derivation: the sound mode {#sec-l24-sound}
+
+Expand the energy about uniform equilibrium:
+
+$$
+H_2=\int d^dx\left[\frac{(\delta\rho)^2}{2\chi}
++\frac K2(\nabla\phi)^2\right],\qquad
+\chi=\frac{\partial\rho}{\partial\mu}>0.
+$$ {#eq-l24-quadratic}
+
+The linear equations are $\partial_t\phi=-\delta\rho/\chi$ and $\partial_t\delta\rho=-K\nabla^2\phi$. Combining them gives
+
+$$
+\partial_t^2\phi=\frac K\chi\nabla^2\phi,
+\qquad\omega=\pm v_sk,\qquad v_s^2=\frac K\chi.
+$$ {#eq-l24-sound}
+
+Alternatively, eliminate $\delta\rho$ directly from the quadratic Lagrangian $-\delta\rho\partial_t\phi-H_2$. Its stationary value is $\delta\rho=-\chi\partial_t\phi$, yielding
+
+$$
+\mathcal L_{\mathrm{phase}}=\frac\chi2(\partial_t\phi)^2
+-\frac K2(\nabla\phi)^2.
+$$
+
+Only derivatives of $\phi$ appear, so the shift symmetry forbids a mass term. This is the hydrodynamic form of the Goldstone mechanism. A charged superfluid coupled to dynamical electromagnetism has additional physics and does not simply retain this neutral acoustic mode.
+
+## Dissipation and the normal-fluid limit {#sec-l24-dissipation}
+
+Retain a density conductivity $\sigma\ge0$ and dissipative phase coefficient $\alpha\ge0$:
+
+$$
+\partial_t\delta\rho=-K\nabla^2\phi+\frac\sigma\chi\nabla^2\delta\rho,
+\qquad
+\partial_t\phi=-\frac{\delta\rho}{\chi}+\alpha K\nabla^2\phi.
+$$ {#eq-l24-damped}
+
+The associated stochastic action includes response fields and noise fixed by the same dissipative coefficients. Its equilibrium weight is $e^{-\beta H}$; response-field terms encode the density–phase Poisson bracket as well as dissipation. At small $k$ the deterministic eigenfrequencies are
+
+$$
+\omega=\pm\sqrt{K/\chi}\,k
+-\frac{i}{2}\left(\frac\sigma\chi+\alpha K\right)k^2+O(k^3).
+$$ {#eq-l24-attenuation}
+
+As $K\to0$, the physical density mode becomes diffusion with $\omega=-i(\sigma/\chi)k^2$. The phase no longer supplies a restoring force. Expanding the sound formula at fixed nonzero $K$ and then setting $K=0$ can be singular; the underlying coupled equations show the limit correctly.
+
+## Thermal phase fluctuations and dimensionality {#sec-l24-mermin-wagner}
+
+Order is diagnosed by the large-distance correlator $\langle e^{i\phi(\mathbf x)}e^{-i\phi(0)}\rangle$, not necessarily by a one-point function in a symmetry-preserving ensemble. An ordered ferromagnet similarly has nonzero long-distance spin correlations even if an equal mixture of magnetizations has zero average spin.
+
+For the Gaussian thermal phase Hamiltonian, equipartition gives
+
+$$
+\langle|\phi_{\mathbf q}|^2\rangle=\frac{T}{Kq^2},\qquad
+\left\langle e^{i[\phi(\mathbf r)-\phi(0)]}\right\rangle
+=\exp\left[-\frac12\langle(\phi(\mathbf r)-\phi(0))^2\rangle\right].
+$$ {#eq-l24-correlation}
+
+The variance involves $\int d^dq(1-\cos\mathbf q\cdot\mathbf r)/q^2$. It grows linearly with $r$ in one dimension, logarithmically in two dimensions, and approaches a cutoff-dependent constant in $d>2$. Thus at nonzero temperature, short-range systems in $d\le2$ lack true continuous-symmetry long-range order. The constant in $d>2$ depends on short-distance physics; its existence is the infrared statement.
+
+In two dimensions the Gaussian result is algebraic,
+
+$$
+\left\langle e^{i\phi(\mathbf r)}e^{-i\phi(0)}\right\rangle
+\propto r^{-T/(2\pi K)}.
+$$ {#eq-l24-algebraic}
+
+This does **not** rule out two-dimensional superfluidity. A phase with finite stiffness and algebraic order is possible. The distinction sharpens the informal language in the source: absence of true long-range order is not absence of all superfluid response.
+
+## Vortices and the BKT estimate {#sec-l24-vortex}
+
+A vortex of unit winding has $\phi=\arg(x+iy)$ outside a core of radius $a$, so $|\nabla\phi|=1/r$. Its energy in a sample of size $L$ is
+
+$$
+E_v=\int_a^L2\pi r\,dr\,\frac K{2r^2}
+=\pi K\log(L/a)+E_{\mathrm{core}}.
+$$
+
+The number of possible vortex positions is of order $(L/a)^2$, so $S_v\simeq2\log(L/a)$. The leading free energy is
+
+$$
+F_v\simeq(\pi K-2T)\log(L/a)+E_{\mathrm{core}}.
+$$ {#eq-l24-vortex-free-energy}
+
+Below the Berezinskii–Kosterlitz–Thouless transition, vortex–antivortex pairs remain bound at large scales; above it, free vortices proliferate and destroy algebraic order. The estimate $T_c=\pi K/2$ becomes a statement about the renormalized long-distance stiffness at the transition, rather than a generally exact formula using a bare microscopic $K$.
+
+## Exercises and solutions {#sec-l24-exercises}
+
+1. Derive @eq-l24-sound without integrating out density.
+2. Find the energy of a vortex with integer winding $q$.
+3. Explain why $\langle\psi\rangle=0$ in a symmetric finite system does not decide whether its thermodynamic phase has order.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. Differentiate $\partial_t\phi=-\delta\rho/\chi$ and insert the density equation to obtain $\partial_t^2\phi=(K/\chi)\nabla^2\phi$.
+2. $\phi=q\arg(x+iy)$ gives $E_q=\pi Kq^2\log(L/a)+E_{{\mathrm{core}},q}$. The quadratic dependence makes isolated higher-charge vortices energetically costly compared with separated unit vortices.
+3. Symmetry averaging can cancel the one-point function. The large-distance two-point function, followed by the appropriate thermodynamic limit, distinguishes order from a short-range correlated state.
+:::

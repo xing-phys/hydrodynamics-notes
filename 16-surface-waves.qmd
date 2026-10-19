@@ -1,0 +1,148 @@
+# Surface tension and gravity waves
+
+Lecture 16 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture16.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Relate surface energy to curvature pressure, interpret capillary rise, derive finite depth gravity–capillary wave dispersion, and diagnose the gravity driven instability of an inverted interface.
+:::
+
+## Surface tension as an energy cost {#sec-l16-energy}
+
+An interface between fluids stores energy when its area changes. For a clean interface with constant surface tension $\alpha>0$,
+
+$$
+dE=\alpha\,dA.
+$$
+
+The coefficient has units of energy per area, equivalently force per length. Ignore temperature dependence, surfactants, and tangential surface tension gradients in this chapter. Those effects introduce additional forces beyond the simple constant $\alpha$ model.
+
+Describe an almost flat surface by its height $z=\zeta(x,y)$. Its area is
+
+$$
+A=\int dx\,dy\sqrt{1+|\nabla_\perp\zeta|^2}
+\simeq A_0+\frac12\int dx\,dy\,|\nabla_\perp\zeta|^2,
+$$
+
+where the expansion requires small slopes. Varying the quadratic surface energy and integrating by parts gives the normal force per projected area,
+
+$$
+f_z=-\frac{\delta E}{\delta\zeta}=\alpha\nabla_\perp^2\zeta.
+$$ {#eq-l16-surface-force}
+
+A local bump has negative Laplacian near its top, so the force tends to flatten it. Surface tension supplies a restoring force for short wavelength interface deformations.
+
+## Young–Laplace pressure and examples {#sec-l16-laplace}
+
+Balance forces on a thin pillbox straddling a static interface. With curvature defined positive for a spherical surface enclosing the higher pressure fluid,
+
+$$
+P_{\mathrm{in}}-P_{\mathrm{out}}=\alpha\left(\frac1{R_1}+\frac1{R_2}\right).
+$$ {#eq-l16-laplace}
+
+The principal radii $R_1,R_2$ carry signs determined by the chosen normal. For a graph with liquid below and gas above, the small slope version is $P_{\mathrm{liquid}}-P_{\mathrm{gas}}=-\alpha\nabla_\perp^2\zeta$. Stating the geometry avoids sign confusion.
+
+A spherical interface of radius $R$ has pressure jump $2\alpha/R$. This describes one liquid–gas interface, such as a gas bubble in a liquid or a liquid drop in air. A soap bubble is a thin liquid film with two interfaces and approximately twice that pressure jump, $4\alpha/R$, when both surface tensions are equal and thickness is negligible.
+
+For a soap film spanning a fixed wire frame with equal air pressure on both sides, mean curvature vanishes: $1/R_1+1/R_2=0$. At small slope this becomes Laplace's equation $\nabla_\perp^2\zeta=0$. The full shape is a stationary point of area subject to its boundary; stable films locally minimize area. It need not be a plane because the frame can impose nonplanar boundary data.
+
+## Capillary rise and Jurin's law {#sec-l16-capillary}
+
+Hydrostatic balance in a liquid of density $\rho$ gives $dP/dz=-\rho g$. If wetting pulls a meniscus up a narrow cylindrical tube of radius $R$, the liquid pressure at height $h$ lies below the ambient gas pressure by roughly $\rho gh$. Curvature provides this pressure difference.
+
+In a small slope, axisymmetric approximation, meniscus curvature scales as $h_m/R^2$, where $h_m$ is its local sag. Solving $r^{-1}\partial_r(r\partial_r\zeta)=\text{constant}$ gives a parabolic profile. The wall slope relates that constant to the microscopic contact angle. A direct vertical force balance is particularly transparent:
+
+$$
+2\pi R\alpha\cos\theta_c=\pi R^2\rho gh,
+\qquad
+h=\frac{2\alpha\cos\theta_c}{\rho gR}.
+$$ {#eq-l16-jurin}
+
+Here $\theta_c$ is measured through the liquid from the wall, the conventional contact angle. The lecture instead illustrates a small wall slope angle; in that convention the appropriate trigonometric factor is approximately the small slope. Both descriptions express the same curvature–hydrostatic balance, with different angle definitions.
+
+This ideal capillary mechanism illustrates how interfaces can lift water in narrow structures. Transport in real plants also involves evaporation driven tension, connected porous pathways, and biological structure; a single static capillary is a useful model rather than a complete account of tall trees.
+
+## The gravity–capillary wave problem {#sec-l16-wave-setup}
+
+Take an inviscid, incompressible, irrotational liquid of depth $h$, with an impermeable horizontal bottom at $z=0$ and unperturbed free surface at $z=h$. Air density and air motion are neglected. Write $\mathbf v=\nabla\Phi$, so
+
+$$
+\nabla^2\Phi=0,\qquad \partial_z\Phi(0)=0.
+$$
+
+The surface is $z=h+\zeta(\mathbf x_\perp,t)$. Linearization assumes small amplitude, small slope, and sufficiently small velocities that quadratic Bernoulli terms can be dropped.
+
+**Kinematic boundary condition.** A fluid particle on the surface remains there. Applying $D_t$ to $z-h-\zeta=0$ gives $v_z=\partial_t\zeta+\mathbf v_\perp\cdot\nabla_\perp\zeta$. To linear order,
+
+$$
+\partial_t\zeta=\partial_z\Phi(h).
+$$ {#eq-l16-kinematic}
+
+**Dynamic boundary condition.** Linearized Bernoulli is $\partial_t\Phi+P/\rho+gz=\text{constant}$. Use the curvature pressure and subtract the equilibrium condition. At the unperturbed surface,
+
+$$
+\partial_t\Phi(h)+g\zeta-\frac{\alpha}{\rho}\nabla_\perp^2\zeta=0.
+$$ {#eq-l16-dynamic}
+
+The two boundary conditions have different meanings: one follows motion of the interface, the other balances normal stress. Both are required to determine the wave frequency.
+
+## Supplemental derivation: dispersion relation {#sec-l16-dispersion}
+
+Take a Fourier mode $\zeta=\zeta_0e^{i\mathbf k\cdot\mathbf x_\perp-i\omega t}$, with $k=|\mathbf k|$, and $\Phi=f(z)e^{i\mathbf k\cdot\mathbf x_\perp-i\omega t}$. Laplace's equation gives $f''-k^2f=0$. The bottom condition eliminates the $\sinh(kz)$ solution, so $f=A\cosh(kz)$.
+
+The surface conditions become
+
+$$
+-i\omega\zeta_0=kA\sinh(kh),\qquad
+-i\omega A\cosh(kh)+\left(g+\frac{\alpha k^2}{\rho}\right)\zeta_0=0.
+$$
+
+Eliminate $A$ or set the determinant of this pair to zero:
+
+$$
+\omega^2=\left(gk+\frac{\alpha}{\rho}k^3\right)\tanh(kh).
+$$ {#eq-l16-dispersion}
+
+Both signs $\omega=\pm\sqrt{\cdots}$ describe propagation directions. The restoring effects of gravity and surface tension add, with gravity dominant at long wavelengths and capillarity at short wavelengths. Their crossover occurs at $k\sim\sqrt{\rho g/\alpha}$.
+
+For negligible surface tension and deep water, $kh\gg1$, the relation becomes $\omega^2=gk$. Phase speed is $c_p=\sqrt{g/k}$ and group speed is $c_g=c_p/2$, so wave packets and crests move differently. For shallow water, $kh\ll1$, $\omega^2\simeq gh\,k^2$: long waves propagate approximately without dispersion at speed $\sqrt{gh}$. The depth criterion uses wavelength through $kh$, not amplitude alone.
+
+For capillary dominated deep water, $\omega^2\simeq\alpha k^3/\rho$, so $c_g=3c_p/2$. This additional limit follows directly from the same relation and helps explain why short ripples behave differently from ocean swell.
+
+## An inverted interface and instability {#sec-l16-inverted}
+
+Imagine heavy liquid above negligible density gas. Gravity now destabilizes a downward displacement rather than restoring it. In the deep liquid limit, the linear relation becomes
+
+$$
+\omega^2=\frac{\alpha}{\rho}k^3-gk.
+$$ {#eq-l16-rayleigh-taylor}
+
+For $k<k_c=\sqrt{\rho g/\alpha}$, $\omega^2<0$. One time dependence grows exponentially, with rate $\gamma=\sqrt{gk-\alpha k^3/\rho}$. This is the Rayleigh–Taylor instability in the approximation of negligible lower fluid density. Surface tension stabilizes sufficiently short waves, but cannot stabilize arbitrarily long ones in an unbounded system.
+
+For water and air, $\rho\sim10^3\ \mathrm{kg\,m^{-3}}$, $g\sim10\ \mathrm{m\,s^{-2}}$, and $\alpha\sim0.07\ \mathrm{N\,m^{-1}}$ give $k_c\sim400\ \mathrm{m^{-1}}$, or $\lambda_c\sim1.5\ \mathrm{cm}$. This provides a capillary length scale relevant to dripping and drop sizes. The actual breakup pattern depends on geometry, available wave numbers, viscosity, and nonlinear dynamics; the cutoff is not a universal drop diameter.
+
+**Supplemental two fluid check.** If both fluids have appreciable inertia and infinite depth, the corresponding relation is
+
+$$
+\omega^2=\frac{(\rho_{\mathrm{lower}}-\rho_{\mathrm{upper}})gk+\alpha k^3}
+{\rho_{\mathrm{lower}}+\rho_{\mathrm{upper}}}.
+$$ {#eq-l16-two-fluid}
+
+Both sides contribute kinetic energy, hence the sum of densities in the denominator. Only their difference contributes the gravitational restoring force because exchanging equal density fluid would not change gravitational energy. Setting the upper density to zero recovers the deep water result; interchanging the heavy and light fluids produces the inverted instability. This formula assumes irrotational motion, no background shear, and one interface. Finite depths introduce hyperbolic factors and a background velocity difference can add a distinct shear instability, so it should not be applied unchanged to arbitrary two layer flows.
+
+## Common pitfalls
+
+A soap bubble has two interfaces. Curvature signs must match the normal convention. Capillary contact angle conventions must be stated. A negative $\omega^2$ diagnoses instability, so treating its square root as an ordinary real wave frequency hides the growing mode.
+
+## Exercises with solutions {#sec-l16-exercises}
+
+1. **Shallow wave speed.** Estimate the speed of a long gravity wave in water of depth $4\ \mathrm m$.
+
+   **Solution.** Provided $kh\ll1$ and capillarity is negligible, $c=\sqrt{gh}\approx6.3\ \mathrm{m\,s^{-1}}$.
+
+2. **Bubble pressure.** A single spherical interface has radius $1\ \mathrm{mm}$ and $\alpha=0.07\ \mathrm{N\,m^{-1}}$. Find its excess pressure and compare a soap bubble.
+
+   **Solution.** $2\alpha/R=140\ \mathrm{Pa}$. A thin soap bubble with two equivalent interfaces has about $280\ \mathrm{Pa}$ excess pressure.
+
+3. **Fastest inverted mode.** In @eq-l16-rayleigh-taylor, find the wave number with largest growth rate.
+
+   **Solution.** Maximize $\gamma^2=gk-\alpha k^3/\rho$: $g-3\alpha k^2/\rho=0$. Thus $k_*=\sqrt{\rho g/(3\alpha)}=k_c/\sqrt3$. This result assumes a continuum of allowed wave numbers and deep liquid.

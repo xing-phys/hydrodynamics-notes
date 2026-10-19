@@ -1,0 +1,200 @@
+# Navier–Stokes equations
+
+::: {.lecture-meta}
+Lecture 7 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture7.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Identify the conserved fields of a fluid and their thermodynamic conjugates; derive ideal currents from rotational symmetry and equilibrium; classify viscosity and thermoelectric dissipation; and show why positive noise implies the local second law.
+:::
+
+## The slow variables of a fluid {#sec-l07-fields}
+
+An ordinary isolated fluid conserves particle number or mass, energy, and momentum. Use densities $\rho$, $\varepsilon$, and $g_i$, with charges
+
+$$
+N=\int d^dx\,\rho,\qquad E=\int d^dx\,\varepsilon,
+\qquad P_i=\int d^dx\,g_i.
+$$
+
+Their local conservation laws define the particle current $J_i$, energy current $\mathcal E_i$, and momentum flux or stress $\tau_{ij}$:
+
+$$
+\partial_t\rho+\partial_iJ_i=0,\qquad
+\partial_t\varepsilon+\partial_i\mathcal E_i=0,\qquad
+\partial_tg_i+\partial_j\tau_{ij}=0.
+$$ {#eq-l07-conservation}
+
+The momentum equation's second index indicates the direction in which momentum is transported. We use an isotropic fluid and a symmetric stress where angular momentum is conserved. Additional internal spin or crystalline anisotropy would require a broader description.
+
+This chapter initially uses time reversal and rotations, without imposing Galilean boosts. Thus $g_i$ need not yet equal the mass current, and dissipative particle transport can be present. The next chapter specializes to a simple Galilean fluid.
+
+## Thermodynamics with momentum {#sec-l07-thermodynamics}
+
+Set Boltzmann's constant to one. The extensive first law is
+
+$$
+T\,dS=dE-\widetilde\mu\,dN-v_i\,dP_i+P\,dV.
+$$
+
+Here $P$ without an index is pressure, $v_i$ is the thermodynamic velocity conjugate to momentum, and $\widetilde\mu$ is the chemical potential with energy units. At fixed volume,
+
+$$
+ds=\frac1T d\varepsilon-\frac{\widetilde\mu}{T}d\rho-\frac{v_i}{T}dg_i.
+$$ {#eq-l07-first-law}
+
+Extensivity gives the Euler or Gibbs–Duhem relation
+
+$$
+\varepsilon+P=Ts+\widetilde\mu\rho+v_ig_i,
+\qquad dP=s\,dT+\rho\,d\widetilde\mu+g_i\,dv_i.
+$$ {#eq-l07-gibbs}
+
+Because energy is an explicitly retained conserved field, local equilibrium is naturally described by the entropy functional. Within a fixed-charge sector, $\Phi=-\int s\,d^dx$, up to linear combinations of the conserved charges. The conjugates entering the stochastic action are
+
+$$
+\mu_\rho=\frac{\widetilde\mu}{T},\qquad
+\mu_\varepsilon=-\frac1T,\qquad
+\mu_i=\frac{v_i}{T}.
+$$ {#eq-l07-conjugates}
+
+A global microcanonical constraint or equivalent Lagrange multipliers are needed to specify the equilibrium ensemble; $e^{\int s}$ is not an unrestricted normalized probability over arbitrary total energy. Density and energy are even under time reversal, while momentum is odd.
+
+## Ideal constitutive relations {#sec-l07-ideal}
+
+Introduce response fields for all conserved densities. Their constant-shift symmetries force the stochastic Hamiltonian to contain spatial response gradients. At zero derivative order in the physical fields, rotational invariance permits
+
+$$
+J_i=Bv_i,\qquad
+\mathcal E_i=Av_i,\qquad
+\tau_{ij}=C\delta_{ij}+Dv_iv_j,
+$$
+
+where $A,B,C,D$ depend on $T$, $\widetilde\mu$, and $v^2/2$. Time reversal of the MSR action requires the ideal thermodynamic contraction $J_i\partial_i\mu_\rho+\mathcal E_i\partial_i\mu_\varepsilon+\tau_{ij}\partial_j\mu_i$ to be a spatial divergence. Matching independent gradients gives
+
+$$
+B=\left.\frac{\partial C}{\partial\widetilde\mu}\right|_{T,v},
+\qquad
+D=\left.\frac{\partial C}{\partial(v^2/2)}\right|_{T,\widetilde\mu}.
+$$
+
+Identify $C$ with thermodynamic pressure $P$. Using @eq-l07-gibbs then fixes $B=\rho$, $Dv_i=g_i$, and $A=\varepsilon+P$. The ideal currents are
+
+$$
+J_i^{(0)}=\rho v_i,\qquad
+\mathcal E_i^{(0)}=(\varepsilon+P)v_i,\qquad
+\tau_{ij}^{(0)}=P\delta_{ij}+g_iv_j.
+$$ {#eq-l07-ideal}
+
+Pressure transports momentum even in a fluid at rest. The $Pv_i$ part of the energy flux accounts for pressure work, so the energy current is an enthalpy current rather than simply $\varepsilon v_i$.
+
+### Supplemental derivation: verify the required divergence
+
+Substitute @eq-l07-ideal and @eq-l07-conjugates. Expand the gradients of $1/T$ and use $dP=s\,dT+\rho\,d\widetilde\mu+g_i\,dv_i$. The result is
+
+$$
+J_i^{(0)}\partial_i\mu_\rho+
+\mathcal E_i^{(0)}\partial_i\mu_\varepsilon+
+\tau_{ij}^{(0)}\partial_j\mu_i
+=\partial_i\left(\frac{Pv_i}{T}\right).
+$$ {#eq-l07-divergence}
+
+The terms proportional to $\partial_iT$ cancel only after using $\varepsilon+P=Ts+\widetilde\mu\rho+v\cdot g$. This identity is the local thermodynamic reason ideal flow produces no entropy.
+
+## Dissipation as a positive matrix {#sec-l07-dissipation}
+
+Collect the densities as $q_a=(\rho,\varepsilon,g_i)$ and their ideal currents as $R_{ia}$. A compact Gaussian stochastic action is
+
+$$
+\mathcal L=\pi_a\partial_tq_a-\partial_i\pi_aR_{ia}
++i\partial_i\pi_a\,\Sigma_{ia,jb}\,
+\partial_j(\pi_b-i\mu_b).
+$$ {#eq-l07-action}
+
+The symmetric dissipative matrix $\Sigma$ is positive semidefinite. Varying with respect to the response fields and dropping noise gives
+
+$$
+\partial_tq_a+\partial_i\left(R_{ia}-\Sigma_{ia,jb}\partial_j\mu_b\right)=0.
+$$ {#eq-l07-general-ns}
+
+The same $\Sigma$ sets current-noise covariance $2\Sigma$ in the local Gaussian approximation. State dependence, derivative ordering, and boundaries require the same care as in the previous field theories.
+
+For momentum transport, rotational symmetry gives the viscosity tensor
+
+$$
+\eta_{ijkl}=\eta\left(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}
+-\frac2d\delta_{ij}\delta_{kl}\right)+\zeta\delta_{ij}\delta_{kl},
+\qquad\eta,\zeta\geq0.
+$$ {#eq-l07-viscosity}
+
+The coefficient $\eta$ is shear viscosity, acting on symmetric traceless velocity gradients; $\zeta$ is bulk viscosity, acting on expansion. The momentum block is $T\eta_{ijkl}$. Antisymmetric gradients describe rigid rotation and do not dissipate in this simple fluid.
+
+The density/energy block may be written
+
+$$
+\Sigma_{\mathrm{scalar}}=
+\begin{pmatrix}T\sigma_0&T^2\alpha\\T^2\alpha&T^2\kappa\end{pmatrix}.
+$$ {#eq-l07-thermoelectric}
+
+This includes particle conductivity $\sigma_0$, thermal conductivity $\kappa$, and a thermoelectric cross coefficient $\alpha$. Positivity means nonnegative eigenvalues, imposing a determinant constraint as well as nonnegative diagonal entries. Equality of the off-diagonal coefficients is Onsager reciprocity for these time-reversal-even transport channels.
+
+The most general moving-state isotropic theory also permits mixed scalar/momentum terms proportional to velocity. Their isotropic rank-four tensors have the form
+
+$$
+\mathcal B^{a}_{ijkl}=B_1^a\delta_{ij}\delta_{kl}
++B_2^a\delta_{ik}\delta_{jl}+B_3^a\delta_{il}\delta_{jk},
+\qquad a\in\{\rho,\varepsilon\}.
+$$
+
+They couple a scalar response gradient to a momentum response gradient using $v_j$, with the conjugate partner fixed by time reversal; schematically they contain $iT\mathcal B^a_{ijkl}v_j[\partial_i\pi_a\partial_k(\pi_l-i\mu_l)+\partial_i(\pi_a-i\mu_a)\partial_k\pi_l]$. Their coefficients are constrained by positivity of the **full** transport matrix. Following the source, we set these mixed terms to zero when displaying the simpler constitutive equations.
+
+## The resulting Navier–Stokes constitutive equations {#sec-l07-ns}
+
+With that simplification, the currents through first derivative order are
+
+$$
+\begin{aligned}
+J_i&=\rho v_i-T\sigma_0\partial_i(\widetilde\mu/T)-\alpha\partial_iT,\\
+\mathcal E_i&=(\varepsilon+P)v_i
+-T^2\alpha\partial_i(\widetilde\mu/T)-\kappa\partial_iT,\\
+\tau_{ij}&=P\delta_{ij}+g_iv_j
+-T\eta_{ijkl}\partial_k(v_l/T).
+\end{aligned}
+$$ {#eq-l07-constitutive}
+
+Together with @eq-l07-conservation and an equation of state, these are the general isotropic fluid equations at this order, before boost constraints. Noisy currents should be added when computing fluctuations. For slowly varying nearly uniform temperature, the viscous stress reduces to the familiar velocity-gradient form.
+
+As a worked example, let the only gradient be $v_x(y)$ at uniform $T$. Then $\tau_{xy}^{\mathrm{diss}}=-\eta\partial_yv_x$. The momentum current opposes the shear, smoothing differences between adjacent fluid layers. Viscosity transports momentum; it need not represent friction with an external environment.
+
+## Supplemental derivation: the local second law {#sec-l07-entropy}
+
+Multiply @eq-l07-general-ns by $\mu_a$. The first law gives $\mu_a\partial_tq_a=-\partial_ts$. Separate the ideal term using @eq-l07-divergence and integrate the dissipative term by parts locally. Define
+
+$$
+S_i=sv_i+\mu_a\Sigma_{ia,jb}\partial_j\mu_b.
+$$
+
+Then the deterministic equations obey
+
+$$
+\partial_ts+\partial_iS_i
+=\partial_i\mu_a\,\Sigma_{ia,jb}\,\partial_j\mu_b\geq0.
+$$ {#eq-l07-second-law}
+
+Thus the same positivity that makes noise covariance physical gives nonnegative local entropy production. For uniform-temperature shear, $T(\partial_ts+\nabla\cdot S)=\eta(\partial_yv_x)^2$. Microscopic fluctuations can temporarily decrease a coarse entropy, so @eq-l07-second-law is the deterministic hydrodynamic statement, not a prohibition on individual stochastic histories.
+
+## Common pitfalls {#sec-l07-pitfalls}
+
+The physical chemical potential $\widetilde\mu$ differs from the dimensionless conjugate $\mu_\rho$. Pressure is not an independent conserved density. Finally, assuming $g=\rho v$ too early would silently impose Galilean symmetry, excluding the broader transport theory derived here.
+
+## Check your understanding {#sec-l07-exercises}
+
+1. Why is $\varepsilon v_i$ alone insufficient as the ideal energy current?
+2. Compute the dissipative stress for isotropic expansion $v_i=a x_i$ at constant temperature.
+3. What inequality follows from positive semidefiniteness of @eq-l07-thermoelectric for $T>0$?
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. Energy is transported through a moving surface both by advected internal energy and pressure work. Thermodynamic consistency fixes the sum to $(\varepsilon+P)v_i$.
+2. The traceless shear part vanishes, $\nabla\cdot v=da$, and $\tau_{ij}^{\mathrm{diss}}=-\zeta da\,\delta_{ij}$.
+3. $\sigma_0\geq0$, $\kappa\geq0$, and $\sigma_0\kappa\geq T\alpha^2$ in this specific normalization. A different definition of the cross coefficient redistributes the displayed powers of $T$.
+:::

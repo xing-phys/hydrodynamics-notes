@@ -1,0 +1,170 @@
+# Stochastic differential equations
+
+::: {.lecture-meta}
+Lecture 1 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture1.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Explain why a dissipative effective theory needs fluctuations; obtain Brownian motion from a random walk; distinguish white noise from an ordinary function; and translate between Itô and Stratonovich conventions.
+:::
+
+## Why hydrodynamics starts with noise {#sec-l01-motivation}
+
+Hydrodynamics describes the slow approach of a many-body system to equilibrium using a small number of fields. It is an **effective theory**: its equations are organized by symmetries and by powers of frequency and wave number, rather than by following every constituent. The system may contain atoms, spins, or quantum particles; the long-distance variables will be densities of conserved quantities.
+
+Dissipation raises a basic puzzle. A particle on a translation-invariant line has the leading conservative Lagrangian $L=m\dot x^2/2$, giving $m\ddot x=0$. Adding friction produces
+
+$$
+m\ddot x+\gamma\dot x=0,
+\qquad
+\dot x(t)=\dot x(0)e^{-\gamma t/m}.
+$$ {#eq-l01-friction}
+
+Stability requires $\gamma\geq0$, but neither this inequality nor the friction term follows from that ordinary Lagrangian. Moreover, the equation appears to violate time reversal even if the microscopic interactions respect it. The missing ingredient is that the surrounding degrees of freedom both remove momentum and randomly return it. An effective description that keeps friction while discarding every fluctuation has thrown away part of the equilibrium physics.
+
+We begin with classical stochastic dynamics, which will later provide a systematic language for dissipative field theories. The noise need not be externally imposed: it can represent unresolved internal degrees of freedom. The course administration on the first source page is historical context, not part of the physics development; this book is an independent study companion to the lecture sequence.
+
+## From a random walk to diffusion {#sec-l01-random-walk}
+
+Let a particle jump by $+\ell$ or $-\ell$ every time interval $\tau$, independently and with equal probabilities. Write $X_j$ for the $j$th jump. Then
+
+$$
+x(n\tau)-x(0)=\sum_{j=1}^n X_j,
+\quad
+\langle X_j\rangle=0,
+\quad
+\langle X_iX_j\rangle=\ell^2\delta_{ij}.
+$$
+
+The angle brackets denote an ensemble average over repetitions of the random experiment. Linearity gives a vanishing mean displacement, while independence eliminates the cross terms in its variance:
+
+$$
+\left\langle[x(t)-x(0)]^2\right\rangle
+=n\ell^2=\frac{\ell^2}{\tau}t=2Dt,
+\qquad D=\frac{\ell^2}{2\tau}.
+$$ {#eq-l01-msd}
+
+An individual walker does not remain near its initial position simply because its **mean** displacement is zero. Its typical distance is $\sqrt{2Dt}$. This distinction between an average trajectory and typical trajectories recurs throughout stochastic physics.
+
+The diffusive continuum limit takes $\ell,\tau\to0$ with $D$ fixed. This is a statement about observations on scales large compared with the microscopic step, not a claim that a real collision has zero duration. Independent increments and the central limit theorem lead to a Wiener process $W_t$ satisfying
+
+$$
+\langle W_t-W_s\rangle=0,
+\qquad
+\left\langle(W_t-W_s)^2\right\rangle=t-s
+\quad (t>s).
+$$
+
+Brownian motion is therefore written
+
+$$
+dx=\sqrt{2D}\,dW_t.
+$$ {#eq-l01-brownian}
+
+The integral form, $x(t)=x(0)+\sqrt{2D}\,[W_t-W_0]$, is the precise meaning of this notation.
+
+## What white noise means {#sec-l01-white-noise}
+
+One often writes $\xi(t)=dW_t/dt$ and hence $\dot x=\sqrt{2D}\xi$. A Wiener trajectory is almost surely nowhere differentiable, so $\xi$ is a generalized random distribution, not a function with a well-defined value at each time. Its defining Gaussian correlations are
+
+$$
+\langle\xi(t)\rangle=0,
+\qquad
+\langle\xi(t)\xi(s)\rangle=\delta(t-s).
+$$ {#eq-l01-noise}
+
+For any smooth test function $f$, the random integral $\int f(t)\xi(t)dt$ has mean zero and variance $\int f(t)^2dt$. This statement avoids ill-defined expressions such as $\langle\xi(t)^2\rangle$.
+
+Integrating @eq-l01-noise over a small interval gives
+
+$$
+\langle dW_t\rangle=0,
+\qquad \langle(dW_t)^2\rangle=dt.
+$$
+
+Thus $dW$ is of order $\sqrt{dt}$, larger than an ordinary drift increment of order $dt$ on sufficiently short idealized times. Its units are $\sqrt{\text{time}}$; white noise has units $1/\sqrt{\text{time}}$. The notation $(dW)^2=dt$ expresses a quadratic-variation rule under stochastic integration, not an identity between ordinary infinitesimal numbers.
+
+A time-reversed Brownian increment has the same Gaussian distribution as the original increment. This is the first hint that noisy dynamics can respect a statistical form of time reversal even while distributions relax. A free particle on the infinite line has no normalizable stationary position distribution; equilibrium time reversal must therefore be discussed with suitable boundaries or conditional path measures.
+
+## Multiplicative noise needs a convention {#sec-l01-conventions}
+
+Consider the formal equation
+
+$$
+\dot x=a(x,t)+b(x,t)\xi(t).
+$$
+
+If $b$ depends on $x$, the question “which $x$?” matters within each short time step. In the **Itô convention**, evaluate the coefficients at the beginning:
+
+$$
+\Delta x=a(x_t,t)\Delta t+b(x_t,t)\Delta W.
+$$
+
+The present increment $\Delta W$ is independent of the earlier $x_t$. Consequently $\mathbb E[\Delta x\mid x_t]=a\Delta t$. In the **Stratonovich convention**, evaluate at the midpoint, and write a small circle to make this choice visible:
+
+$$
+dx=a_{\mathrm S}(x,t)dt+b(x,t)\circ dW_t.
+$$
+
+To compare them, expand the midpoint noise coefficient:
+
+$$
+b\left(x+\tfrac12\Delta x\right)\Delta W
+=b(x)\Delta W+\frac12 b'(x)\Delta x\Delta W+\cdots.
+$$
+
+At the required order, $\Delta x\Delta W=b(\Delta W)^2+O(\Delta t^{3/2})$. Averaging therefore gives the additional drift $bb'\Delta t/2$. The same physical process has the two equivalent descriptions
+
+$$
+a_{\mathrm I}=a_{\mathrm S}+\frac12 b\partial_x b.
+$$ {#eq-l01-conversion}
+
+Keeping $a$ fixed while changing convention generally changes the stochastic process. For additive noise, $\partial_xb=0$, the ambiguity disappears. The Fokker–Planck equation in the next chapter will specify the process directly, avoiding an implicit convention.
+
+## Supplemental derivation: the stochastic chain rule {#sec-l01-ito-formula}
+
+For a smooth function $f(x,t)$, retain the quadratic term in its Taylor expansion because $(dx)^2$ is of order $dt$:
+
+$$
+df=\partial_t f\,dt+\partial_x f\,dx
++\frac12\partial_x^2f\,(dx)^2.
+$$
+
+With the Itô equation $dx=a\,dt+b\,dW$, this becomes
+
+$$
+df=\left(\partial_t f+a\partial_x f
++\frac12b^2\partial_x^2f\right)dt
++b\partial_xf\,dW.
+$$ {#eq-l01-ito-formula}
+
+Terms $dt\,dW$ and $dt^2$ vanish at this order. This extra second derivative is Itô's formula. Stratonovich integrals obey the ordinary-looking chain rule, but converting their drift according to @eq-l01-conversion gives the same observables.
+
+As a worked example, consider $dx=\lambda x\,dt+\sigma x\,dW$ with $x_0>0$. Applying @eq-l01-ito-formula to $f=\log x$ yields
+
+$$
+d\log x=(\lambda-\sigma^2/2)dt+\sigma dW,
+\quad
+x_t=x_0e^{(\lambda-\sigma^2/2)t+\sigma W_t}.
+$$
+
+The mean is $x_0e^{\lambda t}$, while the median is $x_0e^{(\lambda-\sigma^2/2)t}$. Fluctuations can make the average behavior differ sharply from the behavior of a typical realization.
+
+## Common pitfalls {#sec-l01-pitfalls}
+
+- White noise is not a bounded force evaluated at a mathematical instant; its integrated effect is the well-defined object.
+- Zero mean noise does not imply zero noise-induced drift when its amplitude depends on the fluctuating state.
+- An equilibrium fluctuation can run in either direction. Relaxation from a specially prepared macroscopic state still defines an arrow of time.
+- A stochastic convention is part of an equation's definition, not a preference that can be changed without adjusting coefficients.
+
+## Check your understanding {#sec-l01-exercises}
+
+1. A walker jumps right with probability $p$ and left with probability $1-p$. Find the mean displacement and the variance after $n$ steps.
+2. Convert $dx=-kx\,dt+\sigma x\circ dW$ to Itô form. Does the mean decay at the rate $k$?
+3. Use Itô's formula to recover @eq-l01-msd directly from @eq-l01-brownian.
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. A single jump has mean $(2p-1)\ell$ and variance $4p(1-p)\ell^2$. Independent increments give mean $n(2p-1)\ell$ and variance $4np(1-p)\ell^2$. A continuum drift limit must scale the bias appropriately.
+2. The Itô drift is $(-k+\sigma^2/2)x$, so $\langle x_t\rangle=x_0e^{(-k+\sigma^2/2)t}$. The logarithm has mean drift $-k$, which controls the median.
+3. For $f=x^2$, $d(x^2)=2x\sqrt{2D}\,dW+2Ddt$. The stochastic integral has zero mean. Starting at zero gives $\langle x_t^2\rangle=2Dt$.
+:::

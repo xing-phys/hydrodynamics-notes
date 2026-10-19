@@ -1,0 +1,194 @@
+# Fokker–Planck equation
+
+::: {.lecture-meta}
+Lecture 2 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture2.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Derive probability evolution from an Itô equation; solve free diffusion and the overdamped harmonic oscillator; identify the fluctuation–dissipation relation; and impose reflecting boundaries in several dimensions.
+:::
+
+## Replace random trajectories by a probability density {#sec-l02-density}
+
+An individual solution of a stochastic differential equation is random. Its probability density $P(x,t)$ is deterministic once the initial ensemble is specified:
+
+$$
+\Pr(\alpha\leq x_t\leq\beta)=\int_\alpha^\beta P(x,t)dx,
+\qquad P\geq0,\qquad \int Pdx=1.
+$$
+
+The Itô equation
+
+$$
+dx=a(x)dt+b(x)dW_t
+$$ {#eq-l02-sde}
+
+implies the **Fokker–Planck equation**
+
+$$
+\partial_tP=-\partial_x(aP)+\frac12\partial_x^2(b^2P).
+$$ {#eq-l02-fpe}
+
+The entire products must be differentiated. In particular, spatially varying noise does not usually produce $(b^2/2)\partial_x^2P$. Equation @eq-l02-fpe describes a specified Markov process unambiguously. An SDE written without a stochastic convention does not when $b$ depends on $x$.
+
+## Derivation using a test function {#sec-l02-derivation}
+
+Take any smooth $f(x)$ and compute the rate of its expectation in two ways. The definition gives
+
+$$
+\frac{d\langle f\rangle}{dt}=\int dx\,f(x)\partial_tP(x,t).
+$$
+
+A short Itô step instead gives
+
+$$
+f(x+\Delta x)=f+f'\Delta x+\frac12f''(\Delta x)^2+\cdots.
+$$
+
+Conditional on the old $x$, the noise increment has mean zero and variance $\Delta t$. Thus
+
+$$
+\mathbb E[\Delta x\mid x]=a\Delta t,
+\qquad
+\mathbb E[(\Delta x)^2\mid x]=b^2\Delta t+o(\Delta t),
+$$
+
+and therefore
+
+$$
+\frac{d\langle f\rangle}{dt}=\int dx\,P\left(af'+\frac12b^2f''\right).
+$$
+
+Integrating once and twice by parts, with boundary terms absent, transfers derivatives from $f$ to $P$ and yields @eq-l02-fpe. The differential operator acting on $f$,
+
+$$
+\mathcal Lf=a\partial_xf+\frac12b^2\partial_x^2f,
+$$
+
+is the backward generator; its adjoint acts on densities. This distinction is useful whenever one wants a moment without solving for the full density.
+
+Why stop at second order? Gaussian increments have even moments proportional to $(\Delta t)^n$ at order $2n$, and odd moments vanish. Only the first two conditional moments survive after dividing by $\Delta t$. Processes with jumps can have higher conditional moments of order $\Delta t$ and require a jump generator rather than this diffusion equation. An arbitrary finite higher-derivative truncation need not preserve positive probabilities.
+
+## Free diffusion and its Green function {#sec-l02-free-diffusion}
+
+For $a=0$ and $b=\sqrt{2D}$,
+
+$$
+\partial_tP=D\partial_x^2P.
+$$
+
+Starting from $P(x,0)=\delta(x-y)$, define $\widetilde P(k,t)=\int dx\,e^{-ikx}P(x,t)$. Then $\partial_t\widetilde P=-Dk^2\widetilde P$, so $\widetilde P=e^{-iky-Dk^2t}$. Fourier inversion gives
+
+$$
+G(x,t;y)=\frac{1}{\sqrt{4\pi Dt}}
+\exp\left[-\frac{(x-y)^2}{4Dt}\right],\qquad t>0.
+$$ {#eq-l02-heat-kernel}
+
+Its integral is one, its mean is $y$, and its variance is $2Dt$. For an arbitrary initial density, linearity gives $P(x,t)=\int dy\,G(x,t;y)P(y,0)$. On an infinite line this spreading distribution has no normalizable stationary limit. Confinement or finite volume changes that conclusion.
+
+## The overdamped harmonic oscillator {#sec-l02-ou}
+
+A particle with friction coefficient $\gamma$, spring constant $K$, and random force amplitude $\sigma$ obeys
+
+$$
+m\ddot x+\gamma\dot x+Kx=\sigma\xi(t).
+$$
+
+On times much longer than $m/\gamma$, neglect inertia provided the other relevant motion is also slow on that scale. Define $\lambda=K/\gamma$ and $D_0=\sigma^2/(2\gamma^2)$. The overdamped process is
+
+$$
+dx=-\lambda xdt+\sqrt{2D_0}\,dW,
+\qquad
+\partial_tP=\lambda\partial_x(xP)+D_0\partial_x^2P.
+$$ {#eq-l02-ou}
+
+This is the Ornstein–Uhlenbeck process. Its conditional density is Gaussian:
+
+$$
+P(x,t\mid y)=\frac{1}{\sqrt{2\pi V_t}}
+\exp\left[-\frac{(x-ye^{-\lambda t})^2}{2V_t}\right],
+\qquad
+V_t=\frac{D_0}{\lambda}(1-e^{-2\lambda t}).
+$$ {#eq-l02-ou-kernel}
+
+The source obtains this using Fourier-space characteristics: $\partial_t\widetilde P=-D_0k^2\widetilde P-\lambda k\partial_k\widetilde P$, with $dk/dt=\lambda k$. The characteristic starting at $k_0$ reaches $k=k_0e^{\lambda t}$; integrating its amplitude gives the variance in @eq-l02-ou-kernel.
+
+### Supplemental derivation without characteristics
+
+Multiplying the SDE by $e^{\lambda t}$ and integrating gives
+
+$$
+x_t=ye^{-\lambda t}+\sqrt{2D_0}\int_0^t e^{-\lambda(t-s)}dW_s.
+$$
+
+The integral is Gaussian with zero mean. Its variance is $2D_0\int_0^t e^{-2\lambda(t-s)}ds=V_t$, immediately proving the kernel. Unlike free Brownian motion, the oscillator neither diffuses indefinitely nor comes to rest: its mean relaxes, while its variance approaches a finite value.
+
+## Equilibrium fixes the noise strength {#sec-l02-fdt}
+
+For $K,\gamma>0$, the late-time distribution is
+
+$$
+P_{\mathrm{eq}}(x)\propto e^{-K\gamma x^2/\sigma^2}.
+$$
+
+Thermal equilibrium at temperature $T$, with Boltzmann's constant set to one, requires $P_{\mathrm{eq}}\propto e^{-Kx^2/(2T)}$. Comparing exponents gives
+
+$$
+\sigma^2=2\gamma T,
+\qquad
+D_0=\frac{T}{\gamma},
+\qquad
+\langle x^2\rangle_{\mathrm{eq}}=\frac{T}{K}.
+$$ {#eq-l02-fdt}
+
+Noise and damping are linked because they must sustain the same equilibrium ensemble. Setting the noise to zero while retaining thermal friction would incorrectly predict a particle frozen at the potential minimum. The next chapter connects this fluctuation–dissipation relation to time reversal and detailed balance.
+
+## Many coordinates and probability current {#sec-l02-multidimensional}
+
+For coordinates $x_i$ driven by independent Wiener processes,
+
+$$
+dx_i=a_i(\mathbf x)dt+b_{i\alpha}(\mathbf x)dW_\alpha,
+\qquad
+B_{ij}=\sum_\alpha b_{i\alpha}b_{j\alpha},
+$$
+
+repeating the test-function argument gives
+
+$$
+\partial_tP=-\partial_i(a_iP)+\frac12\partial_i\partial_j(B_{ij}P)
+=-\partial_iJ_i,
+\quad
+J_i=a_iP-\frac12\partial_j(B_{ij}P).
+$$ {#eq-l02-current}
+
+Repeated indices are summed. The covariance matrix $B$ is positive semidefinite: for any real $u_i$, $u_iB_{ij}u_j=\sum_\alpha(u_ib_{i\alpha})^2\geq0$. This positivity is the statistical origin of positive diffusion coefficients.
+
+For a closed configuration-space region $\Omega$, reflecting boundaries impose $n_iJ_i=0$ on $\partial\Omega$. Integrating the continuity equation then preserves total probability. Reflecting boundaries are not generally the same as $\partial_nP=0$ when drift or inhomogeneous diffusion is present. An absorbing boundary removes probability from the surviving ensemble and represents a different physical question.
+
+For Brownian motion on $0\leq x\leq L$, the reflecting condition reduces to $\partial_xP(0,t)=\partial_xP(L,t)=0$. The solution is
+
+$$
+P(x,t)=\frac1L+\sum_{n=1}^{\infty}c_n\cos\frac{n\pi x}{L}
+\exp\left[-D\left(\frac{n\pi}{L}\right)^2t\right],
+\quad
+c_n=\frac2L\int_0^Ldx\,P(x,0)\cos\frac{n\pi x}{L}.
+$$ {#eq-l02-box}
+
+The nonuniform modes decay, leaving the uniform equilibrium density. The slowest relaxation time is $L^2/(\pi^2D)$: large systems relax slowly even though every local step is fast.
+
+## Common pitfalls {#sec-l02-pitfalls}
+
+The density $P(x,t)$ is not the random coordinate $x_t$. A stationary density need not imply every trajectory is stationary. Finally, a stationary solution need not have zero current in a general driven system; zero-current equilibrium is an additional detailed-balance statement.
+
+## Check your understanding {#sec-l02-exercises}
+
+1. Derive the evolution equations for $\langle x\rangle$ and $\langle x^2\rangle$ in the Ornstein–Uhlenbeck process.
+2. For $dx=-U'(x)dt/\gamma+\sqrt{2T/\gamma}\,dW$, verify that $e^{-U/T}$ has zero current.
+3. Why does the coefficient of the constant mode in @eq-l02-box equal $1/L$?
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. The backward generator gives $d\langle x\rangle/dt=-\lambda\langle x\rangle$ and $d\langle x^2\rangle/dt=-2\lambda\langle x^2\rangle+2D_0$. These reproduce the mean and variance in @eq-l02-ou-kernel.
+2. $J=-U'P/\gamma-(T/\gamma)P'$. Since $P'=-(U'/T)P$, the two terms cancel. The density must be normalizable and obey the selected boundary conditions.
+3. Every nonconstant cosine has zero spatial integral. Normalization therefore fixes the constant term to $1/L$ at all times.
+:::

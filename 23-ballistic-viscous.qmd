@@ -1,0 +1,150 @@
+# Ballistic-to-viscous crossover
+
+Lecture 23 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture23.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Bound kinetic transport coefficients variationally; identify the collision-controlled domain of hydrodynamics; construct a projected kinetic resolvent; follow diffusion and relaxation poles into a ballistic regime in a solvable model.
+:::
+
+## How can an inverse collision operator be calculated? {#sec-l23-variational}
+
+The preceding chapter expressed dissipation through $W_f^{-1}$, the inverse collision operator on functions orthogonal to conserved quantities. This is a precise answer, but generally an integral equation rather than a number. A variational principle turns it into a sequence of controllable estimates.
+
+For a positive self-adjoint operator $M$ and a source $|\Psi\rangle$ in its invertible subspace,
+
+$$
+\langle\Psi|M^{-1}|\Psi\rangle
+=\max_{\Phi\ne0}
+\frac{|\langle\Phi|\Psi\rangle|^2}{\langle\Phi|M|\Phi\rangle}.
+$$ {#eq-l23-variational}
+
+To prove it, write $|a\rangle=M^{1/2}|\Phi\rangle$ and $|b\rangle=M^{-1/2}|\Psi\rangle$. Cauchy–Schwarz gives $|\langle a|b\rangle|^2\le\langle a|a\rangle\langle b|b\rangle$. Equality occurs when $\Phi$ is proportional to $M^{-1}\Psi$. Multiplying $\Phi$ by a constant changes neither quotient nor bound.
+
+Restricting $\Phi$ to a finite trial space gives a lower bound, improved or unchanged when more basis functions are added. If $\Phi=\sum_ac_a|a\rangle$, let $M_{ab}=\langle a|M|b\rangle$ and $b_a=\langle a|\Psi\rangle$. Maximizing gives $c\propto M^{-1}b$ within that trial space. This is a useful practical version of the Chapman–Enskog variational method.
+
+For shear viscosity, choose $M=W_f$ and $\Psi=p_xp_y/m$. A single trial function proportional to $\Psi$ gives
+
+$$
+\eta\ge
+\frac{\langle\Psi|\Psi\rangle^2}{\langle\Psi|W_f|\Psi\rangle}.
+$$ {#eq-l23-shear-bound}
+
+Its orthogonality to conserved scalar and vector functions follows from rotational symmetry. Other transport problems require explicitly subtracting conserved overlaps before applying the inverse or variational formula. Functions with zero source overlap cannot improve a one-function estimate, although they can matter through mixing in a larger trial space.
+
+## A controlled breakdown of hydrodynamics {#sec-l23-regimes}
+
+The kinetic equation contains both hydrodynamic and nonhydrodynamic modes. Let $\gamma$ be a characteristic nonzero eigenvalue of $W_f$, so $\tau\sim\gamma^{-1}$ is a collision time and $\ell\sim v\tau$ a mean free path. Hydrodynamics applies when $|\omega|\tau\ll1$ and $k\ell\ll1$. At shorter times or wavelengths, particles stream appreciably before collisions restore local equilibrium.
+
+The word *ballistic* refers to this streaming-dominated motion. It is not another choice of fluid viscosity. The diffusion pole $\omega=-iDk^2$ is an expansion around $k=0$ and cannot be extrapolated indefinitely to $k\ell\gtrsim1$. A kinetic model lets us follow the poles beyond that expansion and see which excitations they connect to.
+
+## A solvable one-dimensional model {#sec-l23-model}
+
+Take a classical distribution with massless dispersion $\varepsilon(p)=c|p|$, so $V(p)=c\,\mathrm{sgn}(p)$. Assume collisions conserve number, momentum, and energy, and use the conserving relaxation-time model
+
+$$
+W=\gamma(1-P),\qquad
+[-i\omega+ikV+\gamma(1-P)]|\Phi\rangle=0.
+$$ {#eq-l23-rta}
+
+Here $P$ projects onto $1,p,\varepsilon$ using the susceptibility inner product. This is an illustrative kinetic model, rather than a claim that generic one-dimensional two-body scattering has precisely this collision spectrum. Its value is that it preserves conservation exactly while allowing an explicit crossover calculation.
+
+For this model use $\int_p=\int_{-\infty}^{\infty}dp$, without a $2\pi\hbar$ factor. At $\mu=0$, set $f_0=e^{-\beta c|p|}$ and $w=\beta f_0$. Relevant inner products are
+
+$$
+\langle1|1\rangle=\frac2c,\quad
+\langle p|p\rangle=\frac4{\beta^2c^3},\quad
+\langle\varepsilon|\varepsilon\rangle=\frac4{\beta^2c},\quad
+\langle1|\varepsilon\rangle=\frac2{\beta c}.
+$$ {#eq-l23-inner-products}
+
+The scalar energy function orthogonal to number is $\widetilde\varepsilon=\varepsilon-1/\beta$, with norm $\langle\widetilde\varepsilon|\widetilde\varepsilon\rangle=2/(\beta^2c)$. Normalize $1,p,\widetilde\varepsilon$ to form an orthonormal basis $|1\rangle,|2\rangle,|3\rangle$ in the following matrix formulas.
+
+## Supplementary derivation: summing the projected resolvent {#sec-l23-resolvent}
+
+Let
+
+$$
+G_0=(\gamma-i\omega+ikV)^{-1},\qquad G=(G_0^{-1}-\gamma P)^{-1}.
+$$
+
+Expanding in $\gamma P$ gives $G=G_0+G_0\gamma PG_0+\cdots$. Its slow block can be summed as a finite matrix:
+
+$$
+PGP=\widetilde G(1-\gamma\widetilde G)^{-1},
+\qquad\widetilde G=PG_0P.
+$$ {#eq-l23-dyson}
+
+This identity is exact within the relaxation model; it does not expand in $k\ell$. The two possible velocities make every momentum integral elementary. For example,
+
+$$
+\langle1|G_0|1\rangle
+=\frac12\left[\frac1{\gamma-i\omega+ikc}
++\frac1{\gamma-i\omega-ikc}\right]
+=\frac{\gamma-i\omega}{(\gamma-i\omega)^2+c^2k^2}.
+$$
+
+All matrix elements combine into
+
+$$
+\widetilde G=\frac1{(\gamma-i\omega)^2+c^2k^2}
+\begin{pmatrix}
+\gamma-i\omega&-ick/\sqrt2&0\\
+-ick/\sqrt2&\gamma-i\omega&-ick/\sqrt2\\
+0&-ick/\sqrt2&\gamma-i\omega
+\end{pmatrix}.
+$$ {#eq-l23-matrix}
+
+The density relaxation resolvent, with unnormalized density susceptibility $\chi_{nn}=2/c$, is
+
+$$
+\mathcal R_{nn}=\frac2c\,
+\frac{-2i\omega(c^2k^2-\omega^2)+\gamma(c^2k^2-2\omega^2)}
+{2(c^2k^2-\omega^2)(c^2k^2-\omega^2-i\gamma\omega)}.
+$$ {#eq-l23-density-resolvent}
+
+The numerator sign is fixed by $\mathcal R_{nn}(k=0)=i\chi_{nn}/\omega$, since total number is conserved. With the stated resolvent convention, this corrects the sign of the corresponding handwritten first term. The precise source-to-response retarded function includes the usual static term and frequency factor; these do not change generic pole locations. At special points residues can vanish, so a denominator alone is not proof that every observable sees every mode.
+
+## Following the modes {#sec-l23-poles}
+
+The poles comprise an undamped sound pair $\omega=\pm ck$ and a second pair
+
+$$
+\omega_\pm=-\frac{i\gamma}{2}
+\pm\sqrt{c^2k^2-\frac{\gamma^2}{4}}.
+$$ {#eq-l23-crossover}
+
+For $ck\ll\gamma$, expansion of the square root gives
+
+$$
+\omega_{\mathrm{diff}}=-i\frac{c^2}{\gamma}k^2+O(k^4),\qquad
+\omega_{\mathrm{fast}}=-i\gamma+i\frac{c^2}{\gamma}k^2+O(k^4).
+$$
+
+One is a hydrodynamic diffusion mode; the other is a relaxing distortion. At $ck=\gamma/2$ they meet, and for larger $k$ they acquire opposite real parts with damping $\gamma/2$. At $ck\gg\gamma$ they approach particles streaming at speeds $\pm c$. A diffusion process and a fast relaxation process thus combine into two propagating modes when the gradient expansion fails.
+
+Why does sound remain undamped in this particular model? Multiplication by $V$ maps energy into momentum and momentum into energy:
+
+$$
+V\varepsilon=c^2p,\qquad Vp=\varepsilon.
+$$
+
+The energy–momentum sector closes exactly, with
+
+$$
+\partial_t\delta\mathcal E+c^2\partial_x\delta g=0,\qquad
+\partial_t\delta g+\partial_x\delta\mathcal E=0.
+$$
+
+Streaming never excites a fast distortion in this sector, so collisions have nothing to damp. The number current $c\,\mathrm{sgn}(p)$ has both momentum overlap and a component orthogonal to conserved quantities, yielding the additional incoherent diffusion mode. Further fast functions come in pairs exchanged by $V$, giving damped ballistic excitations $\omega=\pm ck-i\gamma$. In higher dimensions the stress generally overlaps fast distortions; shear viscosity is nonzero and sound attenuates. The undamped pair is a special kinematic feature, not a universal prediction.
+
+## Exercises and solutions {#sec-l23-exercises}
+
+1. Explain why enlarging the trial space in @eq-l23-variational cannot lower the variational estimate.
+2. Expand @eq-l23-crossover to obtain the diffusion constant and crossover wavelength scale.
+3. Derive the wave equation for $\delta\mathcal E$ from the closed energy–momentum equations.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. Every old trial function remains available in the enlarged space; maximizing over a larger set cannot decrease the result. It remains a lower bound to the exact inverse-operator matrix element.
+2. $D=c^2/\gamma$ and the crossover is $k\sim\gamma/c$, or distances of order the mean free path $c/\gamma$. The precise pole meeting occurs at $k=\gamma/(2c)$.
+3. Differentiate the energy equation in time and use $\partial_t\delta g=-\partial_x\delta\mathcal E$. This gives $\partial_t^2\delta\mathcal E-c^2\partial_x^2\delta\mathcal E=0$.
+:::

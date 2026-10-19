@@ -1,0 +1,186 @@
+# Shock and rarefaction waves
+
+::: {.lecture-meta}
+Lecture 9 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture9.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Set up a nonlinear Riemann problem; derive shock jump conditions and self-similar rarefaction fans; understand entropy selection and viscous shock thickness; and construct the shock/rarefaction solution for a polytropic barotropic fluid.
+:::
+
+## A step disturbance beyond linear sound {#sec-l09-riemann}
+
+Near equilibrium, longitudinal fluid motion obeys the wave equation $\partial_t^2\delta\rho=c_s^2\partial_x^2\delta\rho$. A small initial density step with initially vanishing velocity splits into left- and right-moving disturbances. If the density deviations on the two sides are $\delta\rho_L$ and $\delta\rho_R$, the region between the sound fronts has density $(\delta\rho_L+\delta\rho_R)/2$ at linear order.
+
+For a large density contrast, sound speed itself depends on density and the nonlinear equations matter. The **Riemann problem** starts with two uniform states separated at $x=0$:
+
+$$
+(\rho,v)(x,0)=
+\begin{cases}(\rho_L,v_L),&x<0,\\(\rho_R,v_R),&x>0.\end{cases}
+$$
+
+Following the source, first use a one-dimensional **barotropic model** with pressure $P=P(\rho)$, retaining mass and momentum conservation but not an independent energy equation:
+
+$$
+\partial_t\rho+\partial_x(\rho v)=0,
+\qquad
+\partial_t(\rho v)+\partial_x[\rho v^2+P(\rho)]=0.
+$$ {#eq-l09-euler}
+
+Assume $P'(\rho)>0$ for local stability. The two characteristic speeds are $v\pm c(\rho)$, where $c^2=P'(\rho)$. There are two wave families; a general step is resolved by combining one wave of each family with an intermediate constant state.
+
+::: {.callout-important title="Scope of the gas example"}
+A full compressible gas conserves energy as well and can have a contact wave. Across a physical dissipative shock its entropy changes, so a single fixed $P=A\rho^\gamma$ relation on both sides is not generally the full ideal-gas shock equation of state. The source's example is a pedagogical barotropic closure. Its jump conditions and fan construction are exact for that stated two-equation model.
+:::
+
+## Shock waves: conservation across a moving interface {#sec-l09-shock}
+
+Let a discontinuity move at speed $s$. Integrate a conservation equation $\partial_tu+\partial_xF=0$ across a narrow moving interval. The result is the Rankine–Hugoniot condition $s[u]=[F]$, where $[f]=f_R-f_L$.
+
+Applying this to @eq-l09-euler gives
+
+$$
+s[\rho]=[\rho v],\qquad
+s[\rho v]=[\rho v^2+P].
+$$ {#eq-l09-rh}
+
+Equivalently, work in the shock rest frame with $u_L=v_L-s$ and $u_R=v_R-s$. Both mass flux and momentum flux are continuous:
+
+$$
+j=\rho_Lu_L=\rho_Ru_R,
+\qquad
+P_L+\frac{j^2}{\rho_L}=P_R+\frac{j^2}{\rho_R}.
+$$ {#eq-l09-rest-frame}
+
+Thus
+
+$$
+j^2=\frac{P_R-P_L}{1/\rho_L-1/\rho_R},
+\qquad
+(v_R-v_L)^2=\frac{(P_R-P_L)(\rho_R-\rho_L)}{\rho_R\rho_L}.
+$$ {#eq-l09-shock-curve}
+
+Signs of the velocity change and shock family must still be chosen physically. For a fixed left state, these conditions leave a one-parameter curve of possible right states; a single shock cannot match arbitrary independent data on both sides. This degree-of-freedom counting explains why a Riemann solution usually needs two waves.
+
+## Rarefaction waves: a continuous expanding fan {#sec-l09-rarefaction}
+
+A rarefaction replaces the step by a smooth region whose width grows linearly in time. With no intrinsic length scale in the ideal equations, try $\rho(x,t)=\rho(\xi)$ and $v(x,t)=v(\xi)$, where $\xi=x/t$. For smooth fields, @eq-l09-euler becomes
+
+$$
+(v-\xi)\rho'+\rho v'=0,
+\qquad
+\frac{c^2}{\rho}\rho'+(v-\xi)v'=0,
+$$ {#eq-l09-fan-equations}
+
+where primes denote derivatives with respect to $\xi$. A nonconstant solution requires zero determinant:
+
+$$
+(v-\xi)^2=c(\rho)^2,
+\qquad \xi=v\pm c.
+$$ {#eq-l09-characteristic}
+
+Along the two families, respectively,
+
+$$
+dv=\pm\frac{c(\rho)}{\rho}d\rho.
+$$
+
+For a left-family fan with $\xi=v-c$, the sign is negative, and $v+\int^\rho c(r)dr/r$ is constant. The front and tail speeds are the characteristic speeds of the states they meet. Their ordering must produce an expanding fan; reversing the ordering does not produce a physical smooth rarefaction.
+
+A fan has a profile integration constant and two edge positions in $\xi$. Matching its endpoint states constrains these parameters, but a single fan still cannot connect general Riemann data. Possible patterns are rarefaction–rarefaction, rarefaction–shock, shock–rarefaction, or shock–shock; sufficiently strong separating velocities can additionally produce vacuum.
+
+## Entropy selects the physical weak solution {#sec-l09-entropy}
+
+A discontinuous field is not a classical differentiable solution, so the conservation laws must be understood in their integrated, or weak, sense. Weak solutions alone are not unique. A compression can form a shock; an expanding discontinuity must instead open into a rarefaction. The physically selected solution is obtained by adding small positive viscosity and taking its vanishing-viscosity limit, or equivalently imposing the appropriate entropy inequality.
+
+For the barotropic two-equation model, the relevant convex entropy is its mechanical-energy functional; a thermodynamic entropy interpretation requires restoring the energy and heat balance, or specifying the reservoir that maintains the closure. For a convex barotropic equation of state and nonvacuum data in the usual regime, these additional conditions select the standard entropy solution of the Riemann problem. The source's warning about nonuniqueness concerns unconstrained weak solutions; it does not imply that the physical entropy criterion is ineffective.
+
+Viscosity is negligible in a late-time fan: gradients scale as $1/t$, so a second-derivative viscous term is smaller than an advective term by a factor of order $1/t$. Inside a shock the opposite can happen. The ideal discontinuity has arbitrarily large gradients and must be smoothed over a finite thickness.
+
+### Supplemental derivation: shock thickness increases with viscosity
+
+Balance nonlinear steepening against viscous smoothing for a velocity jump $\Delta v$ across width $\ell$:
+
+$$
+\rho\frac{(\Delta v)^2}{\ell}
+\sim\eta_L\frac{\Delta v}{\ell^2}
+\quad\Longrightarrow\quad
+\ell\sim\frac{\eta_L}{\rho\,\Delta v}.
+$$ {#eq-l09-width}
+
+Equivalently, integrated entropy production scales as $\int dx\,\eta_L(\partial_xv)^2/T\sim\eta_L(\Delta v)^2/(T\ell)$. For fixed asymptotic states, the required entropy-flux jump fixes this integral, again giving width proportional to viscosity. This corrects the inverse-viscosity scaling written at the end of the source's page 4. The numerical coefficient depends on the equation of state and the full viscous profile. Hydrodynamics only resolves the profile reliably if its width remains larger than the microscopic cutoff.
+
+## Worked construction: a polytropic pressure law {#sec-l09-polytrope}
+
+Let
+
+$$
+P=A\rho^\gamma,\qquad A>0,\quad\gamma>1,
+\qquad c(\rho)=\sqrt{A\gamma}\,\rho^{(\gamma-1)/2}.
+$$
+
+Take $v_L=v_R=0$ and $\rho_L>\rho_R$. The physical pattern is a left-family rarefaction, an intermediate state $(\rho_C,v_C)$, and a right-moving compressive shock. The intermediate density satisfies $\rho_R<\rho_C<\rho_L$ and $v_C>0$.
+
+For the left rarefaction, integration of $dv=-c\,d\rho/\rho$ gives
+
+$$
+v+\frac{2c}{\gamma-1}=\frac{2c_L}{\gamma-1},
+\qquad \xi=v-c.
+$$
+
+Solving the two equations,
+
+$$
+v(\xi)=\frac{2(\xi+c_L)}{\gamma+1},
+\qquad
+c(\xi)=\frac{2c_L-(\gamma-1)\xi}{\gamma+1},
+\qquad
+\rho(\xi)=\left[\frac{c(\xi)^2}{A\gamma}\right]^{1/(\gamma-1)}.
+$$ {#eq-l09-fan-profile}
+
+The head travels at $\xi_1=-c_L$; the tail travels at $\xi_2=v_C-c_C$. The source chooses units $A\gamma=1$, in which the density formula simplifies. It is safer to retain the units until the end.
+
+The fan relates the central velocity and density by
+
+$$
+v_C=\frac{2(c_L-c_C)}{\gamma-1}.
+$$ {#eq-l09-central-fan}
+
+Across the right shock, use the state $(\rho_R,0)$ in @eq-l09-rh. Mass conservation determines
+
+$$
+s=\frac{\rho_Cv_C}{\rho_C-\rho_R}.
+$$
+
+Momentum conservation reduces to
+
+$$
+v_C^2=\frac{[P(\rho_C)-P(\rho_R)](\rho_C-\rho_R)}{\rho_C\rho_R}.
+$$ {#eq-l09-central-shock}
+
+Equations @eq-l09-central-fan and @eq-l09-central-shock are one scalar matching problem for $\rho_C$. The fan velocity decreases from a positive value to zero as $\rho_C$ goes from $\rho_R$ to $\rho_L$; the shock-required velocity increases from zero. A bracketed root solve gives the intermediate state without numerically evolving a discontinuous initial profile.
+
+For example, take $\gamma=5/3$, $A\gamma=1$, $\rho_R=1$, and $\rho_L=10$. Solving these matching equations gives approximately
+
+$$
+\rho_C=3.669,\quad v_C=1.836,\quad
+\xi_1=-2.154,\quad\xi_2=0.294,\quad s=2.525.
+$$
+
+The right sound speed is one in these units, so the shock is supersonic relative to the undisturbed right fluid, as in the trend sketched in the source. Its speed also lies below $v_C+c_C\simeq3.379$, so right-family characteristics enter the shock from both sides. The full solution is the initial left state for $x/t<\xi_1$, the profile @eq-l09-fan-profile inside the fan, the central plateau for $\xi_2<x/t<s$, and the original right state beyond the shock.
+
+## Common pitfalls {#sec-l09-pitfalls}
+
+A shock is not obtained by differentiating a discontinuity pointwise; integrate the conservation laws. A rarefaction is not simply a broadened diffusive Gaussian: its width grows as $t$ and its profile is controlled by characteristics. Finally, a barotropic Riemann solution should not be presented as the complete energy-conserving gas-dynamics solution.
+
+## Check your understanding {#sec-l09-exercises}
+
+1. Show that a weak shock on a background density $\rho_0$ travels at the sound speed relative to the fluid.
+2. For the polytropic fan, verify its left edge matches $(\rho_L,0)$.
+3. If viscosity doubles with the two asymptotic states held fixed, what happens to the shock thickness and integrated entropy production?
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. Let $\rho_R=\rho_L+\delta\rho$. From @eq-l09-rest-frame, $j^2\to\rho_0^2P'(\rho_0)$, so $|v-s|=|j|/\rho_0\to c(\rho_0)$.
+2. At $\xi=-c_L$, @eq-l09-fan-profile gives $v=0$, $c=c_L$, and hence $\rho=\rho_L$.
+3. The thickness approximately doubles. The integrated production remains fixed by the entropy-flux difference between the asymptotic states; the local gradient and peak production decrease as the profile spreads.
+:::

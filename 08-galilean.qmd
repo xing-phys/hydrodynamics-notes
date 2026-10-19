@@ -1,0 +1,197 @@
+# Galilean invariance
+
+::: {.lecture-meta}
+Lecture 8 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture8.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Use angular momentum and Galilean boosts to constrain a simple fluid; obtain the familiar compressible Navier–Stokes equations; and derive shear diffusion, sound, sound attenuation, and thermal diffusion from the linearized equations.
+:::
+
+## Angular momentum makes the stress symmetric {#sec-l08-angular}
+
+The orbital angular momentum is $L_{ij}=\int d^dx\,(x_ig_j-x_jg_i)$. Apply momentum conservation, integrate by parts, and discard boundary torques:
+
+$$
+\frac{dL_{ij}}{dt}=\int d^dx\,(\tau_{ji}-\tau_{ij}).
+$$
+
+A local symmetric stress therefore guarantees angular-momentum conservation. For a simple fluid with no independent internal spin density, this is the appropriate rotationally invariant constitutive choice. An antisymmetric stress can occur when momentum exchanges angular momentum with an additional internal degree of freedom, which would also have to be retained.
+
+## Boost symmetry relates mass current and momentum {#sec-l08-boost}
+
+Now let $\rho$ denote **mass density**. For nonrelativistic particles, momentum and mass transport are tied: $\sum_\alpha m_\alpha\dot x_{i\alpha}$ is both total momentum and integrated mass current. Local Galilean symmetry gives
+
+$$
+g_i=J_i=\rho v_i.
+$$ {#eq-l08-mass-current}
+
+If $\rho$ instead counts particles of mass $m$, insert $m$ appropriately. For mixtures, mass current remains tied to momentum, while relative species currents can diffuse.
+
+The general thermodynamic pressure from lecture 7 obeyed
+
+$$
+\frac{\partial P}{\partial(v^2/2)}=\rho
+=\frac{\partial P}{\partial\widetilde\mu}.
+$$
+
+Consequently $P$ depends on $T$ and $\mu_0=\widetilde\mu+v^2/2$, the rest-frame chemical potential, or equivalently on $T$ and $\rho$. The Euler relation then implies
+
+$$
+\varepsilon=\varepsilon_0+\frac12\rho v^2,
+$$ {#eq-l08-energy}
+
+where $\varepsilon_0$ is internal energy density in the local rest frame. Pressure is the same in every inertial frame; the total energy includes the flow's kinetic energy.
+
+## Dissipation must also respect boosts {#sec-l08-dissipation}
+
+A uniform boost adds a constant to $v$. Dissipation can depend on velocity gradients, but cannot penalize an overall uniform velocity. In addition, @eq-l08-mass-current forbids an independent dissipative mass current in the mass frame of this single-component fluid.
+
+The momentum and energy conjugates satisfy
+
+$$
+\partial_i\mu_j+v_j\partial_i\mu_\varepsilon
+=\partial_i(v_j/T)+v_j\partial_i(-1/T)
+=\frac1T\partial_iv_j.
+$$
+
+This motivates the boost-covariant response-gradient combination
+
+$$
+X_{ij}=\partial_i\pi_j+v_j\partial_i\pi_\varepsilon.
+$$
+
+The derivative here acts on response fields; placing it on the entire product $v_j\pi_\varepsilon$ would add an extra term and spoil the constant energy-response shift symmetry. Allowed viscous motifs are built from $iT\eta_{ijkl}X_{ij}[X_{kl}-i\partial_kv_l/T]$. Thermal conduction has the motif $i\kappa T^2\partial_i\pi_\varepsilon\partial_i(\pi_\varepsilon-i\mu_\varepsilon)$. The coefficients are shear viscosity $\eta\geq0$, bulk viscosity $\zeta\geq0$, and thermal conductivity $\kappa\geq0$.
+
+Define the positive-sign viscous tensor
+
+$$
+\Pi_{ij}=\eta\left(\partial_iv_j+\partial_jv_i-\frac2d\delta_{ij}\partial_kv_k\right)
++\zeta\delta_{ij}\partial_kv_k.
+$$ {#eq-l08-viscous}
+
+The constitutive laws become
+
+$$
+\begin{aligned}
+J_i&=\rho v_i,\\
+\tau_{ij}&=\rho v_iv_j+P\delta_{ij}-\Pi_{ij},\\
+\mathcal E_i&=(\varepsilon+P)v_i-\Pi_{ij}v_j-\kappa\partial_iT.
+\end{aligned}
+$$ {#eq-l08-constitutive}
+
+The viscous work term in the energy current is required by energy conservation and boost symmetry. These currents, inserted into the three continuity equations, are the compressible Navier–Stokes equations. As elsewhere, stochastic stresses and heat currents are needed to describe fluctuations, while the displayed equations give deterministic mean hydrodynamics.
+
+## The material derivative {#sec-l08-material}
+
+Use mass conservation to rewrite the momentum equation:
+
+$$
+\rho(\partial_t+v_j\partial_j)v_i
+=-\partial_iP+\partial_j\Pi_{ij}.
+$$ {#eq-l08-material}
+
+The operator $D_t=\partial_t+\mathbf v\cdot\nabla$ differentiates along the trajectory of a fluid parcel. The nonlinear term arises because a parcel moves into regions where velocity differs; it is required even for an ideal inviscid fluid. A uniform flow has $D_tv=0$ and no viscous dissipation.
+
+## Linearize around equilibrium {#sec-l08-linear}
+
+Take a uniform fluid at rest with mass density $\rho_0$, internal energy $\varepsilon_0$, pressure $P_0$, and $w_0=\varepsilon_0+P_0$. At linear order the total-energy fluctuation equals the internal-energy fluctuation, since flow kinetic energy is quadratic. Choose $\mathbf k=k\hat x$ and write
+
+$$
+P_\rho=\left.\frac{\partial P}{\partial\rho}\right|_\varepsilon,
+\quad P_\varepsilon=\left.\frac{\partial P}{\partial\varepsilon}\right|_\rho,
+\quad T_\rho=\left.\frac{\partial T}{\partial\rho}\right|_\varepsilon,
+\quad T_\varepsilon=\left.\frac{\partial T}{\partial\varepsilon}\right|_\rho.
+$$
+
+For a perturbation $e^{ikx-i\omega t}$, the longitudinal equations are
+
+$$
+\begin{aligned}
+-i\omega\delta\rho+ik\rho_0\delta v_x&=0,\\
+-i\omega\delta\varepsilon+ikw_0\delta v_x
++\kappa k^2(T_\rho\delta\rho+T_\varepsilon\delta\varepsilon)&=0,\\
+-i\omega\rho_0\delta v_x+ik(P_\rho\delta\rho+P_\varepsilon\delta\varepsilon)
++\eta_Lk^2\delta v_x&=0,
+\end{aligned}
+$$ {#eq-l08-longitudinal}
+
+where $\eta_L=\zeta+2(d-1)\eta/d$. There are three longitudinal eigenmodes. The other $d-1$ velocity components decouple.
+
+## Shear diffusion {#sec-l08-shear}
+
+For a transverse velocity, pressure has no restoring component. Its equation is $-i\omega\rho_0\delta v_\perp+\eta k^2\delta v_\perp=0$, giving
+
+$$
+\omega_{\mathrm{shear}}=-i\nu k^2,
+\qquad\nu=\frac\eta{\rho_0}.
+$$ {#eq-l08-shear}
+
+The kinematic viscosity $\nu$ is a momentum diffusion coefficient. As a worked example, a transverse sinusoidal shear flow of wavelength $L$ decays as $e^{-4\pi^2\nu t/L^2}$. This is physically the same smoothing mechanism as scalar diffusion, applied to transverse momentum.
+
+## Sound and its thermodynamic speed {#sec-l08-sound}
+
+First omit the $k^2$ terms in @eq-l08-longitudinal. The first two equations give $\delta\varepsilon=(w_0/\rho_0)\delta\rho$ for a nonzero sound frequency. The momentum equation then yields
+
+$$
+\omega_\pm=\pm c_sk+O(k^2),
+\qquad
+c_s^2=P_\rho+\frac{w_0}{\rho_0}P_\varepsilon.
+$$ {#eq-l08-sound-speed}
+
+Why is this an adiabatic derivative? Let $\bar s=s/\rho$ be entropy per unit mass. At zero background velocity, $Tds=d\varepsilon-\mu_0d\rho$. Holding $\bar s$ fixed gives $ds=\bar s\,d\rho$, so $d\varepsilon=(\mu_0+T\bar s)d\rho=(w_0/\rho_0)d\rho$. Therefore
+
+$$
+c_s^2=\left.\frac{\partial P}{\partial\rho}\right|_{\bar s}.
+$$
+
+Sound compresses the fluid faster than heat diffuses across one wavelength in the $k\to0$ limit, so its leading thermodynamic response is adiabatic, not isothermal.
+
+### Supplemental derivation: sound attenuation with full thermodynamics
+
+Define $T_s=T_\rho+(w_0/\rho_0)T_\varepsilon=(\partial T/\partial\rho)_{\bar s}$. Keep the first dissipative correction to the energy equation:
+
+$$
+\delta\varepsilon=\frac{w_0}{\rho_0}\delta\rho
+-\frac{i\kappa k^2}{\omega}\delta T.
+$$
+
+Insert this into the momentum equation, use $\delta T=T_s\delta\rho+O(k)$, and set $\omega_\pm=\pm c_sk-i\Gamma_sk^2+\cdots$. Matching order $k^3$ gives
+
+$$
+\Gamma_s=\frac{\eta_L}{2\rho_0}
++\frac{\kappa P_\varepsilon T_s}{2c_s^2}.
+$$ {#eq-l08-attenuation}
+
+This retains the full thermodynamic dependence of the source's linearized matrix; the abbreviated thermal prefactor in its handwritten attenuation formula is not general. For a stable simple fluid, equivalent standard variables give $\Gamma_s=[\eta_L/\rho_0+(c_p/c_v-1)D_T]/2$, where $c_p,c_v$ are specific heats per unit mass and $D_T=\kappa/(\rho_0c_p)$. The sound amplitude decays as $e^{-\Gamma_sk^2t}$.
+
+## The third mode: thermal or incoherent diffusion {#sec-l08-thermal}
+
+The remaining longitudinal mode has $\omega=O(k^2)$ and $\delta v_x=O(k)$. At leading order, momentum balance requires $\delta P=0$. It is a coupled density/energy fluctuation that avoids the pressure restoring force. One convenient eigenvector is proportional to $(\delta\rho,\delta\varepsilon)=(P_\varepsilon,-P_\rho)$.
+
+Subtract $w_0/\rho_0$ times mass conservation from energy conservation and use $\delta P=0$. The result is
+
+$$
+\omega_{\mathrm{thermal}}=-iD_Tk^2,
+\qquad
+D_T=\frac{\kappa}{c_s^2}
+(P_\rho T_\varepsilon-P_\varepsilon T_\rho).
+$$ {#eq-l08-thermal}
+
+Thermodynamic identities reduce this to $\kappa/(\rho_0c_p)$. To see the heat capacity directly, the combination $\delta\varepsilon-(w_0/\rho_0)\delta\rho=\rho_0T\delta\bar s$ becomes $\rho_0c_p\delta T$ at fixed pressure. The source also notes a useful liquid approximation: if $T_\rho$ at fixed energy is negligible and the remaining pressure-derivative ratio is close to one, the diffusivity is approximately conductivity divided by a volumetric heat capacity. The full expression avoids relying on that approximation.
+
+## Common pitfalls {#sec-l08-pitfalls}
+
+Do not confuse dynamic viscosity $\eta$ with kinematic viscosity $\nu$. Do not discard the third longitudinal eigenvalue after finding the sound pair. A zero leading sound frequency for that third mode means diffusion at the next order, not an exactly frozen disturbance.
+
+## Check your understanding {#sec-l08-exercises}
+
+1. In three dimensions, how many hydrodynamic modes does a simple compressible fluid have?
+2. For an ideal gas with adiabatic equation of state $P\propto\rho^\gamma$, find $c_s$.
+3. What happens to the thermal eigenmode if $\kappa=0$ at this derivative order?
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. Five: two transverse shear diffusion modes, two sound modes, and one thermal diffusion mode. They correspond to mass, energy, and three momentum densities.
+2. $c_s^2=(\partial P/\partial\rho)_{\bar s}=\gamma P/\rho$.
+3. Its $k^2$ decay rate vanishes. Entropy per mass is advected without thermal smoothing in the ideal limit; higher-order transport or other physics may then determine any remaining relaxation.
+:::

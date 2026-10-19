@@ -1,0 +1,159 @@
+# Hydrodynamics from kinetic theory
+
+Lecture 22 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture22.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Turn the linearized Boltzmann equation into an operator problem; separate collision invariants from rapidly relaxing distortions; derive dissipative hydrodynamics by eliminating fast variables; calculate ideal-gas susceptibilities and the relaxation-time shear viscosity.
+:::
+
+## Linearizing the distribution {#sec-l22-linearization}
+
+The ideal currents arise from local equilibrium. Transport coefficients require the small distortion that streaming creates away from that manifold. For a classical gas at global equilibrium $f_0=e^{-\beta(\varepsilon-\mu)}$, introduce an energy-like perturbation $\Phi$ by
+
+$$
+f=f_0-\frac{\partial f_0}{\partial\varepsilon}\Phi
+=f_0+\beta f_0\Phi+O(\Phi^2).
+$$ {#eq-l22-phi}
+
+The weight $w=-\partial f_0/\partial\varepsilon=\beta f_0$ is positive. Define an inner product on momentum functions,
+
+$$
+\langle A|B\rangle=\int_p w(\mathbf p)A^*(\mathbf p)B(\mathbf p).
+$$ {#eq-l22-inner}
+
+We use a bra-ket notation as an economical way of describing an integral operator; this is a classical kinetic calculation. It does not make $\Phi$ a quantum wavefunction.
+
+Define the positive collision operator $W$ through $C[f_0+w\Phi]=-wW\Phi$. The Fourier convention $e^{i\mathbf k\cdot\mathbf x-i\omega t}$ then gives
+
+$$
+[-i\omega+ik_iV_i+W]|\Phi\rangle=0,
+\qquad (V_i\Phi)(\mathbf p)=v_i(\mathbf p)\Phi(\mathbf p).
+$$ {#eq-l22-operator}
+
+Detailed balance makes $W$ self-adjoint in @eq-l22-inner. Its quadratic form is proportional to
+
+$$
+\langle\Phi|W|\Phi\rangle
+=\frac{\beta}{4}\int_{1234}R_{12\to34}f_{01}f_{02}
+|\Phi_1+\Phi_2-\Phi_3-\Phi_4|^2\ge0,
+$$ {#eq-l22-positive}
+
+with the conventional rate symmetry factors included in $R$. This is the linearized H theorem. For quantum occupations, replace the weight and equilibrium collision factors consistently; the projection argument retains the same structure.
+
+## Why conserved densities are slow {#sec-l22-slow}
+
+The null space of $W$ consists of collision invariants. For a generic gas it is spanned by $1,p_i,\varepsilon$. A local equilibrium perturbation is therefore
+
+$$
+\Phi_s=\delta\mu+p_i\delta u_i
++\frac{\varepsilon-\mu}{T}\delta T.
+$$ {#eq-l22-local}
+
+One may replace $\varepsilon-\mu$ by $\varepsilon$ by redefining the coefficient of $1$. These basis vectors are generally not orthogonal. Let $P$ be the orthogonal projector onto their span using the weighted inner product, and $Q=1-P$. Then $\Phi_s=P\Phi$ and $\Phi_f=Q\Phi$.
+
+At $k=0$, eigenvalues $\lambda$ of $W$ give frequencies $\omega=-i\lambda$. Conserved modes have $\lambda=0$; all relaxing modes have $\lambda>0$ under the assumed ergodic collision dynamics. A finite gap in the fast sector justifies eliminating it for $|\omega|,kv\ll\lambda_{\mathrm{fast}}$. Extra nearly conserved quantities shrink this regime and should instead be included among slow variables.
+
+## Eliminating the fast sector {#sec-l22-projection}
+
+Write $V_{ss}=PVP$, $V_{sf}=PVQ$, and analogously for other blocks. Equation @eq-l22-operator separates into
+
+$$
+\begin{aligned}
+(-i\omega+ik_iV_{ss,i})\Phi_s+ik_iV_{sf,i}\Phi_f&=0,\\
+ik_iV_{fs,i}\Phi_s+(-i\omega+ik_iV_{ff,i}+W_f)\Phi_f&=0.
+\end{aligned}
+$$
+
+To the first nontrivial derivative order, the second equation gives
+
+$$
+\Phi_f=-ik_iW_f^{-1}V_{fs,i}\Phi_s+O(k^2,k\omega).
+$$ {#eq-l22-fast}
+
+Substitution into the slow equation yields
+
+$$
+\left[-i\omega+ik_iV_{ss,i}
++k_ik_jV_{sf,i}W_f^{-1}V_{fs,j}\right]\Phi_s=0.
+$$ {#eq-l22-effective}
+
+The term linear in $k$ is ideal hydrodynamics; the positive $k^2$ term gives damping. This is a Schur complement, familiar from eliminating auxiliary variables in coupled linear equations. It explains microscopically why a gradient expansion produces constitutive corrections and why their dissipative part has the correct sign. The inverse is only on the fast subspace: trying to invert all of $W$ fails because conservation makes it singular.
+
+## Supplementary derivation: susceptibilities are the metric {#sec-l22-susceptibility}
+
+Let $\varepsilon=p^2/(2m)$ and use $\beta=1/T$. At rest, Gaussian integrals give
+
+$$
+\begin{aligned}
+\langle1|1\rangle&=\beta n,&
+\langle1|\varepsilon\rangle&=\frac d2 n,\\
+\langle\varepsilon|\varepsilon\rangle&=\frac{d(d+2)}4nT,&
+\langle p_i|p_j\rangle&=mn\delta_{ij}.
+\end{aligned}
+$$ {#eq-l22-susceptibilities}
+
+For example, $\langle1|\varepsilon\rangle=\beta\int_p f_0p^2/(2m)=dn/2$. The fourth Gaussian moment $\langle p^4\rangle=d(d+2)(mT)^2$ gives the energy entry. The nonzero number-energy cross term means $|1\rangle$ and $|\varepsilon\rangle$ must not be treated as orthogonal.
+
+More generally, if a source $\mu_A$ enters the exponent conjugate to $A$, then $\partial\langle B\rangle/\partial\mu_A=\langle A|B\rangle$ at fixed remaining sources. Thus this inner product is the thermodynamic susceptibility matrix. A correct projector in a nonorthogonal basis $|a\rangle$ is
+
+$$
+P=\sum_{a,b}|a\rangle(\chi^{-1})_{ab}\langle b|,
+\qquad\chi_{ab}=\langle a|b\rangle.
+$$ {#eq-l22-projector}
+
+This gives an efficient and physically meaningful way to normalize hydrodynamic variables.
+
+## Ideal equations and the stress distortion {#sec-l22-stress}
+
+For quadratic dispersion, $V_i|1\rangle=|p_i\rangle/m$ lies wholly in the slow sector. Number continuity therefore gives
+
+$$
+\partial_t\delta n+n\nabla\cdot\delta\mathbf u=0.
+$$
+
+For momentum, separate
+
+$$
+V_i|p_j\rangle=
+\frac1m\left|p_ip_j-\frac{\delta_{ij}}d p^2\right\rangle
++\frac{2\delta_{ij}}d|\varepsilon\rangle.
+$$ {#eq-l22-stress-split}
+
+The trace term is slow and produces $\partial_i\delta P$, with $\delta P=n\delta\mu+s\delta T$. The traceless term is a fast quadrupolar distortion. A shear flow continually creates this distortion; collisions erase it. Its balance is the kinetic origin of viscosity.
+
+Define $A_{ij}=p_ip_j/m-\delta_{ij}p^2/(dm)$. In an isotropic fluid, the shear viscosity is the appropriately normalized matrix element of $W_f^{-1}$ between these stress functions. For an off-diagonal component this is particularly simple:
+
+$$
+\eta=\left\langle\frac{p_xp_y}{m}\middle|
+W_f^{-1}\middle|\frac{p_xp_y}{m}\right\rangle,
+\qquad x\ne y.
+$$ {#eq-l22-viscosity}
+
+The bulk stress of the ideal monatomic quadratic gas is proportional to the conserved kinetic energy. It has no fast component, yielding zero bulk viscosity in this model. Internal degrees of freedom, nonquadratic dispersion, inelastic processes, or interactions can change that conclusion.
+
+## Relaxation time and its interpretation {#sec-l22-rta}
+
+In the relaxation-time approximation, take $W_f=1/\tau$ on every fast function while keeping $W=0$ on conserved functions. Equation @eq-l22-viscosity becomes
+
+$$
+\eta=\tau\beta n\frac{\langle p_x^2p_y^2\rangle_0}{m^2}
+=\tau nT=\tau P.
+$$ {#eq-l22-eta}
+
+Independent Gaussian components have $\langle p_x^2p_y^2\rangle_0=(mT)^2$. This result also checks dimensions: viscosity is pressure times time. Very weak interactions make $\tau$ large and hence the viscosity large, because particles carry momentum over long distances before scattering. The simultaneous hydrodynamic condition becomes more demanding, $kv\tau\ll1$. Taking $\tau\to\infty$ at fixed $k$ exits hydrodynamics, so the formal divergence does not predict an infinitely viscous continuum at arbitrary scales.
+
+::: {.callout-warning title="Common pitfalls"}
+The conserved-mode projector needs the inverse susceptibility matrix. Relaxing every distribution function with $-\delta f/\tau$ would incorrectly relax conserved number, momentum, and energy. A large viscosity in a dilute gas indicates slow momentum equilibration, whereas the hydrodynamic description requires that equilibration to finish before the scales being observed.
+:::
+
+## Exercises and solutions {#sec-l22-exercises}
+
+1. Check that @eq-l22-projector obeys $P^2=P$.
+2. Derive the transverse momentum diffusion constant from $\eta=P\tau$.
+3. Show that $p_xp_y$ is orthogonal to every collision invariant in an isotropic equilibrium state.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. Insert $\langle b|c\rangle=\chi_{bc}$ between two projectors; the middle factors reduce to $\chi^{-1}\chi\chi^{-1}=\chi^{-1}$.
+2. With mass density $\rho=mn$, $\nu=\eta/\rho=T\tau/m$. A shear perturbation has $\omega=-i\nu k^2$.
+3. The integrals against $1$ and $\varepsilon$ are odd under $p_x\mapsto-p_x$. Against $p_i$, at least one Cartesian momentum component still appears to odd power. Every integral vanishes.
+:::

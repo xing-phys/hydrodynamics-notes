@@ -1,0 +1,140 @@
+# Turbulence
+
+Lecture 15 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture15.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Describe turbulent flow and its statistical closure problem, estimate a turbulent wake using eddy viscosity, derive Kolmogorov scaling from explicit assumptions, and explain why two dimensional turbulence transfers energy differently.
+:::
+
+## What changes at large Reynolds number? {#sec-l15-overview}
+
+Flow past an obstacle illustrates several distinct regimes. At very small $\mathrm{Re}=UL/\nu$, viscous creeping flow is smooth and reproducible. At intermediate Reynolds number, the flow can remain organized while developing nonlinear wakes and periodic vortex shedding. At sufficiently large Reynolds number, many interacting lengths and times become active and the flow can become turbulent. The numerical transition values depend on geometry, forcing, roughness, and how Reynolds number is defined.
+
+Turbulence is characterized by irregular, sensitive dynamics and activity over a range of scales. In a common three dimensional picture, forcing creates large eddies; nonlinear interactions transfer their energy to smaller eddies; viscosity ultimately dissipates it at small scales. This is the direct energy cascade. Vortex stretching provides an important three dimensional mechanism for generating finer structures.
+
+A fully rigorous, general predictive theory of turbulence is not available. The statements in this chapter combine exact statistical identities, phenomenological closure assumptions, dimensional arguments, and observations. Keeping these categories separate is essential. Large Reynolds number alone does not prove turbulence, and a visually complicated flow is not automatically an example of homogeneous isotropic turbulence.
+
+## Averaging creates a closure problem {#sec-l15-rans}
+
+Decompose velocity into an average and a fluctuation,
+
+$$
+v_i=V_i+u_i,\qquad \langle u_i\rangle=0.
+$$
+
+The average may be an ensemble average or an appropriate time average. Assume it commutes with derivatives and preserves the incompressibility condition. Averaging Navier–Stokes gives the exact identity
+
+$$
+\partial_tV_i+V_j\partial_jV_i
+=-\frac{\partial_i\overline P}{\rho}
++\nu\nabla^2V_i-\partial_jR_{ij},
+\qquad R_{ij}=\langle u_iu_j\rangle.
+$$ {#eq-l15-rans}
+
+The second moment $R_{ij}$ is the Reynolds stress per unit density. Although the fluctuations average to zero, their quadratic momentum transport generally does not. At large Reynolds number it can dominate the molecular viscous contribution in a mean flow.
+
+One strategy is to derive an evolution equation for $R_{ij}$ by multiplying fluctuation equations by another fluctuation and averaging. This produces third moments $\langle u_iu_ju_k\rangle$, pressure–velocity correlations, and dissipation tensors. Their equations introduce still higher moments. The hierarchy is exact but does not close at any finite order without further information. This resembles the hierarchy problem encountered in kinetic theory.
+
+A common phenomenological alternative is an eddy viscosity closure,
+
+$$
+R_{ij}\approx\frac23K\delta_{ij}
+-\nu_t(\partial_iV_j+\partial_jV_i),
+\qquad K=\frac12\langle u_iu_i\rangle.
+$$ {#eq-l15-eddy}
+
+The isotropic term can be absorbed into a modified mean pressure. With roughly constant $\nu_t$, the remaining contribution behaves like an additional viscosity. Dimensional reasoning suggests $\nu_t\sim u_{\mathrm{eddy}}\ell_{\mathrm{eddy}}$. It represents transport by fluid structures, not a changed molecular viscosity. It can depend on position and flow history; simple scalar closures can fail for anisotropic flows, near walls, and when energy moves toward larger scales.
+
+## Worked scaling example: a planar wake {#sec-l15-wake}
+
+Far behind an obstacle of transverse size $D$, suppose the mean streamwise velocity is $V_x=U-w(x,y)$, with $0<w\ll U$. Model turbulent mixing by a nearly constant $\nu_t$ and neglect pressure variation sufficiently far downstream. Linearizing mean advection gives
+
+$$
+U\partial_xw\approx\nu_t\partial_y^2w.
+$$ {#eq-l15-wake-diffusion}
+
+Distance $x$ acts like a diffusion time $x/U$. A localized velocity deficit therefore has an approximate Gaussian form,
+
+$$
+w(x,y)=\frac{Q_v}{\sqrt{4\pi\nu_tx/U}}
+\exp\left[-\frac{Uy^2}{4\nu_tx}\right],
+\qquad Q_v=\int_{-\infty}^{\infty}w\,dy.
+$$ {#eq-l15-gaussian-wake}
+
+The conserved integral has units of speed times length. A far wake momentum balance relates it, to leading order, to drag per unit obstacle length: $F\simeq\rho UQ_v$. More precisely the momentum deficit is $\rho\int V_x(U-V_x)dy$ when pressure has recovered. A direct subtraction of upstream and downstream $\rho V_x^2$ without accounting for displaced mass flux can produce a different order one coefficient; the scaling argument does not determine a reliable drag coefficient.
+
+Define $F=(1/2)\rho U^2D C_D$. Then $Q_v\sim UD C_D$. If mixing length reasoning uses the wake deficit and width, $\nu_t\sim w_{\mathrm{center}}\Delta y\sim Q_v$, which is independent of $x$ for this planar model. Hence
+
+$$
+\Delta y\sim\sqrt{\frac{\nu_tx}{U}}
+\sim\sqrt{C_DDx}.
+$$ {#eq-l15-wake-width}
+
+For an order one turbulent drag coefficient this width is set by geometry. A laminar diffusive layer would instead have $\delta_{\mathrm{lam}}\sim\sqrt{\nu x/U}$. Their ratio is of order $\sqrt{C_D\mathrm{Re}_D}$, so turbulent mixing creates a much wider wake at high Reynolds number. The widening wake entrains surrounding fluid. The square root law here applies to a planar wake under these closure assumptions; other geometries and forcing have different exponents.
+
+## Kolmogorov's dimensional theory {#sec-l15-k41}
+
+Now consider statistically steady, approximately homogeneous isotropic three dimensional turbulence, forced at a large length $L$. Let $\varepsilon$ be mean energy injection and dissipation per unit mass per unit time. Its units are $L^2/T^3$. Define the one dimensional shell integrated spectrum by
+
+$$
+\frac12\langle v^2\rangle=\int_0^\infty\mathcal E(k)\,dk.
+$$
+
+Thus $[\mathcal E]=L^3/T^2$. The shell integration matters: $\mathcal E(k)$ is not the unintegrated Fourier power at one wavevector. If the spectrum is defined for total rather than specific energy, multiply by total mass.
+
+The K41 assumptions are an inertial interval $L^{-1}\ll k\ll k_\eta$, scale local transfer, and a nearly constant energy flux $\varepsilon$ across that interval. Assume its leading spectrum depends only on $\varepsilon$ and $k$. Set $\mathcal E=C_K\varepsilon^ak^b$. Matching length and time dimensions gives
+
+$$
+-2=-3a,\qquad 3=2a-b,
+$$
+
+so
+
+$$
+\mathcal E(k)=C_K\varepsilon^{2/3}k^{-5/3}.
+$$ {#eq-l15-kolmogorov}
+
+This celebrated scaling is supported in suitable experiments and simulations over inertial ranges. It is a phenomenological prediction, not a general theorem for all solutions of Navier–Stokes. Intermittency, finite scale separation, anisotropy, and boundaries complicate its accuracy. Dimensional analysis does not determine $C_K$.
+
+**Supplemental physical derivation.** An eddy of size $\ell$ and velocity difference $u_\ell$ has turnover time $\tau_\ell\sim\ell/u_\ell$. Requiring a constant specific energy transfer rate gives $\varepsilon\sim u_\ell^2/\tau_\ell\sim u_\ell^3/\ell$, hence $u_\ell\sim(\varepsilon\ell)^{1/3}$. Since energy in a logarithmic band near $k\sim1/\ell$ is of order $k\mathcal E(k)\sim u_\ell^2$, the same $-5/3$ law follows.
+
+## The dissipation scale and the size of the cascade {#sec-l15-cutoff}
+
+At scale $\ell$, the local Reynolds number is $\mathrm{Re}_\ell=u_\ell\ell/\nu$. It falls to order one at the Kolmogorov length,
+
+$$
+\eta_K\sim\left(\frac{\nu^3}{\varepsilon}\right)^{1/4},
+\qquad k_\eta\sim\left(\frac{\varepsilon}{\nu^3}\right)^{1/4}.
+$$ {#eq-l15-cutoff}
+
+If $\varepsilon\sim U^3/L$ at the forcing scale, then
+
+$$
+\frac{L}{\eta_K}\sim\mathrm{Re}_L^{3/4}.
+$$ {#eq-l15-scale-range}
+
+Large Reynolds number can therefore create a wide interval of active scales and a demanding numerical resolution problem. These estimates specify the scaling of the cutoff, not an abrupt boundary in a measured spectrum. Real dissipation is distributed over a range of wave numbers.
+
+## Why two dimensions are different {#sec-l15-inverse}
+
+Strictly two dimensional inviscid flow lacks vortex stretching. In addition to energy, it conserves enstrophy, proportional to $\int\omega^2d^2x$. Enstrophy weights small scales more strongly: in Fourier space it has an extra factor $k^2$ relative to energy. Nonlinear redistribution constrained by both quantities cannot simply send all the energy to arbitrarily large $k$ while maintaining the original enstrophy budget.
+
+Under suitable forced, approximately two dimensional conditions, energy transfers predominantly toward larger scales while enstrophy transfers toward smaller scales. This is the inverse energy cascade. Large coherent vortices can grow from smaller scale stirring. Atmospheric and oceanic flows sometimes show related behavior because rotation and stratification limit vertical motion. Actual weather is compressible, stratified, driven, and bounded, so this analogy does not make every hurricane an exact realization of ideal two dimensional turbulence. The atmospheric chapter explains the dynamical origin and limitations of its nearly two dimensional description.
+
+## Common pitfalls
+
+Averaging removes first moments of fluctuations, not their momentum flux. Eddy viscosity is a closure model. A spectral exponent requires a specified definition of spectrum. The $-5/3$ law needs an inertial interval and the K41 assumptions; it is not an automatic signature of every disordered flow.
+
+## Exercises with solutions {#sec-l15-exercises}
+
+1. **Dissipation length.** If viscosity decreases by a factor of $16$ while $\varepsilon$ is held fixed, how does $\eta_K$ change?
+
+   **Solution.** $\eta_K\propto\nu^{3/4}$, so it decreases by $16^{3/4}=8$. The cutoff wave number grows by eight.
+
+2. **Wake recovery.** In @eq-l15-gaussian-wake, how do central deficit and width change from $x$ to $4x$?
+
+   **Solution.** Width doubles, central deficit halves, and their product remains fixed because $Q_v$ is conserved.
+
+3. **Spectrum units.** A paper defines total energy $E_{\mathrm{tot}}=\int E(k)dk$ instead of specific energy. How does @eq-l15-kolmogorov change?
+
+   **Solution.** For total mass $M$, $E(k)=M\mathcal E(k)=MC_K\varepsilon^{2/3}k^{-5/3}$. The rate $\varepsilon$ must still be defined per unit mass; substituting a total injection rate without dividing by $M$ changes the dimensions.

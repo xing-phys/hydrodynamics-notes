@@ -1,0 +1,158 @@
+# MSR Lagrangian
+
+::: {.lecture-meta}
+Lecture 4 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture4.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Construct the Martin–Siggia–Rose functional from an Itô process; interpret response fields and positivity; impose conservation and time reversal on an action; and derive allowed damping for a particle and a fixed-length spin.
+:::
+
+## Why introduce another variable? {#sec-l04-purpose}
+
+A Fokker–Planck equation acts on a probability density over all configurations. For a field, that configuration space is enormous. The Martin–Siggia–Rose (MSR) construction rewrites the same stochastic dynamics as an integral over ordinary histories $x_i(t)$ and auxiliary **response fields** $\pi_i(t)$. It provides a compact language for symmetry constraints and correlation functions.
+
+The construction resembles a quantum path integral, but it computes classical transition probabilities. A complex action is expected: it encodes positive noise weights, not unitary quantum evolution. We use a real Fourier response field and a weight $e^{iS}$. Other references rotate the response field onto an imaginary contour; their formulas can look different while describing the same process.
+
+## Derive the action step by step {#sec-l04-path-integral}
+
+Begin with an Itô discretization,
+
+$$
+x_i^{n+1}-x_i^n=a_i(x^n)\Delta t+b_{i\alpha}(x^n)\Delta W_\alpha^n.
+$$
+
+For each fixed noise history, insert a delta function enforcing every update. The transition density from $y$ to $z$ is a sum over paths with $x(0)=y$ and $x(t_f)=z$. The old-time evaluation makes the delta-function Jacobian triangular and field-independent under the standard normalized discrete measure. A different discretization can introduce extra Jacobian or drift terms.
+
+Use a Fourier representation for each constraint and average the Gaussian noise. In continuum notation,
+
+$$
+\delta[F]\propto\int\mathcal D\pi\,
+\exp\left(i\int dt\,\pi_iF_i\right),
+\qquad
+\mathcal P[\xi]\propto\exp\left(-\frac12\int dt\,\xi_\alpha^2\right).
+$$
+
+Completing the square in $\xi$ gives
+
+$$
+G(z,t_f;y)=\int_{y}^{z}\mathcal Dx\,\mathcal D\pi\,e^{iS},
+\qquad
+S=\int dt\,L_{\mathrm{MSR}},
+$$
+
+$$
+L_{\mathrm{MSR}}=\pi_i(\dot x_i-a_i)
++\frac i2\pi_iB_{ij}\pi_j,
+\qquad B_{ij}=b_{i\alpha}b_{j\alpha}.
+$$ {#eq-l04-action}
+
+Indeed, multiplying the quadratic term by the outer $i$ in $e^{iS}$ yields $-\pi B\pi/2$, the damping sign of a positive covariance. Varying with respect to $\pi$ and then setting $\pi=0$ recovers the noise-free drift equation $\dot x=a$. Integrating out the response field instead produces the Gaussian weight for deviations from that drift.
+
+## Rules for an effective stochastic theory {#sec-l04-rules}
+
+Write $L=\pi_i\dot x_i-\mathcal H(\pi,x)$. The stochastic Hamiltonian is a bookkeeping device, not the physical energy. The leading rules are:
+
+1. **Normalization:** $\mathcal H(0,x)=0$. Every term contains a response field, so there is no source or sink of total probability.
+2. **Positive noise:** $\operatorname{Im}\mathcal H\leq0$ for real response fields in the Gaussian theory. Equivalently, the imaginary quadratic part of $L$ is nonnegative.
+3. **Strong conservation:** if $F(x)$ is conserved, $\mathcal H$ is invariant under $\pi_i\mapsto\pi_i+\lambda\partial_iF$ for constant $\lambda$.
+4. **Equilibrium time reversal:** with $\mu_i=\partial_i\Phi$ and parity $\epsilon_i$, the response transforms as $\pi_i(t)\mapsto-\epsilon_i[\pi_i(-t)-i\mu_i(-t)]$, together with $x_i(t)\mapsto\epsilon_i x_i(-t)$.
+
+The kinetic term in rule 4 changes by a boundary contribution involving $\Phi$. That contribution generates the equilibrium weights in detailed balance.
+
+For constant $Q$, where $B=Q+Q^{\mathsf T}$ and $a=-Q\mu$, the action has the compact form
+
+$$
+L=\pi_i\dot x_i+i\pi_iQ_{ij}(\pi_j-i\mu_j).
+$$ {#eq-l04-equilibrium-action}
+
+The antisymmetric part of $Q$ contributes to drift but cancels out of $\pi_iQ_{ij}\pi_j$. For time-reversal-even variables, symmetry requires symmetric $Q$. Odd variables allow reversible antisymmetric couplings with the appropriate parities.
+
+::: {.callout-important title="State-dependent coefficients need care"}
+For a general Itô process preserving $e^{-\Phi}$, the drift is $a_i=-Q_{ij}\mu_j+\partial_jQ_{ij}$. The compact expression @eq-l04-equilibrium-action omits the derivative correction unless $Q$ is constant or a suitable discretization/ordering prescription supplies it. Use @eq-l04-action with the actual Itô drift when exact trajectory statistics matter. The handwritten notes explicitly flag this ordering issue.
+:::
+
+## Detailed balance as a boundary term {#sec-l04-boundary}
+
+For an even variable, time reversal combines $t\to-t$ with $\pi\to-\pi+i\mu$. The dynamical part of an equilibrium action is invariant, while the kinetic part produces an integral proportional to
+
+$$
+\int_0^{t_f}dt\,\mu_i\dot x_i
+=\Phi(z)-\Phi(y).
+$$
+
+The transformed path integral consequently acquires the factor $e^{\Phi(y)-\Phi(z)}$, giving
+
+$$
+G(z,t_f;y)=G(y,t_f;z)e^{\Phi(y)-\Phi(z)}.
+$$
+
+This is precisely the detailed-balance relation derived directly from the generator. The action therefore packages normalization, noise positivity, and the fluctuation–dissipation relation in one construction.
+
+## Worked example: a damped velocity {#sec-l04-velocity}
+
+Take velocity $v$ as the retained degree of freedom, with equilibrium potential $\Phi=\beta mv^2/2$, $\beta=1/T$. It is odd under time reversal, and $\mu=\beta mv$. The simplest allowed action is
+
+$$
+L=\pi\dot v+i\Gamma\pi(\pi-i\beta mv),
+\qquad\Gamma\geq0.
+$$
+
+Reading off the SDE gives
+
+$$
+dv=-\Gamma\beta mvdt+\sqrt{2\Gamma}\,dW.
+$$ {#eq-l04-velocity}
+
+The damping rate $\Gamma\beta m$ is nonnegative because the same $\Gamma$ is the noise variance coefficient. In terms of the physical friction force $m\dot v=-\gamma v+\sigma\xi$, identify $\Gamma=\gamma T/m^2$. Then @eq-l04-velocity gives $\sigma^2=2\gamma T$. The sign of dissipation is thus connected directly to probability positivity.
+
+## Worked example: fixed-length spin dynamics {#sec-l04-spin}
+
+A classical spin has Poisson brackets $\{S_i,S_j\}=\epsilon_{ijk}S_k$. With units absorbed into an antisymmetric reversible matrix $V_{ij}$ and $\mu_j=\partial\Phi/\partial S_j$, reversible motion is $\dot S_i=V_{ij}\mu_j$. For $V_{ij}=\epsilon_{ijk}S_k$, it is precession generated by the thermodynamic potential, up to the chosen gyromagnetic sign.
+
+The spin length $F=S_iS_i$ must be strongly conserved. The response shift is $\pi_i\to\pi_i+2\lambda S_i$, so only components transverse to $S$ may enter the dissipative quadratic form. Define
+
+$$
+M_{ij}(S)=\Gamma(S^2\delta_{ij}-S_iS_j),\qquad\Gamma\geq0.
+$$
+
+It obeys $M_{ij}S_j=0$ and $u_iM_{ij}u_j=\Gamma|S\times u|^2\geq0$. An allowed action, at the level of its leading symbols, is
+
+$$
+L=\pi_i(\dot S_i-V_{ij}\mu_j)+i\pi_iM_{ij}(\pi_j-i\mu_j).
+$$ {#eq-l04-spin-action}
+
+The deterministic equation is
+
+$$
+\dot S_i=V_{ij}\mu_j
+-\Gamma[S^2\mu_i-S_i(S\cdot\mu)].
+$$ {#eq-l04-spin-damping}
+
+Both terms are perpendicular to $S$, so $dS^2/dt=0$. Antisymmetry of $V$ gives
+
+$$
+\frac{d\Phi}{dt}=-\Gamma|S\times\mu|^2\leq0.
+$$
+
+The damping moves the spin toward a constrained minimum of $\Phi$ without changing its length. This is the geometric origin of a double-cross-product spin damping term.
+
+### Supplemental note: tangential noise and stochastic geometry
+
+Because $M$ depends on $S$, a full noisy equation needs the ordering care discussed above. Tangential Stratonovich noise preserves the sphere by the ordinary chain rule. An equivalent Itô equation contains a curvature drift that cancels the Itô change from $(dS)^2$. Keeping only tangential Itô noise while omitting that drift does **not** exactly conserve $S^2$. The deterministic derivation @eq-l04-spin-damping is unambiguous and illustrates why conservation constrains the tensor structure.
+
+## Common pitfalls {#sec-l04-pitfalls}
+
+The auxiliary field is not another physical degree of freedom with independent initial data. Positivity refers to the covariance, not to every coefficient in an arbitrary complex action. Strong conservation is a response-shift symmetry of the full stochastic theory, not merely a property of its deterministic saddle.
+
+## Check your understanding {#sec-l04-exercises}
+
+1. Read the drift and covariance from $L=\pi(\dot x+\lambda x)+iD\pi^2$.
+2. Show that $\pi_iM_{ij}\pi_j$ in the spin example is invariant under $\pi\to\pi+\lambda S$.
+3. Why is a term depending only on $x$ forbidden in a normalized stochastic Hamiltonian?
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. $a=-\lambda x$, $B=2D$, so $dx=-\lambda xdt+\sqrt{2D}dW$ and $D\geq0$.
+2. Since $MS=0$, the cross term and the term quadratic in $\lambda S$ vanish. The linear dissipative factor obeys the same shift invariance.
+3. It would leave $\mathcal H(0,x)\neq0$, corresponding to a probability-weight source or sink rather than normalized Markov evolution.
+:::

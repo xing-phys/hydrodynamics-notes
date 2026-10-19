@@ -1,0 +1,170 @@
+# Time-reversal symmetry
+
+::: {.lecture-meta}
+Lecture 3 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture3.pdf)
+:::
+
+::: {.callout-tip title="Learning objectives"}
+Build a stochastic generator with a prescribed equilibrium distribution; derive detailed balance and fluctuation–dissipation; include variables odd under time reversal; and distinguish conservation on each trajectory from conservation only in the mean.
+:::
+
+## Build the generator from the steady state {#sec-l03-generator}
+
+Suppose the equilibrium probability is $P_{\mathrm{eq}}=Z^{-1}e^{-\Phi(\mathbf x)}$, where $\Phi$ is a dimensionless thermodynamic potential. Define $\mu_i=\partial_i\Phi$. Write probability evolution as $\partial_tP=-\widehat W P$. Two requirements are immediate: total probability is conserved and $\widehat W e^{-\Phi}=0$.
+
+A useful local Gaussian-noise generator satisfying both is
+
+$$
+\widehat W=-\partial_iQ_{ij}(\mathbf x)(\partial_j+\mu_j),
+\qquad
+\partial_tP=\partial_i\left[Q_{ij}(\partial_j+\mu_j)P\right].
+$$ {#eq-l03-generator}
+
+The derivatives act on everything to their right unless parentheses specify otherwise. The leftmost divergence guarantees normalization with decaying or reflecting boundaries; $(\partial_j+\mu_j)e^{-\Phi}=0$ guarantees stationarity. More general derivative expansions can be organized in the same way, subject to locality, topology, positivity, and boundary constraints. We will use the leading second-order operator rather than claim this factorization covers arbitrary nonlocal Markov processes.
+
+The symmetric part $Q^{\mathrm S}=(Q+Q^{\mathsf T})/2$ controls diffusion and must be positive semidefinite. The antisymmetric part can generate reversible probability circulation. For general state-dependent coefficients, comparison with the Itô Fokker–Planck equation yields
+
+$$
+B_{ij}=Q_{ij}+Q_{ji},
+\qquad
+a_i=-Q_{ij}\mu_j+\partial_jQ_{ij}.
+$$ {#eq-l03-drift}
+
+The derivative term is essential for multiplicative noise. Equilibrium fixes a relation between drift and fluctuations, not merely a particular stationary solution.
+
+## Reverse transition probabilities {#sec-l03-detailed-balance}
+
+Let $G(x,t;y)$ be the probability density to reach $x$ from $y$ in time $t$. In operator notation,
+
+$$
+G(x,t;y)=\langle x|e^{-t\widehat W}|y\rangle.
+$$
+
+This resembles a quantum propagator, but stochastic evolution is neither unitary nor probability-amplitude evolution. Transposing the kernel exchanges initial and final states. Integration by parts gives $(\partial_i)^{\mathsf T}=-\partial_i$, so the equilibrium-weighted reverse generator is
+
+$$
+\widehat W_{\mathrm{rev}}=e^{-\Phi}\widehat W^{\mathsf T}e^{\Phi}
+=-\partial_iQ_{ji}(\partial_j+\mu_j).
+$$ {#eq-l03-reverse}
+
+The reverse dynamics therefore transposes $Q$. The associated transition kernels satisfy
+
+$$
+G(x,t;y)e^{-\Phi(y)}
+=G_{\mathrm{rev}}(y,t;x)e^{-\Phi(x)}.
+$$ {#eq-l03-reverse-kernel}
+
+If all coordinates are even under time reversal and $Q=Q^{\mathsf T}$, the forward and reverse generators agree. Equation @eq-l03-reverse-kernel then becomes **detailed balance**:
+
+$$
+G(x,t;y)P_{\mathrm{eq}}(y)=G(y,t;x)P_{\mathrm{eq}}(x).
+$$ {#eq-l03-db}
+
+This compares equilibrium-weighted histories. It does not say the conditional probabilities $G(x,t;y)$ and $G(y,t;x)$ are equal.
+
+## Why detailed balance allows an arrow of time {#sec-l03-arrow}
+
+Consider $dx=-\lambda xdt+\sigma dW$, with $\lambda>0$. Its equilibrium potential is $\Phi=\lambda x^2/\sigma^2$. If $x_0$ lies far outside the typical equilibrium width, relaxation from $x_0$ toward zero is likely. Detailed balance gives
+
+$$
+G(x_0,t;0)=G(0,t;x_0)e^{-\lambda x_0^2/\sigma^2}.
+$$
+
+The reverse fluctuation is possible but exponentially suppressed. A specially prepared atypical initial condition breaks the symmetry of the ensemble of histories even when the dynamical law satisfies detailed balance. Microscopic reversibility and macroscopic relaxation can coexist.
+
+For an overdamped particle with potential $U$, choose $\Phi=U/T$ and $Q=T/\gamma$. Then @eq-l03-drift gives $a=-U'/\gamma$ and $B=2T/\gamma$. Equivalently, the random force covariance is $2\gamma T\delta(t-s)$. The fluctuation–dissipation relation follows from the same symmetric $Q$ appearing in both the restoring drift and the covariance.
+
+### Supplemental derivation: a decreasing relative entropy
+
+For symmetric positive $Q$, write $P=rP_{\mathrm{eq}}$ and define
+
+$$
+\mathcal D[P\Vert P_{\mathrm{eq}}]=\int dx\,P\log\frac{P}{P_{\mathrm{eq}}}.
+$$
+
+Since $(\partial_j+\mu_j)P=P\partial_j\log r$, integration by parts gives
+
+$$
+\frac{d\mathcal D}{dt}
+=-\int dx\,P\,\partial_i\log r\,Q_{ij}\,\partial_j\log r\leq0.
+$$ {#eq-l03-entropy}
+
+Normalization removes the derivative of the extra constant in $\partial_t(P\log P)$. This inequality makes relaxation precise without requiring every individual history to have increasing entropy. Convergence to a unique equilibrium additionally needs ergodicity; conserved quantities can divide configuration space into disconnected sectors.
+
+## Momentum is odd under time reversal {#sec-l03-odd}
+
+Physical time reversal often transforms the state as well as reversing the order of events. Let $\Theta$ act by $x_i\mapsto\epsilon_i x_i$, with $\epsilon_i=\pm1$ and $\Theta^2=1$. For position and momentum, $\epsilon_x=+1$, $\epsilon_p=-1$. Assume $\Phi(\Theta x)=\Phi(x)$. The appropriate reverse generator is
+
+$$
+\widehat W_{\mathrm{rev}}=e^{-\Phi}\Theta\widehat W^{\mathsf T}\Theta e^{\Phi}.
+$$ {#eq-l03-general-reverse}
+
+Generalized detailed balance sets this equal to $\widehat W$. The relation between kernels now compares $y\to x$ with $\Theta x\to\Theta y$.
+
+For a free particle with $\dot x=p/m$, $\dot p=0$, probability evolves by the Liouville equation
+
+$$
+\partial_tP+\partial_x\left(\frac p mP\right)=0.
+$$
+
+Transposition changes the sign of the streaming derivative; reversing $p$ changes it back. Hence free streaming is time-reversal symmetric even though the generator is not symmetric under ordinary transpose. This is why one must specify the parity of every slow variable before constraining a hydrodynamic theory.
+
+## Strong and weak conservation {#sec-l03-conservation}
+
+A stochastic system has two distinct conservation notions. **Strong conservation** means $F(x_t)$ remains constant on every realization. **Weak conservation** means only $\langle F(x_t)\rangle$ is constant for every initial ensemble.
+
+For a diffusion, Itô's formula gives
+
+$$
+dF=\left(a_i\partial_iF+\frac12B_{ij}\partial_i\partial_jF\right)dt
++\partial_iF\,b_{i\alpha}dW_\alpha.
+$$ {#eq-l03-dF}
+
+Weak conservation requires the backward generator $\mathcal LF=0$. Strong conservation additionally requires every noise direction to be tangent to a surface of fixed $F$: $\partial_iF\,b_{i\alpha}=0$. In the forward-generator language used in the notes, strong conservation appears as
+
+$$
+[\widehat W,F]=0,
+\qquad
+e^{-\lambda F}\widehat W e^{\lambda F}=\widehat W,
+$$ {#eq-l03-strong}
+
+where $F$ denotes multiplication by the function. Conjugation shifts $\partial_i\mapsto\partial_i+\lambda\partial_iF$. This shift symmetry will become especially useful for response fields.
+
+A worked two-particle example is
+
+$$
+\begin{aligned}
+dp_1&=-\alpha(p_1-p_2)dt+\beta dW,\\
+dp_2&=-\alpha(p_2-p_1)dt-\beta dW.
+\end{aligned}
+$$
+
+Both the drift and the noise cancel in $d(p_1+p_2)$; total momentum is strongly conserved. Its forward generator uses only the derivative combination $\partial_{p_1}-\partial_{p_2}$, invariant under shifting both derivatives by the same constant.
+
+If independent common noise $\gamma dV$ is added to **both** equations, then
+
+$$
+d(p_1+p_2)=2\gamma dV,
+\quad
+\frac{d\langle p_1+p_2\rangle}{dt}=0,
+\quad
+\frac{d\operatorname{Var}(p_1+p_2)}{dt}=4\gamma^2.
+$$
+
+This is weak conservation only. Hydrodynamic continuity equations require local conservation on each microscopic history, not merely the accidental constancy of a mean.
+
+## Common pitfalls {#sec-l03-pitfalls}
+
+Do not identify a stationary distribution with detailed balance: circulating currents can preserve a distribution. Do not omit the state-dependent drift in @eq-l03-drift. Finally, do not apply an even-variable time-reversal rule to momentum or spin, which are physically odd.
+
+## Check your understanding {#sec-l03-exercises}
+
+1. For a one-dimensional positive mobility $Q(x)$, find the Itô drift that preserves $P_{\mathrm{eq}}\propto e^{-\Phi}$ with zero current.
+2. Does $dx=dW$ conserve $x$ strongly, weakly, or neither?
+3. For the two-particle example without common noise, find the equation for $r=p_1-p_2$ and its stationary variance for $\alpha>0$.
+
+::: {.callout-note title="Solutions" collapse="true"}
+1. $a=Q'-Q\Phi'$ and $b^2=2Q$. Inserting these into $J=aP-\partial_x(QP)$ gives $J=-Q(\partial_x+\Phi')P$, which vanishes at equilibrium.
+2. It conserves the mean of $x$ for any initial distribution with a finite mean, so conservation is weak. The variance grows and individual trajectories fluctuate.
+3. $dr=-2\alpha rdt+2\beta dW$. The Ornstein–Uhlenbeck variance is $(2\beta)^2/(2\times2\alpha)=\beta^2/\alpha$; the conserved total momentum labels a separate sector.
+:::

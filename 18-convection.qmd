@@ -1,0 +1,196 @@
+# Convection
+
+Lecture 18 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture18.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Derive a temperature equation from energy and entropy conservation, identify Brinkman and Prandtl numbers, estimate thermal boundary layers, formulate the Boussinesq approximation, and compare viscous and inertial natural convection estimates.
+:::
+
+## Separating kinetic and internal energy {#sec-l18-energy}
+
+Thermal transport requires restoring the energy equation. Let $e$ be internal energy per unit mass, $s$ entropy per unit mass, and $\tau_{ij}$ the viscous stress. Total energy density is
+
+$$
+\mathcal U=\frac12\rho v^2+\rho e.
+$$
+
+Mass and momentum conservation are
+
+$$
+D_t\rho=-\rho\nabla\cdot\mathbf v,
+\qquad
+\rho D_tv_i=-\partial_iP+\partial_j\tau_{ij}.
+$$
+
+For a Newtonian three dimensional fluid,
+
+$$
+\tau_{ij}=\eta\left(\partial_iv_j+\partial_jv_i-
+\frac23\delta_{ij}\nabla\cdot\mathbf v\right)
++\zeta\delta_{ij}\nabla\cdot\mathbf v,
+$$
+
+where $\zeta$ is bulk viscosity. Fourier's heat flux is $\mathbf q=-\kappa\nabla T$. Subtracting the kinetic energy equation from total energy conservation yields
+
+$$
+\rho D_te=-P\nabla\cdot\mathbf v
++\tau_{ij}\partial_jv_i+\nabla\cdot(\kappa\nabla T).
+$$ {#eq-l18-internal}
+
+The first term is compression work, the second viscous conversion of mechanical energy into heat, and the last conduction.
+
+## Supplemental derivation: entropy to temperature {#sec-l18-temperature}
+
+The thermodynamic identity for specific internal energy is
+
+$$
+de=T\,ds+\frac{P}{\rho^2}d\rho.
+$$
+
+Use continuity to obtain $\rho D_te=\rho TD_ts-P\nabla\cdot\mathbf v$. Comparing with @eq-l18-internal cancels compression work and gives
+
+$$
+\rho TD_ts=\tau_{ij}\partial_jv_i+
+\nabla\cdot(\kappa\nabla T).
+$$ {#eq-l18-entropy}
+
+This is the material entropy equation, not yet the entropy production equation: conduction can raise or lower the entropy of a particular parcel by exchanging heat with its neighbors. Dividing by $T$ and moving a divergence to the left produces the nonnegative local production $\kappa|\nabla T|^2/T^2+\tau_{ij}\partial_jv_i/T$ for positive transport coefficients.
+
+If pressure variations have a negligible thermal effect, $ds\simeq(c_p/T)dT$, where $c_p$ is specific heat at constant pressure. Assuming constant coefficients,
+
+$$
+\rho c_pD_tT=\kappa\nabla^2T+\tau_{ij}\partial_jv_i.
+$$ {#eq-l18-temperature-heating}
+
+The approximation matters for gases: the more general temperature equation contains a pressure work term, $\rho c_pD_tT-\beta T D_tP=\kappa\nabla^2T+\tau_{ij}\partial_jv_i$, where $\beta$ is the volume expansion coefficient. The simplified equation is appropriate when that term can be neglected.
+
+Compare viscous heating $\eta U^2/L^2$ with conduction $\kappa\Delta T/L^2$. Their ratio is the Brinkman number,
+
+$$
+\mathrm{Br}=\frac{\eta U^2}{\kappa\Delta T}.
+$$ {#eq-l18-brinkman}
+
+For $\mathrm{Br}\ll1$, discard viscous heating and define thermal diffusivity $\chi=\kappa/(\rho c_p)$:
+
+$$
+\partial_tT+\mathbf v\cdot\nabla T=\chi\nabla^2T.
+$$ {#eq-l18-advection-diffusion}
+
+Convection is heat carried by moving fluid. Conduction remains essential wherever temperature gradients create the heat flux into or out of that moving fluid.
+
+## Forced convection at a heated plate {#sec-l18-forced}
+
+Take a flat plate at $T_0+\Delta T$ in an incident flow at $T_0$. The viscous boundary layer has thickness $\delta_v\sim\sqrt{\nu x/U}$. Let $\delta_T$ be the thermal layer thickness. Their relation depends on the Prandtl number,
+
+$$
+\mathrm{Pr}=\frac{\nu}{\chi}.
+$$ {#eq-l18-prandtl}
+
+It compares momentum diffusion with thermal diffusion. Unlike Reynolds number, it depends only on material properties at a specified state.
+
+For $\mathrm{Pr}\ll1$, heat diffuses much farther than momentum, so $\delta_T\gg\delta_v$. Most of the thermal layer sees approximately uniform speed $U$. Balance $U\Delta T/x$ with $\chi\Delta T/\delta_T^2$:
+
+$$
+\delta_T\sim\sqrt{\frac{\chi x}{U}}
+=\delta_v\mathrm{Pr}^{-1/2}.
+$$ {#eq-l18-low-pr}
+
+The local wall heat flux magnitude is $q_w\sim\kappa\Delta T/\delta_T$, hence $q_w\sim\kappa\Delta T\sqrt{U/(\chi x)}$. A faster flow thins the thermal layer and increases heat transfer.
+
+For $\mathrm{Pr}\gg1$, the thermal layer lies within the nearly linear near wall velocity profile: $u\sim U y/\delta_v$. At its edge, the relevant speed is only $U\delta_T/\delta_v$. The balance becomes
+
+$$
+\frac{U\delta_T}{\delta_v}\frac{\Delta T}{x}
+\sim\frac{\chi\Delta T}{\delta_T^2},
+\qquad
+\delta_T\sim\left(\frac{\chi x\delta_v}{U}\right)^{1/3}
+=\delta_v\mathrm{Pr}^{-1/3}.
+$$ {#eq-l18-high-pr}
+
+Accordingly $q_w\sim\kappa\Delta T\,\mathrm{Pr}^{1/3}/\delta_v$. The cube root arises because the advecting speed itself depends on the unknown thermal thickness. Using $U$ throughout this thin thermal layer would give the wrong exponent. These are scaling estimates for a laminar layer; numerical prefactors require a coupled similarity calculation and specified thermal boundary conditions.
+
+## When temperature drives the flow {#sec-l18-boussinesq}
+
+Forced convection prescribes the flow independently of heating. Natural convection instead arises because thermal expansion changes gravitational buoyancy. Define
+
+$$
+\beta=-\frac1\rho\left(\frac{\partial\rho}{\partial T}\right)_P>0,
+\qquad
+\rho(T)\simeq\rho_0[1-\beta(T-T_0)].
+$$ {#eq-l18-expansion}
+
+Assume $\beta\Delta T\ll1$, so density changes are small. The Boussinesq approximation keeps this change in the gravitational force, where it drives motion, and replaces density by $\rho_0$ in inertia, viscosity, and continuity. With upward vertical direction $\hat{\mathbf y}$ and hydrostatic background pressure subtracted,
+
+$$
+\begin{aligned}
+\nabla\cdot\mathbf v&=0,\\
+D_t\mathbf v&=-\frac{\nabla\pi}{\rho_0}+\nu\nabla^2\mathbf v
++g\beta(T-T_0)\hat{\mathbf y},\\
+D_tT&=\chi\nabla^2T.
+\end{aligned}
+$$ {#eq-l18-boussinesq}
+
+Hotter fluid experiences upward buoyancy. There is no contradiction between this retained density correction and leading incompressibility: it is a controlled approximation in which the dominant uniform gravitational force has already been canceled by hydrostatic pressure.
+
+The assumption that density changes arise mainly from temperature also constrains pressure induced compression. With $(\partial\rho/\partial P)\sim1/c_s^2$, require $\Delta P/(\rho_0c_s^2)\ll\beta\Delta T$ when neglecting that contribution relative to thermal expansion. Across a height $L$, hydrostatic compression is of order $gL/c_s^2$. Thin laboratory cells often satisfy the required hierarchy; tall atmospheric columns require a stratified description.
+
+## A side heated box: solving the weak flow limit {#sec-l18-box}
+
+Consider a square cavity of side $L$, hot at $x=0$ and cold at $x=L$. Assume weak advection, insulating top and bottom, and stationary walls. To leading order conduction gives
+
+$$
+T=T_0+\Delta T\left(1-\frac{x}{L}\right).
+$$
+
+Also suppose inertia is negligible. Set $v_x=\partial_y\psi$ and $v_y=-\partial_x\psi$. Taking the curl of the Stokes–buoyancy equation removes pressure:
+
+$$
+\nabla^4\psi=-\frac{g\beta\Delta T}{\nu L}.
+$$ {#eq-l18-biharmonic}
+
+The sign follows our upward $y$ convention. Hot fluid rises along the left wall and cold fluid descends at the right. A particular solution is
+
+$$
+\psi_p=-\frac{g\beta\Delta T}{64\nu L}(x^2+y^2)^2,
+$$
+
+because $\nabla^4(x^2+y^2)^2=64$. This polynomial alone does not satisfy the walls. Add a homogeneous biharmonic solution and enforce $\psi=\partial_n\psi=0$ on every wall, representing no penetration and no slip. The detailed boundary value solution is less illuminating than its characteristic balance,
+
+$$
+\nu\frac{U_{\mathrm{visc}}}{L^2}\sim g\beta\Delta T,
+\qquad U_{\mathrm{visc}}\sim\frac{g\beta\Delta T L^2}{\nu}.
+$$ {#eq-l18-viscous-speed}
+
+The conductive temperature profile additionally needs small Péclet number $\mathrm{Pe}=UL/\chi$. A small Reynolds number alone does not guarantee weak thermal advection.
+
+## Checking the estimate and restoring inertia {#sec-l18-inertial}
+
+For an ideal gas, $\beta=1/T$. Even a modest $\beta\Delta T\sim0.01$ in air with $\nu\sim10^{-5}\ \mathrm{m^2\,s^{-1}}$ gives $U_{\mathrm{visc}}\sim10^4\ \mathrm{m\,s^{-1}}$ at $L=1\ \mathrm m$. This absurdly large prediction rejects the weak flow assumption, rather than predicting a supersonic kitchen oven.
+
+When inertia balances buoyancy, use $U^2/L\sim g\beta\Delta T$ instead:
+
+$$
+U_{\mathrm{ff}}\sim\sqrt{g\beta\Delta T L}.
+$$ {#eq-l18-freefall}
+
+At $L=1\ \mathrm m$ and $\beta\Delta T=0.01$, this is roughly $0.3\ \mathrm{m\,s^{-1}}$. It is a characteristic free fall estimate; walls, heat supply, and thermal boundary layers determine the actual circulation.
+
+A useful supplemental parameter is the Grashof number $\mathrm{Gr}=g\beta\Delta TL^3/\nu^2$. The viscous estimate implies $\mathrm{Re}\sim\mathrm{Gr}$, so it requires $\mathrm{Gr}\ll1$. The Rayleigh number $\mathrm{Ra}=\mathrm{Gr}\,\mathrm{Pr}$ also compares buoyancy with thermal diffusion. This side heated cavity should not be confused with a bottom heated Rayleigh–Bénard layer: its lateral buoyancy forcing can drive circulation without the same onset threshold.
+
+## Common pitfalls
+
+Thermal conductivity $\kappa$ and diffusivity $\chi$ have different units. High Prandtl number means heat diffuses slowly relative to momentum. Incompressibility does not require deleting buoyancy. A velocity estimate must be checked against the inertial and thermal terms that were neglected in obtaining it.
+
+## Exercises with solutions {#sec-l18-exercises}
+
+1. **Thermal thickness.** If $\mathrm{Pr}=1000$, estimate $\delta_T/\delta_v$ in the high Prandtl regime.
+
+   **Solution.** @eq-l18-high-pr gives $1000^{-1/3}=0.1$. The thermal layer samples velocities much smaller than the exterior speed.
+
+2. **Cavity size.** At fixed material parameters and temperature difference, how do viscous and free fall speeds change if $L$ doubles?
+
+   **Solution.** $U_{\mathrm{visc}}$ increases by four, whereas $U_{\mathrm{ff}}$ increases by $\sqrt2$. The rapidly increasing Grashof number, proportional to $L^3$, explains why a creeping estimate breaks down in larger cells.
+
+3. **Dimensions and heat flux.** Why is $\kappa\Delta T/\delta_T$ a heat flux rather than a temperature change rate?
+
+   **Solution.** $[\kappa]=\mathrm{W\,m^{-1}\,K^{-1}}$, so the expression has units $\mathrm{W\,m^{-2}}$. Dividing the divergence of heat flux by volumetric heat capacity $\rho c_p$ yields a temperature change rate, as in @eq-l18-advection-diffusion.

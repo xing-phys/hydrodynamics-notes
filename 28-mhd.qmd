@@ -1,0 +1,177 @@
+# Magnetohydrodynamics
+
+Lecture 28 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture28.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Identify magnetic flux as a one-form charge; derive magnetic diffusion from Maxwell's equations and Ohm's law; obtain ideal induction and Maxwell stress from equilibrium consistency; derive Alfvén and magnetic compression waves; organize anisotropic resistivity and viscosity.
+:::
+
+## Magnetic flux is a hydrodynamic variable {#sec-l28-flux}
+
+In the absence of magnetic monopoles, Maxwell's equations include
+
+$$
+\nabla\cdot\mathbf B=0,\qquad
+\partial_t\mathbf B+\nabla\times\mathbf E=0.
+$$ {#eq-l28-maxwell}
+
+Faraday's equation is a one-form conservation equation. With $J^{0i}=B_i$ and $J^{ji}=\epsilon_{ijk}E_k$, it is $\partial_tB_i+\partial_jJ^{ji}=0$; the spatial current is antisymmetric. On a fixed open surface $\Sigma$, $d\int_\Sigma\mathbf B\cdot d\mathbf A/dt=-\oint_{\partial\Sigma}\mathbf E\cdot d\mathbf l$. On a closed cycle without boundary, the corresponding flux is conserved.
+
+The constraint $\nabla\cdot\mathbf B=0$ also ensures deformation invariance: two surfaces with the same boundary have equal flux if they bound a region with no monopoles. If their fluxes differed, translating a flux surface could change the charge and produce a nontrivial relation with momentum. The divergence constraint removes this obstruction in ordinary MHD. It must be imposed on initial data and preserved by evolution; it is not an optional small correction.
+
+## Magnetic diffusion in a stationary conductor {#sec-l28-diffusion}
+
+In a slowly varying conductor at rest, neglect displacement current and use
+
+$$
+\mathbf j_{\mathrm{el}}=\frac1{\mu_0}\nabla\times\mathbf B,
+\qquad\mathbf E=\frac1{\sigma_{\mathrm{el}}}\mathbf j_{\mathrm{el}}.
+$$ {#eq-l28-ohm}
+
+Here $\sigma_{\mathrm{el}}$ is electrical conductivity, distinct from a response coefficient whose normalization might absorb $\mu_0$. Substitution into Faraday's law yields
+
+$$
+\partial_t\mathbf B=-\frac1{\mu_0\sigma_{\mathrm{el}}}
+\nabla\times(\nabla\times\mathbf B)
+=D_B\nabla^2\mathbf B,
+\qquad D_B=\frac1{\mu_0\sigma_{\mathrm{el}}},
+$$ {#eq-l28-diffusion}
+
+where the last equality uses $\nabla\cdot\mathbf B=0$. Magnetic diffusivity has units of length squared per time. Large conductivity means slow magnetic diffusion. This is exactly the transverse one-form diffusion equation from the preceding chapter, now with experimentally recognizable coefficients.
+
+The approximation excludes electromagnetic waves at the vacuum light speed and any collisionless plasma response not captured by local Ohm's law. MHD further retains the conducting fluid's momentum and, when needed, energy and density.
+
+## Thermodynamic constraints fix the ideal couplings {#sec-l28-ideal}
+
+Let the equilibrium energy be a functional of momentum density $g_i$ and magnetic field $B_i$, with conjugates
+
+$$
+v_i=\frac{\delta H}{\delta g_i},\qquad
+\mu_i=\frac{\delta H}{\delta B_i}.
+$$
+
+In a simple medium, $\mu_i=B_i/\mu_0$. A response-field action contains a magnetic multiplier, a momentum multiplier, induction terms, and stress terms. Under thermal time reversal both $\mathbf v$ and $\mathbf B$ are odd. Ideal equilibrium consistency requires a divergence identity involving $\partial_i\mu_j$, $\partial_i v_j$, electric field, and stress. Unlike an unconstrained collection of scalar charges, it may also contain a multiplier $R\partial_iB_i$, which vanishes in the physical sector.
+
+The lecture constructs a rotational vector potential for that divergence from $B_i,\mu_i,v_i$. Antisymmetry of the induction current and integrability of thermodynamic derivatives constrain its coefficients. The solution contains $R=\boldsymbol\mu\cdot\mathbf v$ and a pressure term, leading to
+
+$$
+\mathbf E=-\mathbf v\times\mathbf B
+$$ {#eq-l28-ideal-ohm}
+
+at ideal order. Thus the electric field in the local rest frame, $\mathbf E+\mathbf v\times\mathbf B$, vanishes. Faraday's law becomes
+
+$$
+\partial_t\mathbf B=\nabla\times(\mathbf v\times\mathbf B).
+$$ {#eq-l28-induction}
+
+This is the ideal induction equation, often described as flux freezing. It says that flux through a surface moving with the smooth ideal fluid is constant. That moving-surface statement is stronger than conservation of flux through a fixed closed cycle, and it fails when resistivity or singular reconnection becomes important.
+
+For the simple quadratic energy density
+
+$$
+\mathcal H=\frac{g^2}{2\rho_M}+\frac{B^2}{2\mu_0}
++\mathcal H_{\mathrm{internal}},
+$$
+
+the stress, with component index $i$ and flux direction $j$, is
+
+$$
+\tau_{ij}=\rho_Mv_iv_j+P\delta_{ij}
++\frac{B^2}{2\mu_0}\delta_{ij}-\frac{B_iB_j}{\mu_0}.
+$$ {#eq-l28-stress}
+
+The last two terms are the magnetic Maxwell stress. Taking their negative divergence gives $(\nabla\times\mathbf B)\times\mathbf B/\mu_0$ when the divergence constraint holds. The scalar piece is magnetic pressure; the dyadic piece is tension along field lines. This thermodynamic construction explains why induction and force terms must be chosen together to conserve energy.
+
+## Supplementary derivation: Alfvén waves {#sec-l28-alfven}
+
+Linearize about $\mathbf v=0$, $\mathbf B=\mathbf B_0$, and constant mass density $\rho_M$. Ideal induction and momentum give
+
+$$
+\partial_t\delta\mathbf B=(\mathbf B_0\cdot\nabla)\delta\mathbf v
+-\mathbf B_0\nabla\cdot\delta\mathbf v,
+$$ {#eq-l28-linear-induction}
+
+$$
+\rho_M\partial_t\delta\mathbf v=-\nabla\delta P
++\frac1{\mu_0}\left[(\mathbf B_0\cdot\nabla)\delta\mathbf B
+-\nabla(\mathbf B_0\cdot\delta\mathbf B)\right].
+$$ {#eq-l28-linear-momentum}
+
+Choose a polarization perpendicular to both $\mathbf k$ and $\mathbf B_0$. Then $\mathbf k\cdot\delta\mathbf v=0$, $\mathbf B_0\cdot\delta\mathbf B=0$, and the pressure decouples. A second time derivative gives
+
+$$
+\partial_t^2\delta\mathbf v
+=\frac{(\mathbf B_0\cdot\nabla)^2}{\mu_0\rho_M}\delta\mathbf v,
+\qquad\omega=\pm v_Ak\cos\vartheta,
+\quad v_A=\frac{B_0}{\sqrt{\mu_0\rho_M}}.
+$$ {#eq-l28-alfven}
+
+These are Alfvén waves: magnetic tension supplies the restoring force, and fluid inertia supplies the kinetic energy. For propagation perpendicular to the background field, this particular polarization has no restoring tension and its ideal frequency vanishes. The sign of $\cos\vartheta$ can be absorbed into the propagation branch.
+
+## Magnetic compression and the model's zero mode {#sec-l28-compression}
+
+The source's explicit matrix calculation retains magnetic and momentum fluctuations while suppressing an independent pressure/energy restoring fluctuation. In this pressureless wave sector, take $\mathbf k=k\hat x$ and $\mathbf B_0=B_0(\cos\vartheta,\sin\vartheta,0)$. Gauss's law sets $\delta B_x=0$. With $\mathbf b=\delta\mathbf B/\sqrt{\mu_0\rho_M}$, the remaining five variables obey
+
+$$
+\frac\omega k
+\begin{pmatrix}b_y\\b_z\\v_x\\v_y\\v_z\end{pmatrix}
+=v_A
+\begin{pmatrix}
+0&0&\sin\vartheta&-\cos\vartheta&0\\
+0&0&0&0&-\cos\vartheta\\
+\sin\vartheta&0&0&0&0\\
+-\cos\vartheta&0&0&0&0\\
+0&-\cos\vartheta&0&0&0
+\end{pmatrix}
+\begin{pmatrix}b_y\\b_z\\v_x\\v_y\\v_z\end{pmatrix}.
+$$ {#eq-l28-wave-matrix}
+
+The $z$ block gives the Alfvén pair. The in-plane block has eigenvalues $0,\pm v_A$. Its zero mode has $\delta\mathbf B=0$ and velocity parallel to $\mathbf B_0$: moving directly along a field line creates no magnetic deformation. The $\pm v_A$ pair is a magnetic compression mode.
+
+This should not be confused with incompressible MHD, where pressure instead enforces $\nabla\cdot\mathbf v=0$. Restoring compressibility and adiabatic fluid sound speed $c_s$ gives the standard fast and slow magnetosonic speeds
+
+$$
+v_{f,s}^2=\frac12\left[v_A^2+c_s^2
+\pm\sqrt{(v_A^2+c_s^2)^2-4v_A^2c_s^2\cos^2\vartheta}\right].
+$$ {#eq-l28-magnetosonic}
+
+Setting $c_s=0$ recovers the pressureless magnetic compression speed $v_A$ and a zero slow speed. This supplementary expression shows exactly which physical ingredient was removed in the lecture's simplified five-variable matrix.
+
+## Resistivity and viscosity become anisotropic {#sec-l28-dissipation}
+
+A background magnetic field selects a direction $\hat b_i=B_{0i}/B_0$. With the additional field-reversal symmetry assumed in the notes, a symmetric resistivity tensor has two independent coefficients:
+
+$$
+r_{ij}=r_\perp(\delta_{ij}-\hat b_i\hat b_j)
++r_\parallel\hat b_i\hat b_j,
+\qquad r_\perp,r_\parallel\ge0.
+$$ {#eq-l28-resistivity}
+
+The dissipative electric field is $\mathbf E+\mathbf v\times\mathbf B=r\mathbf j_{\mathrm{el}}$. Joule heating is $j_ir_{ij}j_j\ge0$. The isotropic case gives @eq-l28-diffusion. A Hall resistivity may appear when the additional assumptions excluding antisymmetric transport are relaxed; its coefficient does not contribute to this heating quadratic form.
+
+Similarly, the viscosity tensor can use $\delta_{ij}$ and $\hat b_i$. For symmetric stress and reciprocal dissipative response, a spanning set contains five motifs:
+
+$$
+\begin{aligned}
+\eta_{ij,kl}={}&c_1\delta_{ij}\delta_{kl}
++c_2(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})
++c_3\hat b_i\hat b_j\hat b_k\hat b_l\\
+&+c_4(\delta_{ij}\hat b_k\hat b_l+\delta_{kl}\hat b_i\hat b_j)\\
+&+c_5(\delta_{ik}\hat b_j\hat b_l+\delta_{il}\hat b_j\hat b_k
++\delta_{jk}\hat b_i\hat b_l+\delta_{jl}\hat b_i\hat b_k).
+\end{aligned}
+$$ {#eq-l28-viscosity}
+
+The isotropic shear and bulk terms are linear combinations of $c_1,c_2$; the remaining three describe extra anisotropic response. Positivity constrains the full strain quadratic form, not each displayed coefficient separately. The response-field action adds corresponding noise kernels, related to dissipation by thermal symmetry. Consequently simply appending isotropic Navier–Stokes viscosity to Maxwell's equations can miss transport terms allowed by the background field.
+
+## Exercises and solutions {#sec-l28-exercises}
+
+1. Derive @eq-l28-diffusion and identify where Gauss's law is used.
+2. Find the ideal Alfvén speed if the background field doubles while mass density becomes four times larger.
+3. Show that the vector $(v_x,v_y)\propto(\cos\vartheta,\sin\vartheta)$ is the zero mode of the in-plane matrix when $b_y=0$.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. Faraday plus Ohm and Ampère gives $\partial_t\mathbf B=-D_B\nabla\times\nabla\times\mathbf B$. The identity $\nabla\times\nabla\times\mathbf B=\nabla(\nabla\cdot\mathbf B)-\nabla^2\mathbf B$ reduces it to diffusion only after imposing zero divergence.
+2. $v_A\propto B_0/\sqrt{\rho_M}$, so the new speed is $(2/\sqrt4)v_A=v_A$.
+3. The induction row is proportional to $\sin\vartheta\cos\vartheta-\cos\vartheta\sin\vartheta=0$, and both momentum rows vanish when $b_y=0$. Motion along the field therefore has zero magnetic restoring force in this model.
+:::

@@ -1,0 +1,154 @@
+# Incompressible inviscid flows
+
+Lecture 10 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture10.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Explain the small Mach number limit, derive Bernoulli's equation, construct two dimensional potential flows with complex analysis, and calculate pressure forces and circulation induced lift.
+:::
+
+## From compressible motion to incompressibility {#sec-l10-limit}
+
+We now specialize general hydrodynamics to a fluid of nearly uniform mass density $\rho_0$. Neglect viscosity and heat transport. The remaining equations are mass conservation and Euler's equation,
+
+$$
+\partial_t\rho+\nabla\cdot(\rho\mathbf v)=0,
+\qquad
+\partial_t\mathbf v+(\mathbf v\cdot\nabla)\mathbf v
+=-\frac{\nabla P}{\rho}.
+$$ {#eq-l10-euler-compressible}
+
+The relevant comparison is between the flow speed $U$ and sound speed $c_s$, rather than between pressure and some absolute reference pressure. Sound crosses a region of size $L$ in $L/c_s$; advection crosses it in $L/U$. If the Mach number $M=U/c_s$ is small, sound rapidly removes density variations while slower fluid motion continues.
+
+**Supplemental derivation: why pressure survives the limit.** At fixed entropy, write $dP=c_s^2d\rho$ and set $\rho=\rho_0+\pi/c_s^2$. Hold the dynamic pressure $\pi$ finite as $c_s\to\infty$. The continuity equation becomes
+
+$$
+\rho_0\nabla\cdot\mathbf v+
+\frac{1}{c_s^2}\bigl[\partial_t\pi+\nabla\cdot(\pi\mathbf v)\bigr]=0.
+$$
+
+Its leading term gives $\nabla\cdot\mathbf v=0$, while the pressure force approaches $-\nabla\pi/\rho_0$. Thus the incompressible equations are
+
+$$
+\nabla\cdot\mathbf v=0,
+\qquad D_t\mathbf v=-\frac{\nabla P}{\rho_0}.
+$$ {#eq-l10-incompressible}
+
+Here and below $P$ denotes the finite pressure relevant to motion. It need not be spatially constant. Balancing $U^2/L$ against $\Delta P/(\rho_0L)$ gives $\Delta P\sim\rho_0U^2$, and hence $\Delta\rho/\rho_0\sim M^2$. For ordinary water and air the sound speeds are roughly $1500$ and $330\ \mathrm{m\,s^{-1}}$, so many laboratory flows satisfy this approximation. Strong sound waves, shocks, and large thermally induced density changes require more care.
+
+Pressure acts as a constraint force: taking the divergence of Euler's equation determines a Poisson equation for $P$ compatible with $\nabla\cdot\mathbf v=0$. Incompressibility does not mean that fluid elements feel no forces.
+
+## Bernoulli's equation and potential flow {#sec-l10-bernoulli}
+
+For a steady flow, dot Euler's equation into $\mathbf v$:
+
+$$
+\mathbf v\cdot\nabla\left(\frac{v^2}{2}+\frac{P}{\rho_0}\right)=0.
+$$ {#eq-l10-bernoulli}
+
+The quantity in parentheses is constant along each streamline. Different streamlines can have different constants. If the flow is also irrotational, $\nabla\times\mathbf v=0$, the identity
+
+$$
+(\mathbf v\cdot\nabla)\mathbf v
+=\nabla(v^2/2)-\mathbf v\times(\nabla\times\mathbf v)
+$$
+
+shows that this constant is uniform in a connected smooth region. Locally we can introduce a velocity potential $\mathbf v=\nabla\Phi$. Incompressibility becomes Laplace's equation,
+
+$$
+\nabla^2\Phi=0.
+$$ {#eq-l10-laplace}
+
+This is the bridge to electrostatics and complex analysis. A crucial global subtlety is that a region outside an obstacle is not simply connected. A velocity field can be curl free everywhere in the fluid yet have nonzero circulation around the excluded obstacle; then $\Phi$ can be multivalued.
+
+## Complex potential in two dimensions {#sec-l10-complex}
+
+Let $z=x+iy$ and introduce an analytic function $w(z)=\Phi+i\Psi$. The Cauchy–Riemann equations give
+
+$$
+v_x=\partial_x\Phi=\partial_y\Psi,
+\qquad
+v_y=\partial_y\Phi=-\partial_x\Psi,
+\qquad
+w'(z)=v_x-iv_y.
+$$ {#eq-l10-complex-velocity}
+
+Both $\Phi$ and $\Psi$ are harmonic. Moreover $\mathbf v\cdot\nabla\Psi=0$, so curves of constant stream function $\Psi$ are streamlines. Curves of constant $\Phi$ cross them orthogonally wherever $\mathbf v\ne0$. A solid stationary boundary is a streamline because the no penetration condition is $\mathbf v\cdot\hat{\mathbf n}=0$. Inviscid flow imposes this normal condition; prescribing zero tangential velocity as well would usually overconstrain the potential problem.
+
+Analytic functions can therefore encode entire flow fields. Conformal maps carry harmonic potentials and streamline boundaries to new geometries, provided singularities and far field conditions are handled correctly.
+
+## Worked example: a circular cylinder {#sec-l10-cylinder}
+
+Consider a cylinder of radius $R$, with velocity $U\hat{\mathbf x}$ at infinity. All forces below are per unit cylinder length. Try
+
+$$
+w(z)=U\left(z+\frac{R^2}{z}\right).
+$$ {#eq-l10-cylinder-potential}
+
+The singularity at $z=0$ lies inside the solid, where no fluid equations are being solved. On $z=Re^{i\theta}$ the imaginary part is zero, so the cylinder is a streamline. In polar coordinates,
+
+$$
+v_r=U\left(1-\frac{R^2}{r^2}\right)\cos\theta,
+\qquad
+v_\theta=-U\left(1+\frac{R^2}{r^2}\right)\sin\theta.
+$$
+
+Thus $v_r(R)=0$ and $v_\theta(R)=-2U\sin\theta$. Bernoulli gives the surface pressure
+
+$$
+P(R,\theta)=P_\infty+\frac{\rho_0U^2}{2}
+\left(1-4\sin^2\theta\right).
+$$ {#eq-l10-cylinder-pressure}
+
+Integrating $-P\hat{\mathbf n}$ over the circumference gives zero force: the pressure distribution is symmetric both upstream and downstream. This is d'Alembert's paradox. It is a property of the ideal, steady potential solution. Real fluids develop viscous boundary layers, separation, and wakes; small viscosity can change the global flow qualitatively.
+
+## Pressure forces, Blasius's formula, and lift {#sec-l10-lift}
+
+Choose the body contour counterclockwise, with $\hat{\mathbf n}$ pointing from solid into fluid. Then $\hat{\mathbf n}\,ds=(dy,-dx)$ and the pressure force on the body is $\mathbf F=-\oint P\hat{\mathbf n}\,ds$. The constant part of Bernoulli integrates to zero. Combining its velocity dependent part with no penetration gives Blasius's formula,
+
+$$
+F_x-iF_y=\frac{i\rho_0}{2}\oint [w'(z)]^2\,dz.
+$$ {#eq-l10-blasius}
+
+**Supplemental derivation of the contour formula.** In complex notation the pressure force is $F_x-iF_y=-i\oint P\,d\bar z$. Substituting Bernoulli removes the constant pressure and leaves $(i\rho_0/2)\oint(v_x^2+v_y^2)d\bar z$. The no penetration condition along the body is $v_y\,dx-v_x\,dy=0$. It implies $(v_x+iv_y)d\bar z=(v_x-iv_y)dz$, because the difference is $2i(v_y\,dx-v_x\,dy)$. Multiplying by $v_x-iv_y$ converts the integrand into $[w'(z)]^2dz$ and establishes @eq-l10-blasius. This derivation also specifies the contour orientation that controls its sign.
+
+A useful physical check is that pressure does no work through the stationary body surface: the normal velocity vanishes. Lift can nevertheless exchange momentum between the body and fluid because a force need not do work in the laboratory frame. A real moving wing also has viscous drag and a three dimensional trailing wake, effects outside this ideal two dimensional calculation.
+
+For @eq-l10-cylinder-potential the square contains no $z^{-1}$ term, so the residue theorem immediately gives zero force. The same method explains why circulation produces lift. Suppose far from a body,
+
+$$
+w(z)=Uz-\frac{i\Gamma}{2\pi}\log z+O(z^{-1}).
+$$
+
+Then $\Gamma=\oint\mathbf v\cdot d\boldsymbol\ell$ is positive for counterclockwise circulation. Squaring $w'=U-i\Gamma/(2\pi z)+O(z^{-2})$ gives residue $-iU\Gamma/\pi$. Therefore
+
+$$
+F_x=0,\qquad F_y=-\rho_0U\Gamma.
+$$ {#eq-l10-kutta-joukowski}
+
+This is the two dimensional Kutta–Joukowski lift formula with our stated sign convention. A wing can support circulation and hence a net pressure force. Selecting its physical circulation requires information such as trailing edge regularity and viscous startup dynamics; the ideal equations alone permit a family of circulations.
+
+Finally the logarithmic potential itself describes a point vortex:
+
+$$
+\mathbf v=\frac{\Gamma}{2\pi r}\hat{\boldsymbol\theta}.
+$$
+
+Its vorticity is zero away from the origin but integrates to $\Gamma$ through a disk containing the origin. An imaginary coefficient in the circulation parameter instead adds a radial source or sink. Such a field requires a mass source or an excluded injection region and does not describe an isolated impermeable body.
+
+## Common pitfalls
+
+Small density variations do not justify dropping the pressure gradient. Bernoulli's constant is generally a streamline constant. Curl free does not guarantee a single valued potential in a region with a hole. Finally, a force in two dimensional cylinder flow has units of force per length, and its lift sign depends on the circulation convention.
+
+## Exercises with solutions {#sec-l10-exercises}
+
+1. **Density estimate.** Water flows at $3\ \mathrm{m\,s^{-1}}$ with $c_s=1500\ \mathrm{m\,s^{-1}}$. Estimate its relative dynamic density variation.
+
+   **Solution.** $M=0.002$ and $\Delta\rho/\rho_0\sim M^2=4\times10^{-6}$. The estimate concerns flow induced compression, not density changes caused by temperature.
+
+2. **Lift on a circulating cylinder.** Add $-i\Gamma\log z/(2\pi)$ to @eq-l10-cylinder-potential. Find the surface tangential speed and stagnation angles.
+
+   **Solution.** $v_\theta(R)=-2U\sin\theta+\Gamma/(2\pi R)$. Surface stagnation requires $\sin\theta=\Gamma/(4\pi UR)$, which has solutions only if $|\Gamma|\le4\pi UR$. For larger circulation, the stagnation points move away from the surface. The force remains $F_y=-\rho_0U\Gamma$.
+
+3. **Pressure as a constraint.** Derive the pressure equation from @eq-l10-incompressible.
+
+   **Solution.** Take a divergence, commute smooth derivatives, and use $\partial_iv_i=0$. This gives $\nabla^2P=-\rho_0(\partial_iv_j)(\partial_jv_i)$. Boundary conditions complete this elliptic problem; an additive pressure constant remains arbitrary.

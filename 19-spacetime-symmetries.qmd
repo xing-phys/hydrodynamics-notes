@@ -1,0 +1,137 @@
+# Fluids with modified spacetime symmetries
+
+Lecture 19 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture19.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Construct constitutive relations from spatial and time-reversal symmetries; recognize when current and momentum need not coincide; distinguish dissipative transport from Hall transport; calculate the pressure signature of Hall viscosity.
+:::
+
+## Which parts of fluid mechanics come from symmetry? {#sec-l19-symmetry}
+
+A gas of structureless particles is nearly isotropic. A suspension of aligned rods, an electron liquid in a crystal, or a chiral active material need not be. Conservation laws survive these changes, but the permitted currents and stresses change. This is a useful test of our understanding: the familiar Navier–Stokes equation is one member of a larger family of hydrodynamic theories.
+
+We retain a conserved scalar density $n$ and momentum density $g_i$, temporarily suppressing energy. Their equations are
+
+$$
+\partial_t n+\partial_i J_i=0,\qquad
+\partial_t g_i+\partial_j\tau_{ij}=0.
+$$ {#eq-l19-conservation}
+
+Let $f(n,\mathbf g)$ be the equilibrium free-energy density and define conjugates $\mu=\partial f/\partial n$ and $v_i=\partial f/\partial g_i$. Here $v_i$ is a thermodynamic variable; without Galilean invariance we must not replace $g_i$ by $mnv_i$ automatically. Likewise, momentum flux $\tau_{ij}$ need not be symmetric if angular momentum can be exchanged with an orientational background.
+
+For generalized time reversal, take an orthogonal matrix $A$ acting on coordinates, with $\mathbf x\mapsto A\mathbf x$ and $\mathbf v\mapsto-A\mathbf v$. Ordinary time reversal has $A=I$. A symmetry combining a reflection with time reversal has a different $A$. The response fields in the stochastic formulation transform along with the physical fields. Requiring the action to change only by a total derivative imposes a local equilibrium identity on ideal currents:
+
+$$
+J_j\partial_j\mu+\tau_{ij}\partial_j v_i=\partial_j S_j.
+$$ {#eq-l19-potential}
+
+The vector $S_i(\mu,\mathbf v)$ is a constitutive generating function, rather than the entropy density. Comparing independent gradients yields
+
+$$
+J_i=\frac{\partial S_i}{\partial\mu},\qquad
+\tau_{ij}=\frac{\partial S_j}{\partial v_i}.
+$$ {#eq-l19-generated}
+
+This compresses many time-reversal constraints into one symmetry problem: construct every allowed vector $S_i$, then differentiate it. The identity concerns the retained variables and ideal derivative order; including energy requires the corresponding temperature terms.
+
+As a check, an isotropic Galilean fluid has $S_i=P(\mu+mv^2/2)v_i$. Since $\partial P/\partial\mu=n$, differentiation gives $J_i=nv_i$ and $\tau_{ij}=P\delta_{ij}+mnv_iv_j$. Those familiar relations have therefore used both thermodynamics and a boost symmetry.
+
+## Aligned rods: anisotropy without chirality {#sec-l19-rods}
+
+Consider a three-dimensional material invariant under rotations in the $xy$ plane and under $z\mapsto-z$. Let $\lambda_{ij}=\hat z_i\hat z_j$ project along the alignment axis. The director $\hat z_i$ itself changes under the reflection, but $\lambda_{ij}$ does not. Consequently, scalar constitutive functions may depend on $v^2$ and $v_z^2$, and the most general zeroth-order vector is
+
+$$
+S_i=F(\mu,v^2,v_z^2)v_i+
+H(\mu,v^2,v_z^2)\lambda_{ij}v_j.
+$$ {#eq-l19-uniaxial}
+
+There are two directions in which a current can respond to velocity. In particular,
+
+$$
+J_i=F_\mu v_i+H_\mu\lambda_{ij}v_j,
+$$
+
+while differentiating $S_j$ with respect to $v_i$ produces the pressure-like term $F\delta_{ij}+H\lambda_{ij}$ and velocity-quadratic terms. Mixed tensors $v_i\lambda_{jk}v_k$ and $\lambda_{ik}v_kv_j$ have independent coefficients in general. A stress with $\tau_{xz}\ne\tau_{zx}$ is allowed because the assumed symmetry does not include continuous rotations mixing $x$ and $z$.
+
+At first derivative order, scalar diffusion is governed by
+
+$$
+\sigma_{ij}=\sigma_\perp(\delta_{ij}-\lambda_{ij})+
+\sigma_\parallel\lambda_{ij}.
+$$
+
+Positivity requires $\sigma_\perp,\sigma_\parallel\ge0$. The fourth-rank viscosity tensor is built from $\delta$ and $\lambda$. Before imposing stress symmetry, a useful spanning set is
+
+$$
+\begin{aligned}
+\eta_{ij,kl}={}&\zeta\delta_{ij}\delta_{kl}
++a(\delta_{ij}\lambda_{kl}+\lambda_{ij}\delta_{kl})
++b\lambda_{ij}\lambda_{kl}\\
+&+c\delta_{ik}\delta_{jl}+d\delta_{il}\delta_{jk}
++e\delta_{ik}\lambda_{jl}+f\delta_{jl}\lambda_{ik}\\
+&+h(\delta_{il}\lambda_{jk}+\delta_{jk}\lambda_{il}).
+\end{aligned}
+$$ {#eq-l19-uniaxial-viscosity}
+
+These are the tensor motifs in the notes, with renamed coefficients. Pair-exchange symmetry $\eta_{ij,kl}=\eta_{kl,ij}$ follows from the relevant Onsager relation. The notes quote further pair identifications in their chosen rotational realization. Such equalities require specifying the angular-momentum/stress assumptions: for example, symmetry of the $xy$ stress forces $c=d$, whereas full three-dimensional stress symmetry constrains the axis-containing terms as well. Ordinary time reversal also prevents a dissipative cross term between the even scalar-density channel and the odd momentum channel in this example. Positivity means $X_{ij}\eta_{ij,kl}X_{kl}\ge0$ for every dissipative gradient $X$. For a projected pair of scalar gradients with quadratic-form matrix $\begin{pmatrix}K_{11}&K_{12}\\K_{12}&K_{22}\end{pmatrix}$, this includes $K_{12}^2\le K_{11}K_{22}$ and nonnegative diagonal entries. These projected entries combine several coefficients in @eq-l19-uniaxial-viscosity; they are not simply the raw coefficients $\zeta,a,b$. One should test the full quadratic form rather than declare each coefficient positive independently.
+
+## A two-dimensional fluid with combined reflection and time reversal {#sec-l19-hall}
+
+Now assume planar rotations and a time reversal combined with $y\mapsto-y$. In two dimensions both $\delta_{ij}$ and the antisymmetric symbol $\epsilon_{ij}$ are available. The trial ideal vector is $S_i=F(\mu,v^2)v_i+H(\mu,v^2)\epsilon_{ij}v_j$. Transforming this expression under the combined symmetry excludes the second term at ideal order. The ideal equations can consequently look ordinary even when derivative corrections are unusual.
+
+For diffusion, the allowed matrix is
+
+$$
+\sigma_{ij}=\sigma\delta_{ij}+\sigma_H\epsilon_{ij}.
+$$ {#eq-l19-hall-conductivity}
+
+The longitudinal coefficient satisfies $\sigma\ge0$. The Hall coefficient has no sign constraint from entropy production because $a_i\epsilon_{ij}a_j=0$. It rotates a thermodynamic driving force into a perpendicular current. The same algebra explains why it does not contribute to the symmetric noise covariance. “Transport coefficient” therefore does not mean “dissipative coefficient.”
+
+For a symmetric stress, one conventional Hall-viscosity tensor is
+
+$$
+\eta^H_{ij,kl}=\frac{\eta_H}{2}
+(\epsilon_{ik}\delta_{jl}+\epsilon_{il}\delta_{jk}
++\epsilon_{jk}\delta_{il}+\epsilon_{jl}\delta_{ik}).
+$$ {#eq-l19-hall-viscosity}
+
+It is symmetric within each stress pair and antisymmetric under exchanging the two pairs. Thus $X_{ij}\eta^H_{ij,kl}X_{kl}=0$. This is the viscosity counterpart of the preceding Hall conductivity. Numerical factors depend on whether the strain tensor includes a factor $1/2$; @eq-l19-hall-viscosity fixes our convention.
+
+## Supplementary worked example: a transverse pressure drop {#sec-l19-channel}
+
+For constant Hall viscosity and an incompressible two-dimensional fluid, the Hall force can be absorbed into a modified pressure. Choose $\epsilon_{xy}=1$ and vorticity $\omega=\partial_xv_y-\partial_yv_x$. With the corresponding stress convention, the momentum equation takes the form
+
+$$
+\rho(\partial_t+\mathbf v\cdot\nabla)\mathbf v
+=-\nabla(P-\eta_H\omega)+\eta\nabla^2\mathbf v.
+$$ {#eq-l19-modified-pressure}
+
+In a channel $0<y<W$, impose no slip and a constant longitudinal gradient $\partial_xP$. The longitudinal solution remains
+
+$$
+v_x(y)=\frac{\partial_xP}{2\eta}\,y(y-W),\qquad v_y=0.
+$$
+
+However, the transverse equation requires $P-\eta_H\omega$ to be independent of $y$. Since $\omega=-\partial_yv_x$, it follows that
+
+$$
+P(W)-P(0)=-\frac{\eta_H}{\eta}\,W\partial_xP.
+$$ {#eq-l19-transverse-pressure}
+
+The velocity profile alone cannot reveal $\eta_H$ in this example; a pressure measurement can. Reversing the convention for $\epsilon_{ij}$ reverses both $\eta_H$ and the displayed sign, leaving the physical prediction unchanged. Spatial variation of $\eta_H$, compressibility, and boundary traction can prevent this simple pressure absorption.
+
+::: {.callout-warning title="Common pitfalls"}
+Anisotropy does not by itself imply dissipation. Onsager constraints involve the actual time-reversal operation, including any reflection. A Hall coefficient need not be positive. Finally, a nonsymmetric momentum flux needs an angular-momentum accounting; it cannot be inserted into an otherwise rotationally invariant isolated fluid without explanation.
+:::
+
+## Exercises and solutions {#sec-l19-exercises}
+
+1. Differentiate $S_j$ in @eq-l19-uniaxial with respect to $v_i$ and identify a term that can make $\tau_{ij}$ nonsymmetric.
+2. Prove directly that a Hall conductivity cannot produce local entropy proportional to $\nabla\mu\cdot\mathbf J$.
+3. In the channel example, find the vorticity at each wall and explain why the two wall pressures differ.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. The terms $2F_{v_z^2}v_j\lambda_{ik}v_k$ and $2H_{v^2}\lambda_{jk}v_kv_i$ are transposes with unrelated coefficients. They need not cancel in $\tau_{ij}-\tau_{ji}$.
+2. The Hall contribution is proportional to $(\partial_i\mu)\epsilon_{ij}(\partial_j\mu)$, which equals its own negative after relabeling $i,j$ and therefore vanishes.
+3. $\omega(0)=\partial_xP\,W/(2\eta)$ and $\omega(W)=-\partial_xP\,W/(2\eta)$. The constant transverse modified pressure gives @eq-l19-transverse-pressure.
+:::

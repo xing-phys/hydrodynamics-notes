@@ -1,0 +1,148 @@
+# BBGKY hierarchy
+
+Lecture 20 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture20.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Derive the first equations in the hierarchy of reduced distributions; identify where the exact many-body description becomes an approximation; explain molecular chaos and the origin of a local collision integral; include Bose enhancement and Pauli blocking.
+:::
+
+## From trajectories to a distribution {#sec-l20-liouville}
+
+Hydrodynamics can be derived microscopically in dilute systems with well-defined, weakly interacting particles. The advantage of this route is control: streaming and collisions have different scales. Its limitation is equally important: strongly interacting fluids need not possess long-lived particles at all.
+
+Consider $N$ identical classical particles in $d$ dimensions, with Hamiltonian
+
+$$
+H=\sum_{\alpha=1}^N[\varepsilon(\mathbf p_\alpha)+U(\mathbf x_\alpha)]
++\sum_{\alpha<\beta}V(\mathbf x_\alpha-\mathbf x_\beta).
+$$ {#eq-l20-hamiltonian}
+
+The dispersion $\varepsilon$ need not be quadratic. Write $z_\alpha=(\mathbf x_\alpha,\mathbf p_\alpha)$ and $dz=d^dx\,d^dp$. Hamilton's equations give $\dot{\mathbf x}_\alpha=\nabla_{p_\alpha}\varepsilon$ and the force from $U$ plus all other particles. A normalized phase-space probability $P_N(z_1,\ldots,z_N,t)$ obeys the continuity equation
+
+$$
+\partial_tP_N+\sum_\alpha
+[\dot{\mathbf x}_\alpha\cdot\nabla_{x_\alpha}P_N+
+\dot{\mathbf p}_\alpha\cdot\nabla_{p_\alpha}P_N]=0.
+$$ {#eq-l20-liouville}
+
+This is Liouville's equation. There is no stochastic force: uncertainty is in the initial condition. Hamiltonian phase-space flow is incompressible, which allows derivatives to act on either the probability or the probability current. A $2dN$-dimensional probability is nevertheless far too complicated for most measurements.
+
+## Reduced distributions and their normalization {#sec-l20-reduced}
+
+Permutation symmetry is preserved by the Hamiltonian. Define the ordered reduced distributions
+
+$$
+f_s(z_1,\ldots,z_s)=\frac{N!}{(N-s)!}
+\int dz_{s+1}\cdots dz_N\,P_N.
+$$ {#eq-l20-reduced}
+
+Thus $\int dz\,f_1=N$, while $\int dz_1dz_2\,f_2=N(N-1)$. The pair function counts distinct ordered particles, not a probability normalized to one. We usually write $f=f_1$, with
+
+$$
+n(\mathbf x)=\int d^dp\,f(\mathbf x,\mathbf p),\qquad
+g_i(\mathbf x)=\int d^dp\,p_i f(\mathbf x,\mathbf p).
+$$
+
+The measure can instead include $(2\pi\hbar)^{-d}$ if $f$ denotes a quantum occupation. All formulas must use one convention consistently. This normalization issue becomes essential when interpreting factors $1\pm f$ later.
+
+Integrate @eq-l20-liouville over particles $2,\ldots,N$. Total derivatives in their positions and momenta vanish for decaying distributions or suitable periodic boundaries. The streaming terms for particle 1 remain, while its interactions with every other particle combine into $f_2$:
+
+$$
+\left[\partial_t+\mathbf v_1\cdot\nabla_{x_1}
+-\nabla U_1\cdot\nabla_{p_1}\right]f_1
+=\int dz_2\,\nabla_{x_1}V_{12}\cdot\nabla_{p_1}f_2,
+\qquad \mathbf v_1=\nabla_{p_1}\varepsilon_1.
+$$ {#eq-l20-first}
+
+The sign is worth checking: the force is $-\nabla V$, so moving its contribution from the left side produces the plus sign on the right.
+
+## Why there is a hierarchy {#sec-l20-hierarchy}
+
+Let $H_s$ contain the single-particle energies and interactions among the first $s$ particles. Repeating the integration gives
+
+$$
+\partial_t f_s+\{f_s,H_s\}
+=\sum_{a=1}^s\int dz_{s+1}\,
+\nabla_{x_a}V_{a,s+1}\cdot\nabla_{p_a}f_{s+1}.
+$$ {#eq-l20-bbgky}
+
+The Poisson bracket here includes all retained phase-space variables. The equation for the one-particle distribution needs the pair distribution; the pair equation needs the three-particle distribution; and so on. This BBGKY hierarchy is exact, with no entropy-production assumption hidden in it.
+
+For clarity, set $U=0$ and use one dimension. The pair equation is
+
+$$
+\begin{aligned}
+\partial_t f_2+v_1\partial_{x_1}f_2+v_2\partial_{x_2}f_2
+-V'(x_1-x_2)(\partial_{p_1}-\partial_{p_2})f_2
+={}&\int dz_3\,[V'(x_1-x_3)\partial_{p_1}
++V'(x_2-x_3)\partial_{p_2}]f_3.
+\end{aligned}
+$$ {#eq-l20-pair}
+
+The internal force changes the particles' individual momenta while preserving their sum. Simply replacing $f_2$ by $f_1f_1$ everywhere does not derive the Boltzmann collision integral: one must retain the correlation generated during an encounter.
+
+## The dilute-gas approximation {#sec-l20-scales}
+
+Let $a$ be the interaction range, $L$ a macroscopic variation scale, $v$ a typical speed, and $n$ a number density. Three times matter: the streaming time $L/v$, encounter duration $a/v$, and mean time $\tau$ between encounters. In a dilute gas, $na^d\ll1$, so encounters rarely overlap; typically $a/v\ll\tau$, while the kinetic limit also takes $a\ll L$.
+
+Introduce center and relative positions $X=(x_1+x_2)/2$ and $r=x_1-x_2$. During a short encounter, $X$ and the slowly varying one-particle distribution barely change. Neglecting three-body encounters and time dependence on the encounter scale, @eq-l20-pair gives
+
+$$
+V'(r)(\partial_{p_1}-\partial_{p_2})f_2
+\simeq(v_1-v_2)\partial_r f_2.
+$$ {#eq-l20-encounter}
+
+Putting this into the first hierarchy equation converts the interaction term into an integral of $\partial_r f_2$. It is therefore a difference between the outgoing and incoming pair distributions. Scattering dynamics maps incoming momenta into outgoing momenta; the one-particle kinetic equation needs the rate for that map.
+
+The key statistical assumption is **molecular chaos**: incoming particles about to collide have uncorrelated phase-space occupations to leading order. It is a condition on incoming pairs. Their outgoing momenta are correlated by energy and momentum conservation, so applying independence indiscriminately to both histories would obscure the time arrow.
+
+## The collision integral {#sec-l20-collisions}
+
+With microscopic transition rate $R_{12\to34}$ and momenta all evaluated at the same macroscopic position, the classical collision operator is
+
+$$
+C[f_1]=\int_{234}\left[
+R_{34\to12}f_3f_4-R_{12\to34}f_1f_2\right].
+$$ {#eq-l20-collision}
+
+Indices label momentum arguments, and $\int_{234}$ denotes three momentum integrals with any identical-particle symmetry factors absorbed in $R$. The first term adds particles into state 1; the second removes them. For elastic translation-invariant scattering,
+
+$$
+R_{12\to34}\propto|\mathcal M_{12\to34}|^2
+\delta^{(d)}(\mathbf p_1+\mathbf p_2-\mathbf p_3-\mathbf p_4)
+\delta(\varepsilon_1+\varepsilon_2-\varepsilon_3-\varepsilon_4).
+$$
+
+The locality in $\mathbf x$ is an approximation justified by $a/L\ll1$. The result is the Boltzmann equation
+
+$$
+\partial_t f+\mathbf v\cdot\nabla_x f
+-\nabla U\cdot\nabla_p f=C[f].
+$$ {#eq-l20-boltzmann}
+
+It resolves free motion between collisions, unlike hydrodynamics, which additionally requires long scales compared with $\tau$ and the mean free path $\ell\sim v\tau$.
+
+For quantum occupations, the collision integrand becomes
+
+$$
+R_{34\to12}f_3f_4(1\pm f_1)(1\pm f_2)
+-R_{12\to34}f_1f_2(1\pm f_3)(1\pm f_4).
+$$ {#eq-l20-quantum}
+
+The upper sign is for bosons and gives stimulated scattering into occupied states; the lower sign is for fermions and prevents filling an already occupied state. These factors are quantum statistical input, not a consequence of the classical Liouville derivation. In the dilute occupation limit $f\ll1$, both reduce to @eq-l20-collision.
+
+::: {.callout-note title="Supplementary example: why not every 1D gas thermalizes?"}
+Two identical particles of equal mass with quadratic dispersion, scattering elastically in one dimension, can only keep or exchange their momenta. Such a collision does not redistribute the set of occupied momenta. Generic equilibration therefore requires additional species, nontrivial dispersion, higher-body processes, or a different microscopic setting. The one-dimensional hierarchy is a transparent derivation device; it does not guarantee generic one-dimensional Boltzmann relaxation.
+:::
+
+## Exercises and solutions {#sec-l20-exercises}
+
+1. Verify $\int dz_2 f_2=(N-1)f_1$ from the definitions.
+2. Explain which approximation fails first when $na^d$ approaches unity.
+3. For $f_i\ll1$, expand the quantum gain term to its first quantum correction.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. Integrating over one more variable gives $N(N-1)\int dz_2\cdots dz_NP_N=(N-1)f_1$.
+2. Encounters overlap, so three-body correlations and the neglected $f_3$ term are no longer parametrically suppressed. Short-range locality may still hold, but the dilute binary-collision closure is uncontrolled.
+3. $f_3f_4(1\pm f_1)(1\pm f_2)=f_3f_4[1\pm(f_1+f_2)+f_1f_2]$. The cubic terms distinguish Bose enhancement from Pauli blocking.
+:::

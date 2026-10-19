@@ -1,0 +1,158 @@
+# Incompressible viscous flows
+
+Lecture 12 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture12.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Solve pressure driven channel flow, interpret hydraulic resistance, identify the Reynolds number, derive Stokes drag, and recognize the spatial limits of creeping flow approximations.
+:::
+
+## Viscosity and no slip {#sec-l12-equations}
+
+For a Newtonian incompressible fluid with constant mass density and viscosity,
+
+$$
+\nabla\cdot\mathbf v=0,\qquad
+\partial_t\mathbf v+(\mathbf v\cdot\nabla)\mathbf v
+=-\frac{\nabla P}{\rho}+\nu\nabla^2\mathbf v,
+\qquad \nu=\frac{\eta}{\rho}.
+$$ {#eq-l12-ns}
+
+The dynamic viscosity $\eta$ has units $\mathrm{Pa\,s}$, whereas the kinematic viscosity $\nu$ has units $\mathrm{m^2\,s^{-1}}$. At an ordinary stationary solid surface, the continuum no slip condition is $\mathbf v=0$. Momentum exchange with the wall prevents tangential slip, in contrast with the inviscid boundary condition used in the preceding chapters.
+
+We initially neglect temperature changes. This presumes either sufficiently weak heating or efficient thermal equilibration. Viscosity dissipates mechanical energy, so constant temperature is a physical approximation, not a claim that dissipation vanishes.
+
+## Poiseuille flow between parallel plates {#sec-l12-poiseuille}
+
+Take walls at $y=0,w$, an imposed pressure drop along $x$, and the steady ansatz $\mathbf v=u(y)\hat{\mathbf x}$. Incompressibility is automatic. More surprisingly, the nonlinear term vanishes exactly: $\mathbf v\cdot\nabla\mathbf v=u\partial_x\mathbf v=0$. The $x$ equation is
+
+$$
+\eta u''(y)=\partial_xP=-G,\qquad G>0.
+$$
+
+Integrate twice and impose $u(0)=u(w)=0$:
+
+$$
+u(y)=\frac{G}{2\eta}y(w-y).
+$$ {#eq-l12-profile}
+
+The maximum is $u_{\max}=Gw^2/(8\eta)$; the mean is $\bar u=Gw^2/(12\eta)=2u_{\max}/3$. The volume flux per unit width perpendicular to the drawing is
+
+$$
+Q_{2\mathrm D}=\int_0^wu(y)\,dy=\frac{Gw^3}{12\eta}.
+$$ {#eq-l12-flux}
+
+For a channel of length $L$, $\Delta P=GL$ and the hydraulic resistance per unit transverse width is $12\eta L/w^3$. A very wide channel of breadth $b$ has total flux $Q=bQ_{2\mathrm D}$ and resistance $12\eta L/(bw^3)$, neglecting the side walls.
+
+**Supplemental comparison: a circular pipe.** With cylindrical radius $r$ and pipe radius $a$, the equation is $\eta r^{-1}(ru')'=-G$. Regularity at $r=0$ and no slip at $a$ give $u=G(a^2-r^2)/(4\eta)$. Integrating $2\pi r\,dr$ yields $Q=\pi a^4\Delta P/(8\eta L)$. The different powers, $w^3$ and $a^4$, reflect different geometries rather than an inconsistency.
+
+The pressure source supplies mechanical power $\Delta P\,Q$. In the fully developed channel this equals viscous dissipation. Per unit transverse breadth,
+
+$$
+\eta L\int_0^w[u'(y)]^2dy
+=\frac{LG^2w^3}{12\eta}
+=\Delta P\,Q_{2\mathrm D}.
+$$ {#eq-l12-power}
+
+This check connects the force balance to energy conservation: a static velocity profile does not mean that no energy is being consumed. Maintaining the pressure gradient continually replaces mechanical energy converted to heat. It also clarifies why a resistance model is dissipative and why a separate thermal approximation is needed if the temperature is held fixed.
+
+## Hydraulic circuits {#sec-l12-resistance}
+
+Pressure and volume flux play roles analogous to voltage and electric current:
+
+$$
+\Delta P=\mathcal R Q.
+$$
+
+Mass conservation at a junction gives $Q_{\mathrm{in}}=\sum Q_{\mathrm{out}}$ for constant density. Series channels carry the same flux, so their resistances add. Parallel channels have the same pressure drop, so their conductances add. The analogy is useful for microfluidic networks and idealized circulation models.
+
+Its geometrical scaling differs from an electrical resistor of constant conductivity. A fluid channel carries more flow when enlarged both because it offers more cross sectional area and because velocity gradients decrease. Narrow constrictions can therefore dominate a network's resistance. This circuit description assumes fully developed laminar flow in each segment; entrance regions, bends, compliance, and turbulence may require additional terms.
+
+The exact profile is a mathematical solution at any imposed speed, but its stability is a separate question. A solution can exist even when small disturbances drive the observed flow away from it.
+
+## Dominant balance and the Reynolds number {#sec-l12-reynolds}
+
+For a typical speed $U$ and length $L$, the inertial term scales as $U^2/L$ and the viscous term as $\nu U/L^2$. Their ratio is
+
+$$
+\mathrm{Re}=\frac{UL}{\nu}.
+$$ {#eq-l12-reynolds}
+
+Small Reynolds number suggests creeping flow, in which inertia can be neglected. Large Reynolds number suggests an approximately inviscid bulk, often with viscous boundary layers. The conclusion depends on the region and its local gradients: one global Reynolds number does not justify deleting viscosity everywhere.
+
+In creeping flow the pressure is a Lagrange multiplier enforcing incompressibility, and the steady equations become linear:
+
+$$
+\nabla P=\eta\nabla^2\mathbf v,\qquad\nabla\cdot\mathbf v=0.
+$$ {#eq-l12-stokes}
+
+For air with $U\sim1\ \mathrm{m\,s^{-1}}$, $L\sim1\ \mathrm m$, and $\nu\sim10^{-5}\ \mathrm{m^2\,s^{-1}}$, the Reynolds number is about $10^5$. Small particles and microscopic flows can instead be deep in the creeping regime.
+
+## Worked example: a sphere in creeping flow {#sec-l12-sphere}
+
+Place a stationary sphere of radius $R$ in a uniform incident velocity $U\hat{\mathbf z}$. Assume axisymmetry. One way to enforce incompressibility is to write $\mathbf v=\nabla\times[\psi(r,\theta)\hat{\boldsymbol\phi}]$ and seek $\psi=f(r)\sin\theta$. The corresponding components are
+
+$$
+v_r=\frac{2f(r)}{r}\cos\theta,\qquad
+v_\theta=-\frac{(rf)'(r)}{r}\sin\theta.
+$$
+
+Taking the curl of @eq-l12-stokes removes pressure. The resulting fourth order equation admits radial powers $r$, $r^{-2}$, $r^3$, and $1$. The growing $r^3$ solution is excluded at infinity. Fixing the uniform flow and enforcing $v_r=v_\theta=0$ at $r=R$ gives
+
+$$
+f(r)=U\left(\frac r2-\frac{3R}{4}+\frac{R^3}{4r^2}\right).
+$$
+
+Thus
+
+$$
+\begin{aligned}
+v_r&=U\cos\theta\left(1-\frac{3R}{2r}+\frac{R^3}{2r^3}\right),\\
+v_\theta&=-U\sin\theta\left(1-\frac{3R}{4r}-\frac{R^3}{4r^3}\right),\\
+P-P_\infty&=-\frac{3\eta UR}{2r^2}\cos\theta.
+\end{aligned}
+$$ {#eq-l12-sphere-fields}
+
+Check the boundary conditions explicitly: both velocity brackets vanish at $R$, while at infinity the components approach those of $U\hat{\mathbf z}$. The pressure correction is dipolar and decays as $r^{-2}$.
+
+To compute the force, use the Cauchy stress
+
+$$
+\sigma_{ij}=-P\delta_{ij}+\eta(\partial_iv_j+\partial_jv_i).
+$$
+
+The traction on the body is $\boldsymbol\sigma\cdot\hat{\mathbf n}$ with $\hat{\mathbf n}$ directed into the fluid. At the sphere, the pressure contribution to the force along the incident flow integrates to $2\pi\eta RU$ and the tangential viscous contribution to $4\pi\eta RU$. Their sum is Stokes's law,
+
+$$
+\mathbf F=6\pi\eta R U\hat{\mathbf z}.
+$$ {#eq-l12-drag}
+
+A sphere moving at velocity $\mathbf V$ through fluid at rest instead feels $\mathbf F=-6\pi\eta R\mathbf V$. State the reference frame before assigning the sign. Unlike inviscid potential flow, creeping flow has a nonzero drag even though there is no inertial wake in this leading solution.
+
+## Why the approximation fails far away {#sec-l12-matching}
+
+**Supplemental derivation: a singular perturbation.** The disturbance velocity far from the sphere is $\delta v\sim UR/r$. The retained viscous force scales as $\nu\nabla^2\delta v\sim\nu UR/r^3$. The inertial advection by the uniform background scales as $U\partial_z\delta v\sim U^2R/r^2$. Their ratio is $Ur/\nu$, which reaches unity at
+
+$$
+r\sim\frac{\nu}{U}=\frac{R}{\mathrm{Re}_R},\qquad
+\mathrm{Re}_R=\frac{UR}{\nu}.
+$$ {#eq-l12-oseen-scale}
+
+Even if $\mathrm{Re}_R\ll1$, the Stokes approximation is not uniform as $r\to\infty$. It is accurate near the sphere and over a broad intermediate region. An outer calculation retaining uniform flow advection, often called the Oseen approximation, can be matched to the inner Stokes solution. This illustrates matched asymptotic expansions: overlapping approximations can describe different spatial regions of one problem.
+
+## Common pitfalls
+
+Do not confuse dynamic and kinematic viscosity, two dimensional flux with total three dimensional flux, or an exact laminar solution with a stable observed flow. When defining drag coefficients, state the reference area; a sphere's projected area is $\pi R^2$, while its surface area is $4\pi R^2$.
+
+## Exercises with solutions {#sec-l12-exercises}
+
+1. **Constriction.** A circular pipe's radius is halved at fixed length and viscosity. What happens to resistance?
+
+   **Solution.** $\mathcal R=8\eta L/(\pi a^4)$ increases by $2^4=16$. At fixed pressure drop the flux decreases by the same factor.
+
+2. **Settling speed.** A dilute sphere of density $\rho_s>\rho$ settles under gravity. Find its terminal speed in the Stokes regime.
+
+   **Solution.** Balance buoyant weight $(4\pi R^3/3)(\rho_s-\rho)g$ against $6\pi\eta RU$. Thus $U=2(\rho_s-\rho)gR^2/(9\eta)$. The result is self consistent only if $UR/\nu\ll1$ and boundaries are sufficiently distant.
+
+3. **Dimensionless drag.** Use projected area $A=\pi R^2$ and define $F=\rho U^2AC_D/2$. Express $C_D$ using a Reynolds number based on diameter.
+
+   **Solution.** $C_D=12\eta/(\rho UR)=24/\mathrm{Re}_{2R}$. Choosing the surface area instead would divide this coefficient by four without changing the force.

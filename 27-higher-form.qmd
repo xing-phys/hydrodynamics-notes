@@ -1,0 +1,134 @@
+# Higher-form symmetries
+
+Lecture 27 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture27.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Derive subdiffusion from dipole conservation; construct subsystem-conserving dynamics; distinguish vector densities from scalar charges; interpret antisymmetric currents and higher-form charges geometrically; obtain the transverse diffusion mode of a one-form charge.
+:::
+
+## More conservation laws mean fewer allowed gradients {#sec-l27-response}
+
+For an ordinary conserved density $n$, the response-field action has a constant-shift invariance $\pi\mapsto\pi+c$. Varying this transformation connects it to conservation of $Q=\int n$. More generally, a time-independent shift $\pi\mapsto\pi+f(\mathbf x)$ implies conservation of the weighted quantity
+
+$$
+Q_f=\int d^dx\,f(\mathbf x)n(\mathbf x).
+$$ {#eq-l27-weighted}
+
+Indeed, the change of the response kinetic term is $\int f\partial_tn=dQ_f/dt$; all other terms must be invariant or boundary terms. Boundary conditions are part of this statement. A formally conserved bulk moment can be changed by flux through the boundary.
+
+This response-field viewpoint makes unfamiliar conservation laws easy to translate into a derivative expansion. The smallest allowed derivative acting on $\pi$ determines the slowest permitted relaxation process. It also unifies examples that are not all higher-form symmetries: dipole conservation and subsystem conservation generally refer to position-dependent scalar charges, whereas higher-form symmetries have a distinct geometric organization.
+
+## Dipole-conserving matter {#sec-l27-dipole}
+
+Suppose both total charge and all dipole moments are conserved:
+
+$$
+Q=\int n,\qquad D_i=\int x_i n.
+$$
+
+The response shifts are $\pi\mapsto\pi+a+b_ix_i$, so $\partial_i\pi$ is not invariant but $\partial_i\partial_j\pi$ is. With dimensionless thermodynamic potential $\mu=\delta\Phi/\delta n=n/\chi$, a simple isotropic action is
+
+$$
+\mathcal L=\pi\partial_tn
++iB(\partial_i\partial_j\pi)
+\partial_i\partial_j(\pi-i\mu),\qquad B\ge0.
+$$ {#eq-l27-dipole-action}
+
+Temperature factors can be restored by taking $\Phi=F/T$ and matching the noise normalization. Varying $\pi$ and setting the response field to zero gives
+
+$$
+\partial_tn+B\nabla^4\mu=0,
+\qquad\omega=-iD_4k^4,\qquad D_4=B/\chi.
+$$ {#eq-l27-subdiffusion}
+
+The sign follows from integrating by parts twice: the deterministic term is $+B\pi\nabla^4\mu$. The relaxation time scales as length to the fourth power, slower than ordinary diffusion's length squared. This is subdiffusion with dynamic exponent $z=4$ in this linear model.
+
+A microscopic illustration is a one-dimensional lattice of occupations $n_x$ with allowed local rearrangements preserving both $\sum_xn_x$ and $\sum_xxn_x$. An isolated charge cannot hop one site without changing dipole moment; correlated moves can. Such constraints occur in fracton-inspired dynamics. The continuum equation predicts the long-wavelength relaxation when local equilibration and an ergodic hydrodynamic regime exist. Some microscopic models can have additional disconnected sectors, so observing $z=4$ requires checking that those do not invalidate the simple closure.
+
+## Subsystem conservation {#sec-l27-subsystem}
+
+On a square lattice one may instead conserve the charge on every row and every column. In the continuum, $\int dy\,n(x,y)$ is conserved for each $x$, and $\int dx\,n(x,y)$ is conserved for each $y$. Equivalently, $Q_{f,g}=\int dxdy\,[f(x)+g(y)]n$ is conserved for arbitrary functions $f,g$.
+
+The response shift is $\pi\mapsto\pi+f(x)+g(y)$. Its simplest invariant derivative is $\partial_x\partial_y\pi$, giving
+
+$$
+\mathcal L=\pi\partial_tn
++iB_s(\partial_x\partial_y\pi)
+\partial_x\partial_y(\pi-i\mu),
+$$
+
+and hence
+
+$$
+\omega=-iD_sk_x^2k_y^2,\qquad D_s=B_s/\chi.
+$$ {#eq-l27-subsystem-dispersion}
+
+Unlike $k^4$, this dispersion is not rotationally invariant. A fluctuation depending on only $x$ or only $y$ is frozen because it changes an exactly conserved row or column profile. The special axes are a physical remnant of the lattice, rather than a defect in the continuum approximation.
+
+## A conserved quantity with a spatial index {#sec-l27-vector}
+
+Now let the density itself be a vector, $b_i$. Before adding extra constraints, an isotropic first-derivative response theory can distinguish three irreducible pieces of $\partial_i\pi_j$: its trace, symmetric traceless part, and antisymmetric part. Write
+
+$$
+M_0=\partial_i\pi_i,\quad
+M^{(2)}_{ij}=\frac{\partial_i\pi_j+\partial_j\pi_i}{2}
+-\frac{\delta_{ij}}d\partial_k\pi_k,\quad
+M^{(1)}_{ij}=\frac{\partial_i\pi_j-\partial_j\pi_i}{2}.
+$$
+
+A quadratic action can contain $i\sigma_aM_a(\pi)M_a(\pi-i\mu)$ for each sector, with nonnegative dissipative weights after fixing normalization. Selecting only one sector enlarges its shift symmetry and introduces more conserved quantities.
+
+If only the trace term is present, divergence-free shifts of $\boldsymbol\pi$ are allowed. In three dimensions these can be represented locally by $\nabla\times\boldsymbol\Lambda$. The resulting conserved observables include circulation integrals $\oint_\gamma\mathbf b\cdot d\mathbf l$; the deterministic evolution of $\mathbf b$ is a gradient, which cannot change a closed-loop circulation. The lecture illustrates the corresponding singular test field using the Biot–Savart construction.
+
+If only the antisymmetric sector is present, gradient shifts $\pi_i\mapsto\pi_i+\partial_i\Lambda$ are allowed instead. The local conservation of $\nabla\cdot\mathbf b$ follows. Integrating against a step-function $\Lambda$ turns this into conservation of flux through the boundary of a spatial region. This is the setting that leads naturally to a one-form current.
+
+## The geometry of a higher-form current {#sec-l27-forms}
+
+An ordinary symmetry has a vector current $J^\mu$ obeying $\partial_\mu J^\mu=0$. A continuous $p$-form symmetry has a totally antisymmetric current of rank $p+1$:
+
+$$
+\partial_{\mu_0}J^{\mu_0\mu_1\cdots\mu_p}=0.
+$$ {#eq-l27-general-current}
+
+In $d$ spatial dimensions its charge is integrated on a closed spatial submanifold of dimension $d-p$. “Closed” means no boundary; noncontractible cycles in periodic space are important examples. For $p=0$, this recovers the usual integral over all space. For $p=1$ in $d=3$, charge is a flux through a surface; for $p=2$, it is measured along a curve. This geometric definition is developed systematically in the primary reference [Gaiotto et al., *Generalized Global Symmetries*](https://doi.org/10.1007/JHEP02(2015)172).
+
+For a one-form current, write $J^{0i}=b_i$ and $J^{ji}=K_{ji}=-K_{ij}$. Its spatial equation is
+
+$$
+\partial_tb_i+\partial_jK_{ji}=0.
+$$ {#eq-l27-one-form}
+
+The spatial equation alone implies $\partial_t(\partial_ib_i)=0$. The temporal-index component of the full source-free law @eq-l27-general-current additionally imposes $\partial_ib_i=0$. Thus an arbitrary frozen divergence is an extension with background charge, rather than the full source-free one-form conservation law. For the source-free theory, fluxes through homologous surfaces agree by Gauss's theorem. On an open surface the flux can change through its boundary; for magnetic flux this is Faraday's law. Thus higher-form conservation should not be misread as time independence of every open-surface flux.
+
+For a two-form current in three spatial dimensions, dualize $J^{0ij}=\epsilon_{ijk}a_k$ and $J^{kij}=\epsilon_{kij}I$. The conservation equation becomes $\partial_t\mathbf a+\nabla I=0$ up to the chosen orientation convention. Integrating around any closed curve gives $d\oint\mathbf a\cdot d\mathbf l/dt=0$. This is the curve analogue of the surface-flux statement.
+
+## Supplementary derivation: transverse diffusion {#sec-l27-modes}
+
+Choose a quadratic equilibrium functional $\Phi=\int b_i b_i/(2\chi)$, so $\mu_i=b_i/\chi$. The antisymmetric response action gives a curl-type dissipative current, or equivalently
+
+$$
+\partial_tb_i=D(\nabla^2b_i-\partial_i\partial_jb_j),
+\qquad D=\sigma/\chi\ge0.
+$$ {#eq-l27-vector-diffusion}
+
+For $\mathbf k=k\hat x$, the longitudinal component obeys $\partial_tb_x=0$, while each transverse component obeys $\partial_tb_\perp=-Dk^2b_\perp$. Thus
+
+$$
+\omega_\parallel=0,\qquad\omega_\perp=-iDk^2.
+$$
+
+The longitudinal zero mode records the static divergence sector of the extended spatial PDE. In the genuine source-free one-form theory, its temporal conservation equation requires $\nabla\cdot\mathbf b=0$, so the longitudinal mode is absent for nonzero $k$, leaving transverse diffusion. Notice the geometric wording: the polarization of the relaxing density is perpendicular to the wavevector. It does not mean the spatial modulation must be perpendicular to the density's original support.
+
+Magnetic induction in a conductor is the immediate physical application: $\mathbf b=\mathbf B$, Gauss's law fixes the divergence-free sector, and finite resistivity produces this transverse diffusion. Coupling it to momentum introduces waves, the subject of the final lecture.
+
+## Exercises and solutions {#sec-l27-exercises}
+
+1. Check dipole conservation directly from @eq-l27-subdiffusion under decaying boundary conditions.
+2. Identify every exactly frozen Fourier direction in @eq-l27-subsystem-dispersion.
+3. Prove that @eq-l27-vector-diffusion preserves the initial divergence field.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. $\dot D_i=-D_4\int x_i\nabla^4n=0$ after moving the derivatives onto $x_i$ by integration by parts. The same calculation with $1$ verifies charge conservation.
+2. All modes with $k_x=0$ or $k_y=0$ have zero decay rate. They encode the conserved row and column profiles.
+3. Taking a divergence gives $\partial_t\partial_ib_i=D[\nabla^2\partial_ib_i-\nabla^2\partial_jb_j]=0$.
+:::

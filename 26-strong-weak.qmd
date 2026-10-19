@@ -1,0 +1,141 @@
+# Strong-to-weak spontaneous symmetry breaking
+
+Lecture 26 · [Original notes](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture26.pdf)
+
+::: {.callout-tip title="Learning objectives"}
+Distinguish strong and weak symmetry of a density matrix; understand the thermodynamic-limit qualification in ensemble equivalence; rewrite diffusion in doubled phase variables; explain how charge leakage gaps a diffusion mode; recognize the roles of unitarity, positivity, and thermal KMS symmetry.
+:::
+
+## Why revisit an ordinary diffusion equation? {#sec-l26-question}
+
+Diffusion is familiar: a conserved density spreads with $\omega=-iDk^2$. The interpretation explored here is more recent. A density matrix has separate ket and bra actions of a symmetry, providing a richer symmetry-breaking structure than a single classical order parameter.
+
+The connection between that structure and hydrodynamics is developed in the primary paper by Huang, Qi, Zhang, and Lucas, [*Physical Review B* **111**, 125147 (2025)](https://doi.org/10.1103/PhysRevB.111.125147), with [open full text](https://arxiv.org/html/2407.08760v2). In its effective theory, finite susceptibility characterizes strong-to-weak breaking, and the diffusion excitation plays the associated Goldstone role. This is a modern interpretation of the hydrodynamic action under stated symmetry and equilibrium assumptions. The standard diffusion equation and the density-matrix identities below do not depend on adopting a particular terminology for mixed-state phases.
+
+## Pure states, cats, and local order {#sec-l26-pure}
+
+A pure state is symmetric under $U(g)$ when $U(g)|\psi\rangle=e^{i\alpha(g)}|\psi\rangle$. Conventional spontaneous symmetry breaking is diagnosed in a thermodynamic phase by order and locally distinguishable symmetry-related states, with care about the infinite-volume limit. A symmetric finite-size cat state can still have long-range correlations.
+
+For example, let $X=\prod_iX_i$ flip every qubit, and take
+
+$$
+|\mathrm{cat}\rangle=\frac{|0\cdots0\rangle+|1\cdots1\rangle}{\sqrt2}.
+$$
+
+It satisfies $X|\mathrm{cat}\rangle=|\mathrm{cat}\rangle$, $\langle Z_i\rangle=0$, and $\langle Z_iZ_j\rangle=1$. Tracing out one qubit removes the coherence between the two branches and gives an equal mixture of all-zero and all-one states on the others. Every fixed small collection of qubits has the same reduced state in that mixture as in the cat. Thus one-point invariance is not enough to decide whether a thermodynamic state has conventional order; long-distance correlations and the limiting procedure matter.
+
+This example is preparatory. It illustrates why replacing a state-vector test by a naive density-matrix test can conceal important distinctions.
+
+## Strong and weak symmetry are different algebraic statements {#sec-l26-density}
+
+To avoid confusing the density operator with a local density, write the former as $\varrho$ and the latter as $n$. For a unitary $U$, define strong symmetry of the state by
+
+$$
+U\varrho=e^{i\alpha}\varrho,
+$$ {#eq-l26-strong}
+
+and weak symmetry by
+
+$$
+U\varrho U^\dagger=\varrho.
+$$ {#eq-l26-weak}
+
+Hermiticity gives the corresponding right-action relation from @eq-l26-strong, so strong symmetry implies weak symmetry. For $U(\theta)=e^{i\theta Q}$, strong symmetry means the support of $\varrho$ lies in one charge eigenspace. Weak symmetry only says that $\varrho$ is block diagonal in charge; different blocks may occur with different weights.
+
+For example, consider the fixed-charge and charge-fluctuating states
+
+$$
+\varrho_{Q_0}=\frac{P_{Q_0}e^{-\beta H}}{Z_{Q_0}},\qquad
+\varrho_\mu=\frac{e^{-\beta(H-\mu Q)}}{Z_\mu},\qquad[H,Q]=0.
+$$ {#eq-l26-ensembles}
+
+The first satisfies $e^{i\theta Q}\varrho_{Q_0}=e^{i\theta Q_0}\varrho_{Q_0}$ and is strongly symmetric. The second is weakly symmetric and, when more than one charge sector is populated, not strongly symmetric. A charge-only weight $e^{-\lambda Q}$, as used for the schematic example in the lecture, has the same algebraic distinction. Normalization and trace convergence must be supplied in any microscopic implementation.
+
+Thermodynamic ensemble equivalence concerns local observables when $Q_0$ and $\mu$ are chosen to match density, subject to the usual thermodynamic hypotheses. It does not assert equality of the full density matrices. In particular, total-charge variance is zero in one ensemble and generally extensive in the other. Global constraints survive even when local measurements cannot distinguish ensembles.
+
+::: {.callout-note title="What the word spontaneous adds"}
+Equations @eq-l26-strong and @eq-l26-weak classify a given finite density matrix algebraically. A spontaneous-breaking claim additionally specifies the symmetry of the dynamics, the thermodynamic state family, and a suitable order diagnostic or thermodynamic-limit construction. The lecture interprets local relaxation from fixed-charge dynamics to a charge-fluctuating equilibrium description in this strong-to-weak framework. It is not a claim that unitary, charge-conserving evolution literally changes the total charge sector of a closed finite system.
+:::
+
+## From the MSR density action to two phase fields {#sec-l26-action}
+
+Start with a conserved density $n$, its response field $\pi_n$, and a conjugate phase $\phi$ with response $\pi_\phi$. In a convenient convention the phase response imposes
+
+$$
+\partial_t\phi+\mu=0.
+$$
+
+When the equation of state is invertible, eliminate $n$ in favor of $\partial_t\phi$. Write $\phi_r=\phi$ and $\phi_a=\pi_n$. Near equilibrium, $\delta n=\chi\delta\mu=-\chi\partial_t\phi_r$. Up to integration by parts, the quadratic long-wavelength action is
+
+$$
+\mathcal L=\chi\partial_t\phi_a\partial_t\phi_r
+-K\nabla\phi_a\cdot\nabla\phi_r
++iT\sigma\nabla\phi_a\cdot\nabla
+(\phi_a+i\beta\partial_t\phi_r).
+$$ {#eq-l26-action}
+
+Here $\chi>0$, $\sigma\ge0$, and $K$ is the superfluid stiffness. These are auxiliary doubled fields in an effective description of response and fluctuations. The $a$ field is integrated over, even though its saddle imposes a physical equation; it should not be treated as an additional independent classical density.
+
+For $K=0$, the action is invariant under
+
+$$
+\phi_a\mapsto\phi_a+c_a,\qquad
+\phi_r\mapsto\phi_r+f(\mathbf x),
+$$ {#eq-l26-normal-shifts}
+
+where $f$ is arbitrary and time independent. A nonzero stiffness reduces the latter freedom to a constant shift. This recovers the normal-versus-superfluid distinction encountered previously. The shift of $\phi_a$ is associated with the strong symmetry in the doubled formulation; the physical-phase shift corresponds to the weak symmetry. Both constant shifts survive in the action even though the thermodynamic state can realize them spontaneously rather than linearly.
+
+## Supplementary derivation: diffusion and charge leakage {#sec-l26-leakage}
+
+Set $K=0$ and vary @eq-l26-action with respect to $\phi_a$, then set $\phi_a=0$. The deterministic equation is
+
+$$
+\chi\partial_t^2\phi_r-\sigma\nabla^2\partial_t\phi_r=0.
+$$
+
+Using $\delta n=-\chi\partial_t\phi_r$ gives
+
+$$
+\partial_t\delta n=D\nabla^2\delta n,\qquad D=\frac\sigma\chi.
+$$ {#eq-l26-diffusion}
+
+The arbitrary time-independent part of $\phi_r$ is redundant, which is why the phase equation contains an additional zero-frequency freedom rather than another physical normal-fluid mode.
+
+Now let the system exchange charge with a reservoir. A local term
+
+$$
+\Delta\mathcal L=iT\gamma\phi_a(\phi_a+i\beta\partial_t\phi_r)
+$$ {#eq-l26-bath}
+
+breaks the constant $\phi_a$ shift explicitly while preserving the weak physical symmetry. The density equation becomes
+
+$$
+\partial_t\delta n=-\frac\gamma\chi\delta n+D\nabla^2\delta n,
+\qquad\omega=-i\left(\frac\gamma\chi+Dk^2\right).
+$$ {#eq-l26-gapped}
+
+The former diffusion mode now relaxes even at $k=0$. This directly illustrates the distinction between spontaneous breaking, which can retain a gapless mode, and explicit violation of the conservation law. The noise part of @eq-l26-bath accompanies the leakage coefficient when the bath is thermal.
+
+## Why the quantum contour has the same structure {#sec-l26-kms}
+
+Density-matrix evolution has the form $U\varrho U^\dagger$, hence a forward and backward history. With contour fields $\phi_1,\phi_2$, a common convention is $\phi_r=(\phi_1+\phi_2)/2$ and $\phi_a=\phi_1-\phi_2$. Other normalizations of $\phi_a$ move factors of two. The essential requirements are
+
+$$
+S[\phi_r,\phi_a=0]=0,\qquad \operatorname{Im}S\ge0.
+$$ {#eq-l26-sk-constraints}
+
+The first follows from cancellation of identical forward and backward histories and expresses trace preservation; the second ensures that $e^{iS}$ is damped in noisy directions. A thermal initial state includes an imaginary-time segment of extent $\beta$. Cyclicity of the thermal trace produces the Kubo–Martin–Schwinger relation between differently ordered correlators.
+
+Combining that relation with time reversal and expanding in small frequency gives a thermal transformation that shifts the response field by a term proportional to $-i\beta\partial_t\phi_r$. This is the origin of the MSR thermal time-reversal transformation and fluctuation–dissipation relation. At finite quantum frequency the contour transformation also corrects $\phi_r$ by a derivative of $\phi_a$; retaining only the classical low-frequency piece is an approximation. The response/noise construction is therefore consistent with, but does not require solving, the full microscopic quantum dynamics.
+
+## Exercises and solutions {#sec-l26-exercises}
+
+1. For $\varrho=p|0\rangle\langle0|+(1-p)|1\rangle\langle1|$ and $Q|q\rangle=q|q\rangle$, classify its symmetry when $0<p<1$.
+2. Derive the uniform charge-relaxation time from @eq-l26-gapped.
+3. Identify a global observable that distinguishes the two ensembles in @eq-l26-ensembles despite local equivalence.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. It commutes with $Q$, hence is weakly symmetric. Its two occupied charge sectors acquire different phases under left multiplication, so it is not strongly symmetric. At $p=0$ or $1$ it is strongly symmetric.
+2. At $k=0$, $\delta n(t)=\delta n(0)e^{-\gamma t/\chi}$, giving $\tau_Q=\chi/\gamma$.
+3. $\langle(Q-\langle Q\rangle)^2\rangle$ vanishes at fixed charge and is generally nonzero in the charge-fluctuating ensemble. It involves the entire system and is outside the local-observable equivalence statement.
+:::
