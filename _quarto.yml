@@ -9,7 +9,7 @@ project:
 book:
   title: "Hydrodynamics"
   output-file: hydrodynamics
-  site-url: "https://xing-phys.github.io/lec_hydro/"
+  site-url: "https://xing-phys.github.io/hydrodynamics-notes/"
   subtitle: "From fluctuations to flowing matter"
   author: []
   date: "2026-10-19"

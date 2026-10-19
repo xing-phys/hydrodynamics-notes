@@ -1,6 +1,6 @@
 # Hydrodynamics — a graduate study companion
 
-[Read the web book](https://xing-phys.github.io/lec_hydro/) · [Download the PDF](https://xing-phys.github.io/lec_hydro/hydrodynamics.pdf)
+[Read the web book](https://xing-phys.github.io/hydrodynamics-notes/) · [Download the PDF](https://xing-phys.github.io/hydrodynamics-notes/hydrodynamics.pdf)
 
 **Original course and lecture notes: Andrew Lucas, University of Colorado Boulder.** This web book is a graduate study companion to his [Hydrodynamics course, PHYS 7810, Spring 2026](https://www.alucasphys.com/s2026.html), following all 28 lectures.
 
@@ -41,15 +41,15 @@ Temporary original PDFs, rendered source images, generated site files, and Quart
 
 ## Publishing to GitHub Pages
 
-The source repository is [xing-phys/lec_hydro](https://github.com/xing-phys/lec_hydro), with `main` as the publishing branch. The site is served at [xing-phys.github.io/lec_hydro](https://xing-phys.github.io/lec_hydro/).
+The source repository is [xing-phys/hydrodynamics-notes](https://github.com/xing-phys/hydrodynamics-notes), with `main` as the publishing branch. The site is served at [xing-phys.github.io/hydrodynamics-notes](https://xing-phys.github.io/hydrodynamics-notes/).
 
 Pushing to `main` runs **Build and publish the web book**. The workflow builds the HTML and combined PDF, checks local links, and deploys `_site` to GitHub Pages. It can also be started manually from the repository's Actions tab. Deployment progress and the site URL appear in the `github-pages` environment. The Pages publishing source is **GitHub Actions**.
 
 To start from a new checkout:
 
 ```sh
-git clone https://github.com/xing-phys/lec_hydro.git
-cd lec_hydro
+git clone https://github.com/xing-phys/hydrodynamics-notes.git
+cd hydrodynamics-notes
 ```
 
 All page and asset links are relative, so the same build works at `username.github.io/repository/` and at a user-site root. No custom domain or account-specific URL is hard-coded. The workflow follows the official [GitHub custom Pages workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) and [Quarto setup action](https://github.com/quarto-dev/quarto-actions/tree/main/setup) documentation.
