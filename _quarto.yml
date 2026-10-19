@@ -10,12 +10,9 @@ book:
   title: "Hydrodynamics"
   output-file: hydrodynamics
   subtitle: "From fluctuations to flowing matter"
-  author:
-    - name: Andrew Lucas
-      affiliations:
-        - University of Colorado Boulder
+  author: []
   date: "2026-10-19"
-  description: "A study companion to Andrew Lucas' original Spring 2026 hydrodynamics lectures, with AI-assisted supplemental derivations, examples, and exercises."
+  description: "An unofficial study companion to Andrew Lucas' Spring 2026 hydrodynamics lectures, with supplemental derivations, examples, and exercises."
   search: true
   downloads: [pdf]
   sidebar:
@@ -78,8 +75,6 @@ book:
 bibliography: assets/bibliography.bib
 csl: assets/american-physics-society.csl
 link-citations: true
-language:
-  title-block-author-single: "Original lectures by"
 execute:
   enabled: false
 

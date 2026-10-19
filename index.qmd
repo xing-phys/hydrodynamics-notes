@@ -2,7 +2,7 @@
 
 ::: {.book-hero}
 ::: {.book-kicker}
-Andrew Lucas’ Hydrodynamics · PHYS 7810, Spring 2026
+Study companion · PHYS 7810, Spring 2026
 :::
 
 ## From random motion to collective flow. {.unnumbered .unlisted}
@@ -12,7 +12,7 @@ Hydrodynamics is the physics of what remains slow. Learn how conservation laws t
 :::
 
 ::: {.book-credit}
-**Original lectures by [Andrew Lucas](https://www.alucasphys.com/s2026.html)** · University of Colorado Boulder
+**Based on the lectures of [Andrew Lucas](https://www.alucasphys.com/s2026.html)** · University of Colorado Boulder
 :::
 
 ::: {.content-visible when-format="html"}
@@ -46,7 +46,7 @@ unifying language
 
 **All credit for the original course and lecture notes belongs to Andrew Lucas.** This book follows his [Spring 2026 Hydrodynamics lectures](https://www.alucasphys.com/s2026.html) at the University of Colorado Boulder. We gratefully acknowledge the work he put into developing the course and making the notes publicly available. Readers should cite his original lectures when referring to the course material.
 
-This repository is a study aid and claims no original scientific contribution. Supplemental explanations, derivations, exercises, and illustrations were prepared with AI assistance. They are additions to Lucas’ lectures; no authorship, review, or endorsement of these additions by him is implied. Any errors introduced in the supplemental material should not be attributed to him. His handwritten notes remain the authoritative source for the lectures.
+This is an unofficial study companion whose author field is left blank. **Andrew Lucas is not the author of this companion and is not responsible for its contents.** No review or endorsement by him is implied. Supplemental explanations, derivations, exercises, and illustrations are additions to his lectures; any errors in those additions should not be attributed to him. His handwritten notes remain the authoritative source for the lectures.
 
 ## What this book does
 
