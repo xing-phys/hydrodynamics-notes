@@ -8,7 +8,9 @@ This book is based on Andrew Lucas’ Spring 2026 hydrodynamics lectures. We gra
 
 The companion includes foundations, worked derivations, solved exercises, an interactive laboratory, source-page coverage records, and a combined PDF. See [NOTICE.md](NOTICE.md) for attribution and [the source guide](sources.qmd) for the original lecture links.
 
-The initial edition builds to 33 web pages and a 146-page PDF. See [VALIDATION.md](VALIDATION.md) for the completed checks and the remaining live-browser verification limit.
+The book closes with a standalone [Acknowledgments](acknowledgments.qmd) page, listed separately after Study tools in the sidebar and table of contents.
+
+The current edition builds to 34 web pages and a 147-page PDF. See [VALIDATION.md](VALIDATION.md) for the completed checks and the remaining live-browser verification limit.
 
 ## Read and build locally
 
@@ -26,6 +28,7 @@ For a faster content pass use `quarto render --to html --no-clean`; it preserves
 
 - `01-*.qmd` through `28-*.qmd`: one chapter per lecture. The filename prefix preserves Lucas' lecture number; the book's displayed chapter numbering counts lecture chapters only.
 - `prerequisites.qmd`, `notation.qmd`, `laboratory.qmd`: graduate-level study support.
+- `acknowledgments.qmd`: the standalone final acknowledgment, outside the Study tools part.
 - `_quarto.yml`: chapter order, six thematic parts, navigation, HTML and PDF options.
 - `assets/`: themes, browser scripts, APS citation style, bibliography, and math macros. Keep macro definitions equivalent in `macros.sty` and `mathjax-config.html`.
 - `coverage/`: a page-by-page topic map from the inspected source PDFs to the explanations here, including interpretation notes. `source-manifest.json` pins PDF checksums and page counts.

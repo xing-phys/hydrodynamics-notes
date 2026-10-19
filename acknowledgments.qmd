@@ -1,0 +1,3 @@
+# Acknowledgments {.unnumbered #sec-acknowledgments}
+
+This book is based on [Andrew Lucas’ Spring 2026 Hydrodynamics lectures](https://www.alucasphys.com/s2026.html), PHYS 7810, at the University of Colorado Boulder. We gratefully acknowledge his work in developing the course and making his lecture notes publicly available.

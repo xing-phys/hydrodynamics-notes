@@ -1,8 +1,4 @@
-# Sources, attribution, and coverage {.unnumbered #sec-sources}
-
-## Attribution and acknowledgments
-
-This book is based on [Andrew Lucas’ Spring 2026 hydrodynamics lectures](https://www.alucasphys.com/s2026.html) [@Lucas2026]. We gratefully acknowledge his work in developing PHYS 7810 and making his lecture notes publicly available.
+# Sources and coverage {.unnumbered #sec-sources}
 
 ## The lecture sequence
 

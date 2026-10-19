@@ -71,6 +71,7 @@ book:
         - laboratory.qmd
         - notation.qmd
         - sources.qmd
+    - acknowledgments.qmd
 
 bibliography: assets/bibliography.bib
 csl: assets/american-physics-society.csl

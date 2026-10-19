@@ -46,6 +46,8 @@ unifying language
 
 This book is based on [Andrew Lucas’ Spring 2026 Hydrodynamics lectures](https://www.alucasphys.com/s2026.html) at the University of Colorado Boulder. We gratefully acknowledge his work in developing the course and making his lecture notes publicly available.
 
+The book closes with a standalone [Acknowledgments](acknowledgments.qmd) page.
+
 ## What this book does
 
 The 28 lecture chapters follow Lucas’ course in order and link to each original PDF. They fill in intermediate algebra, assumptions, and examples to support reading the source notes.
