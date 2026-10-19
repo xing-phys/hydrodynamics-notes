@@ -19,7 +19,11 @@ class Document(HTMLParser):
     def handle_starttag(self, tag, attributes):
         a = dict(attributes)
         if 'id' in a:
-            if a['id'] in self.ids:
+            # Quarto intentionally repeats IDs across alternate theme stylesheets.
+            theme_link = (tag == 'link' and a['id'] in
+                          {'quarto-text-highlighting-styles', 'quarto-bootstrap'}
+                          and 'quarto-color-scheme' in a.get('class', ''))
+            if a['id'] in self.ids and not theme_link:
                 errors.append(f'Duplicate HTML id: {a["id"]}')
             self.ids.add(a['id'])
         if tag == 'a' and a.get('name'):
@@ -63,8 +67,17 @@ manifest = json.loads((ROOT / 'coverage/source-manifest.json').read_text())
 if [e['lecture'] for e in manifest['lectures']] != list(range(1, 29)):
     errors.append('Source manifest must contain all lectures in sequence')
 for name in ('lectures-01-09.md', 'lectures-10-18.md', 'lectures-19-28.md'):
-    if not (ROOT / 'coverage' / name).is_file():
+    audit_path = ROOT / 'coverage' / name
+    if not audit_path.is_file():
         errors.append(f'Missing source coverage audit {name}')
+        continue
+    sections = re.split(r'^## Lecture (\d+)[^\n]*\n', audit_path.read_text(), flags=re.M)
+    for i in range(1, len(sections), 2):
+        n = int(sections[i])
+        pages = [int(p) for p in re.findall(r'^\|\s*(\d+)\s*\|', sections[i+1], re.M)]
+        expected = list(range(1, manifest['lectures'][n-1]['pages'] + 1))
+        if pages != expected:
+            errors.append(f'Incomplete source-page map for lecture {n}: {pages}, expected {expected}')
 
 documents = {}
 for path in SITE.rglob('*.html'):
@@ -72,6 +85,12 @@ for path in SITE.rglob('*.html'):
     documents[path.resolve()] = Document(source)
     if re.search(r'class="[^"]*quarto-unresolved-ref', source) or 'citation-not-found' in source:
         errors.append(f'Unresolved rendered reference in {path.relative_to(SITE)}')
+for n, path in enumerate(lecture_files, 1):
+    rendered = SITE / path.with_suffix('.html').name
+    if rendered.is_file():
+        heading = re.search(r'<h1\b[^>]*class="title"[^>]*>(.*?)</h1>', rendered.read_text(), re.S)
+        if not heading or not re.search(rf'class="chapter-number">{n}</span>', heading[1]):
+            errors.append(f'Incorrect displayed chapter number in {rendered.name}')
 
 link_count = 0
 for path, document in documents.items():

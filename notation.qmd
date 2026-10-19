@@ -42,7 +42,7 @@ Only modes whose frequency vanishes at $k=0$ are strictly hydrodynamic. A gapped
 
 | Approximation | Typical condition | What must still be checked |
 |:--|:--|:--|
-| Hydrodynamic derivative expansion | $k\ell_{\rm micro},\omega\tau_{\rm micro}\ll1$ | All relevant slow variables retained |
+| Hydrodynamic derivative expansion | $k\ell_{\mathrm{micro}},\omega\tau_{\mathrm{micro}}\ll1$ | All relevant slow variables retained |
 | Local equilibrium | Microscopic equilibration faster than macroscopic change | Extra conservation laws, integrability, collisionless regime |
 | Incompressible fluid | Small density variation; often low Mach number | Acoustic transients, imposed heating, boundary conditions |
 | Inviscid bulk | Large Reynolds number, smooth interior flow | Boundary layers and singular gradients |

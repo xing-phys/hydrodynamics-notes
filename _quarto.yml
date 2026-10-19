@@ -8,6 +8,7 @@ project:
 
 book:
   title: "Hydrodynamics"
+  output-file: hydrodynamics
   subtitle: "From fluctuations to flowing matter"
   author:
     - name: Ze-Yu Xing
@@ -30,7 +31,7 @@ book:
   chapters:
     - index.qmd
     - prerequisites.qmd
-    - part: "I · Fluctuations and effective dynamics"
+    - part: "Fluctuations and effective dynamics"
       chapters:
         - 01-stochastic.qmd
         - 02-fokker-planck.qmd
@@ -38,32 +39,32 @@ book:
         - 04-msr.qmd
         - 05-diffusion.qmd
         - 06-quasihydrodynamics.qmd
-    - part: "II · Conservation laws and ideal fluids"
+    - part: "Conservation laws and ideal fluids"
       chapters:
         - 07-navier-stokes.qmd
         - 08-galilean.qmd
         - 09-shocks.qmd
         - 10-inviscid.qmd
         - 11-vortices.qmd
-    - part: "III · Viscosity, instability, and turbulence"
+    - part: "Viscosity, instability, and turbulence"
       chapters:
         - 12-viscous.qmd
         - 13-boundary-layers.qmd
         - 14-instabilities.qmd
         - 15-turbulence.qmd
-    - part: "IV · Waves, rotation, and buoyancy"
+    - part: "Waves, rotation, and buoyancy"
       chapters:
         - 16-surface-waves.qmd
         - 17-atmosphere.qmd
         - 18-convection.qmd
         - 19-spacetime-symmetries.qmd
-    - part: "V · From particles to fluids"
+    - part: "From particles to fluids"
       chapters:
         - 20-bbgky.qmd
         - 21-boltzmann.qmd
         - 22-kinetic-hydrodynamics.qmd
         - 23-ballistic-viscous.qmd
-    - part: "VI · Broken and generalized symmetries"
+    - part: "Broken and generalized symmetries"
       chapters:
         - 24-superfluids.qmd
         - 25-two-fluid.qmd
@@ -101,7 +102,6 @@ format:
   pdf:
     documentclass: scrreprt
     pdf-engine: lualatex
-    output-file: hydrodynamics.pdf
     papersize: a4
     geometry:
       - margin=25mm

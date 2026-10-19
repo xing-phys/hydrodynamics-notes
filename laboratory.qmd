@@ -9,7 +9,7 @@ For an infinite one-dimensional system with an initially normalized Gaussian of 
 $$
 P(x,t)=\frac{\exp[-x^2/(2(a^2+2Dt))]}{\sqrt{2\pi(a^2+2Dt)}},
 \qquad \langle x^2\rangle=a^2+2Dt.
-$$ {#eq-lab-diffusion}
+$$
 
 The plot uses dimensionless units with $a=1$. Its shaded curve is the initial packet. The height decreases while the width increases, with total probability exactly one on the full infinite line. The finite plot window may omit tails at large $Dt$.
 
@@ -34,7 +34,7 @@ Consider the model from the foundations chapter, with $c=\Gamma=1$:
 
 $$
 \omega_\pm(k)=-\frac{i}{2}\pm\sqrt{k^2-\frac14}.
-$$ {#eq-lab-crossover}
+$$
 
 At small $k$, a slow diffusive mode coexists with a fast relaxing mode. At $k=1/2$ the poles merge. Beyond it their real parts split and their imaginary parts coincide. This is an exact statement about this two-field model. The location and shape of a crossover in a real fluid depend on its microscopic dynamics.
 
@@ -56,14 +56,14 @@ For inviscid, incompressible, irrotational surface waves of small amplitude on d
 
 $$
 \omega^2=\left(gk+\frac{\sigma}{\rho}k^3\right)\tanh(kH).
-$$ {#eq-lab-waves}
+$$
 
 Set $q=kH$ and $\alpha=\sigma/(\rho gH^2)$, the inverse Bond number. The dimensionless phase speed is
 
 $$
-\frac{c_{\rm ph}}{\sqrt{gH}}=
+\frac{c_{\mathrm{ph}}}{\sqrt{gH}}=
 \sqrt{\left(\frac1q+\alpha q\right)\tanh q}.
-$$ {#eq-lab-phase}
+$$
 
 ::: {.content-visible when-format="html"}
 ```{=html}
@@ -78,7 +78,9 @@ $$ {#eq-lab-phase}
 **Try this:** find the shallow-water limit $q\ll1$ and the deep-water gravity limit $1\ll q\ll\alpha^{-1/2}$. Why do short capillary waves become faster as their wavelength decreases? The group speed is $d\omega/dk$, which generally differs from the plotted phase speed. Derive the dispersion relation in [Lecture 16](16-surface-waves.qmd).
 
 ::: {.content-visible when-format="pdf"}
-![Analytical snapshots of the three experiments. Top: Gaussian diffusion at $D=1/2$ and several times. Middle: two relaxing-current poles as $k$ increases; damping remains nonpositive. Bottom: surface-wave phase speeds for several inverse Bond numbers. The web edition supplies the controls.](figs/laboratory.pdf){width=95%}
+![](figs/laboratory.pdf){width=95%}
+
+*Analytical snapshots of the three experiments. Top: Gaussian diffusion at $D=1/2$ and several times. Middle: two relaxing-current poles as $k$ increases; damping remains nonpositive. Bottom: surface-wave phase speeds for several inverse Bond numbers. The web edition supplies the controls.*
 :::
 
 ::: {.callout-note title="Reproduce the formulas in Julia"}

@@ -2,6 +2,8 @@
 
 An independent web book following all 28 lectures in [Andrew Lucas' PHYS 7810, Spring 2026](https://www.alucasphys.com/s2026.html). Includes foundations, original explanations, worked derivations, solved exercises, an interactive laboratory, source-page coverage records, and a combined PDF. This is companion material, not an authorized edition of Lucas' notes.
 
+The initial edition builds to 33 web pages and a 146-page PDF. See [VALIDATION.md](VALIDATION.md) for the completed checks and the remaining live-browser verification limit.
+
 ## Read and build locally
 
 Install [Quarto](https://quarto.org/docs/get-started/) (tested with 1.10.18). For PDF output, install a TeX distribution, or run `quarto install tinytex` once.
@@ -12,7 +14,7 @@ python3 scripts/check_book.py        # Check rendered links, anchors, labels, an
 quarto preview --no-browser          # Prints the local preview URL
 ```
 
-For a faster content pass use `quarto render --to html`; it does not regenerate the PDF. For a static preview of the completed build, use `python3 -m http.server 8246 --directory _site` and visit `http://localhost:8246`. Browser scripts and navigation should be checked over HTTP. MathJax is loaded from a CDN by Quarto, so the HTML math renderer requires internet on first load; the PDF is self-contained for offline reading.
+For a faster content pass use `quarto render --to html --no-clean`; it preserves the existing PDF without regenerating it. For a static preview of the completed build, use `python3 -m http.server 8246 --directory _site` and visit `http://localhost:8246`. Browser scripts and navigation should be checked over HTTP. MathJax is loaded from a CDN by Quarto, so the HTML math renderer requires internet on first load; the PDF is self-contained for offline reading.
 
 ## Files you will edit
 
@@ -21,7 +23,7 @@ For a faster content pass use `quarto render --to html`; it does not regenerate 
 - `_quarto.yml`: chapter order, six thematic parts, navigation, HTML and PDF options.
 - `assets/`: themes, browser scripts, APS citation style, bibliography, and math macros. Keep macro definitions equivalent in `macros.sty` and `mathjax-config.html`.
 - `coverage/`: a page-by-page topic map from the inspected source PDFs to the explanations here, including interpretation notes. `source-manifest.json` pins PDF checksums and page counts.
-- `figs/`: exported figures; `scripts/figures.jl` regenerates the original analytic illustrations using Julia and CairoMakie. The exported files are committed, so readers and CI do not need Julia.
+- `figs/`: exported figures; `julia --startup-file=no scripts/figures.jl` regenerates the original analytic illustrations using Julia, CairoMakie, and Inkscape (for the cover SVG-to-PDF export). The exported files are committed, so readers and CI do not need these figure-generation tools.
 - `scripts/check_book.py`: dependency-free structural and local-link checks.
 
 Temporary original PDFs, rendered source images, generated site files, and Quarto caches are ignored by Git. The source PDFs are linked to the author's website and are not redistributed. `scripts/source_manifest.py --fetch` optionally re-downloads and verifies the pinned source versions. Normal builds do not download them.

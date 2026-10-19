@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const NS = 'http://www.w3.org/2000/svg';
-  const colors = {primary:'#16776f', secondary:'#c38149', muted:'#96aaa4'};
+  const colors = {primary:'var(--book-accent)', secondary:'#c38149', muted:'#96aaa4'};
   const node = (name, attrs={}, text) => {
     const e=document.createElementNS(NS,name);
     for(const [k,v] of Object.entries(attrs)) e.setAttribute(k,String(v));

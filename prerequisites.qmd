@@ -12,7 +12,7 @@ Let $\ell_{\mathrm{micro}}$ and $\tau_{\mathrm{micro}}$ denote typical microscop
 
 $$
 k\ell_{\mathrm{micro}}\ll1,\qquad |\omega|\tau_{\mathrm{micro}}\ll1.
-$$ {#eq-found-scales}
+$$
 
 This does not require weak microscopic interactions. A strongly interacting system can have simple hydrodynamics if local nonconserved disturbances relax quickly. Conversely, a weakly interacting gas has a long mean free path, so its hydrodynamic regime may require very large distances. An additional almost conserved quantity introduces an extra long time and must be kept if the experiment resolves it.
 
@@ -27,7 +27,7 @@ P(x)=\frac{1}{\sqrt{2\pi\sigma^2}}
 \exp\!\left[-\frac{(x-\mu)^2}{2\sigma^2}\right],
 \qquad \langle x\rangle=\mu,\quad
 \langle(x-\mu)^2\rangle=\sigma^2.
-$$ {#eq-found-gaussian}
+$$
 
 One useful proof starts from $I(a)=\int_{-\infty}^{\infty}e^{-a x^2/2}dx=\sqrt{2\pi/a}$. Differentiating under the integral gives $\int x^2e^{-a x^2/2}dx=I(a)/a$. Repeated differentiation generates every even Gaussian moment. Odd moments vanish by symmetry. For a zero-mean Gaussian vector with covariance $C_{ij}=\langle x_i x_j\rangle$, the generating function is $\langle e^{J_i x_i}\rangle=e^{J_i C_{ij}J_j/2}$. Its expansion gives Wick's rule: a fourth moment is the sum of its three pairings.
 
@@ -40,7 +40,7 @@ Brownian motion $W_t$ has independent increments, mean zero, and $\langle(W_{t+\
 $$
 \langle\xi(t)\xi(t')\rangle=\delta(t-t'),\qquad
 \left\langle\left(\int_0^t\xi(s)\,ds\right)^2\right\rangle=t.
-$$ {#eq-found-white}
+$$
 
 The delta function has units of inverse time, so white noise has units $\mathrm{time}^{-1/2}$. In $dx=a\,dt+b\,dW_t$, $a$ has units $x/\mathrm{time}$ and $b$ has units $x/\sqrt{\mathrm{time}}$. Keeping these units prevents a common factor-of-time mistake in numerical noise generation.
 
@@ -48,7 +48,7 @@ For a smooth function of an Itô process, Taylor expand $f(x+dx)$ through second
 
 $$
 df=f'(x)a\,dt+f'(x)b\,dW_t+\frac12 f''(x)b^2\,dt.
-$$ {#eq-found-ito}
+$$
 
 This is Itô's formula. The extra term is why ordinary calculus cannot simply be applied to noisy paths. For state-dependent $b(x)$ the choice of stochastic convention changes the drift that represents a given physical process. Lecture 1 explains that distinction.
 
@@ -66,7 +66,7 @@ Because $V$ is arbitrary, the integrands give
 
 $$
 \partial_t n+\nabla\cdot\mathbf j=0.
-$$ {#eq-found-continuity}
+$$
 
 There is no automatic statement that $n$ remains constant at each point. A local density changes when current converges or diverges. Total charge is constant for a closed system with no boundary flux, or with periodic boundaries. A source $s$ changes the right side to $s$; a weak relaxation term $s=-\Gamma\delta n$ is the simplest quasihydrodynamic modification.
 
@@ -80,7 +80,7 @@ $$
 \frac{df(\mathbf x(t),t)}{dt}
 =\partial_t f+v_i\partial_i f
 \equiv D_t f.
-$$ {#eq-found-material}
+$$
 
 Thus fluid acceleration is $D_t\mathbf v$, including the convective term $(\mathbf v\cdot\nabla)\mathbf v$ even in a stationary velocity field. A steady flow around a bend accelerates because a moving element samples different velocity directions.
 
@@ -91,7 +91,7 @@ We use the inverse transform convention
 $$
 f(\mathbf x,t)=\int\frac{d^d k\,d\omega}{(2\pi)^{d+1}}
 e^{i\mathbf k\cdot\mathbf x-i\omega t}f(\mathbf k,\omega).
-$$ {#eq-found-fourier}
+$$
 
 Then $\partial_t\to-i\omega$, $\nabla\to i\mathbf k$, and $\nabla^2\to-k^2$. A mode is damped when $\operatorname{Im}\omega<0$: writing $\omega=\omega_R-i\gamma$ gives $e^{-i\omega t}=e^{-i\omega_Rt}e^{-\gamma t}$. In the alternative convention $e^{st}$, stability means $\operatorname{Re}s<0$, with $s=-i\omega$.
 
@@ -116,7 +116,7 @@ For a simple one-component fluid in its rest frame, let $\epsilon$ be energy den
 $$
 d\epsilon=T\,ds+\mu\,dn,\qquad
 \epsilon+p=Ts+\mu n.
-$$ {#eq-found-thermo}
+$$
 
 Differentiate the second identity and use the first to obtain the Gibbs–Duhem relation $dp=s\,dT+n\,d\mu$. These relations assume an extensive equilibrium system with no extra thermodynamic variables. Magnetic fields, strain, or a superfluid relative velocity add work terms, so the simple form must then be enlarged.
 
@@ -124,7 +124,7 @@ The Helmholtz free-energy density is $f=\epsilon-Ts$, with $df=-s\,dT+\mu\,dn$. 
 
 $$
 \chi=\left(\frac{\partial n}{\partial\mu}\right)_T.
-$$ {#eq-found-chi}
+$$
 
 A stable homogeneous phase has $\chi>0$ when this ensemble is well defined. Expanding free energy around equilibrium gives a quadratic penalty $(\delta n)^2/(2\chi)$ per unit volume. A coarse-grained cell of volume $V$ consequently has $\langle(\delta n)^2\rangle=T\chi/V$ when $k_B=1$. Equilibrium fluctuations therefore know about a response coefficient before any transport equation is specified.
 
@@ -138,7 +138,7 @@ Pressure is a function of thermodynamic state, not an independently adjustable f
 
 The second law constrains constitutive coefficients. If a scalar conserved density has current $\mathbf j=-\sigma\nabla\mu$ at fixed temperature, then $\dot F=\int\mu\,\partial_tn\,d^dx=-\int\sigma(\nabla\mu)^2d^dx\le0$ for closed or periodic boundaries. Here integration by parts used the continuity equation. With $\delta n=\chi\delta\mu$, the diffusion constant is $D=\sigma/\chi$.
 
-This derivation also shows why $D<0$ would make a homogeneous state unstable in the simple gradient theory. Noise must be added if one wants the correct equilibrium fluctuations rather than only the mean relaxation. Fluctuation–dissipation relations connect the strength of that noise to the dissipative coefficient and temperature. Dissipation and noise are two aspects of the same coupling to unresolved degrees of freedom.
+This derivation also shows why $D<0$ would make a homogeneous state unstable in the simple gradient theory. Noise must be added if one wants the correct equilibrium fluctuations rather than only the mean relaxation. Fluctuation–dissipation relations connect the strength of that noise to the dissipative coefficient and temperature. Dissipation and noise are two aspects of the same coupling to unresolved degrees of freedom. The response-field construction yields the same Einstein relation in @eq-l05-einstein; the shear analogue is @eq-l08-shear.
 
 ## Scaling, units, and approximations
 
@@ -151,7 +151,7 @@ Boundary conditions are part of the model. A second-order spatial equation needs
 ## Check your understanding
 
 1. A density mode obeys $\partial_t n_k=-Dk^2n_k$. How does doubling its wavelength change its lifetime?
-2. Use @eq-found-ito for $f(x)=x^2$ and $dx=\sqrt{2D}\,dW_t$ to find the mean-squared displacement.
+2. Use the Itô formula above for $f(x)=x^2$ and $dx=\sqrt{2D}\,dW_t$ to find the mean-squared displacement.
 3. Show that a steady shear $\mathbf v=(\dot\gamma y,0,0)$ has zero convective acceleration, while rigid rotation $\mathbf v=\boldsymbol\Omega\times\mathbf r$ does not.
 
 ::: {.callout-note collapse="true" title="Solutions"}

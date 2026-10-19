@@ -1,7 +1,4 @@
----
-title: "Start here"
-number-sections: false
----
+# Start here {.unnumbered}
 
 ::: {.book-hero}
 ::: {.book-kicker}
@@ -14,7 +11,13 @@ A graduate field guide · Based on PHYS 7810, Spring 2026
 Hydrodynamics is the physics of what remains slow. Learn how conservation laws turn microscopic motion into diffusion, sound, vortices, and the collective dynamics of quantum matter.
 :::
 
+::: {.content-visible when-format="html"}
 ![](figs/flow.svg){.hero-flow fig-alt="Schematic streamlines bending around a circular obstacle, illustrating collective flow."}
+:::
+
+::: {.content-visible when-format="pdf"}
+![](figs/flow.pdf){width=100%}
+:::
 
 [Begin with the foundations](prerequisites.qmd){.book-button}
 [Explore the lectures](01-stochastic.qmd){.book-button .secondary}

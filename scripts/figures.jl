@@ -38,7 +38,7 @@ for (α, color) in zip((0, .001, .01, .1), ("#8ca59e", teal, ochre, "#79678b"))
     c = sqrt.((1 ./ q .+ α.*q) .* tanh.(q))
     lines!(ax3, q, c; color, label="α = $α")
 end
-axislegend(ax3; position=:rt, framevisible=false)
+axislegend(ax3; position=:lt, framevisible=false)
 xlims!(ax3, 0, 20); ylims!(ax3, 0, 1.65)
 save(joinpath(out, "laboratory.pdf"), f)
 save(joinpath(out, "laboratory.png"), f; px_per_unit=1.5)
@@ -56,11 +56,12 @@ open(joinpath(out, "flow.svg"), "w") do io
                 ψ < abs(c) ? (lo=mid) : (hi=mid)
             end
             y = sign(c)*(lo+hi)/2
-            push!(points, "$(round(480+91x; digits=2)),$(round(165-60y; digits=2))")
+            push!(points, "$(round(480+91x; digits=2)),$(round(165-91y; digits=2))")
         end
         opacity = .25 + .6*exp(-abs(c)/2)
         println(io, "<polyline points=\"$(join(points, " "))\" fill=\"none\" stroke=\"#3b9b8c\" stroke-width=\"1.5\" opacity=\"$opacity\"/>")
     end
-    println(io, """<ellipse cx="480" cy="165" rx="72.8" ry="48" fill="#16776f" fill-opacity="0.07" stroke="#4c9c8a" stroke-width="1.5"/><text x="825" y="303" font-family="system-ui,sans-serif" font-size="11" fill="#708f83" letter-spacing="2">COLLECTIVE FLOW</text></svg>""")
+    println(io, """<circle cx="480" cy="165" r="72.8" fill="#16776f" fill-opacity="0.07" stroke="#4c9c8a" stroke-width="1.5"/><text x="825" y="303" font-family="system-ui,sans-serif" font-size="11" fill="#708f83" letter-spacing="2">COLLECTIVE FLOW</text></svg>""")
 end
+run(`inkscape $(joinpath(out, "flow.svg")) --export-type=pdf --export-filename=$(joinpath(out, "flow.pdf"))`)
 println("Created flow.svg and laboratory.pdf/png")

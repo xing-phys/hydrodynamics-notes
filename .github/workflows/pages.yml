@@ -27,6 +27,10 @@ jobs:
           tinytex: true
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Ensure the PDF code font is installed
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu-core
       - name: Render HTML and combined PDF
         run: quarto render
       - name: Check local links and source structure
