@@ -1,0 +1,117 @@
+project:
+  type: book
+  output-dir: _site
+  resources:
+    - assets/lab.js
+    - assets/book.js
+    - figs/
+
+book:
+  title: "Hydrodynamics"
+  subtitle: "From fluctuations to flowing matter"
+  author:
+    - name: Ze-Yu Xing
+      orcid: 0009-0009-5655-0187
+      affiliations:
+        - Institute of Physics, Chinese Academy of Sciences
+        - University of Chinese Academy of Sciences
+  date: "2026-10-19"
+  description: "An independent graduate study companion to Andrew Lucas' Spring 2026 hydrodynamics lectures, with derivations, examples, and exercises."
+  search: true
+  downloads: [pdf]
+  sidebar:
+    style: docked
+    collapse-level: 1
+    logo: assets/mark.svg
+    title: "Hydrodynamics"
+  page-footer:
+    left: "A graduate study companion · PHYS 7810 / Spring 2026"
+    right: "Based on Andrew Lucas’ course · Independent explanatory notes"
+  chapters:
+    - index.qmd
+    - prerequisites.qmd
+    - part: "I · Fluctuations and effective dynamics"
+      chapters:
+        - 01-stochastic.qmd
+        - 02-fokker-planck.qmd
+        - 03-time-reversal.qmd
+        - 04-msr.qmd
+        - 05-diffusion.qmd
+        - 06-quasihydrodynamics.qmd
+    - part: "II · Conservation laws and ideal fluids"
+      chapters:
+        - 07-navier-stokes.qmd
+        - 08-galilean.qmd
+        - 09-shocks.qmd
+        - 10-inviscid.qmd
+        - 11-vortices.qmd
+    - part: "III · Viscosity, instability, and turbulence"
+      chapters:
+        - 12-viscous.qmd
+        - 13-boundary-layers.qmd
+        - 14-instabilities.qmd
+        - 15-turbulence.qmd
+    - part: "IV · Waves, rotation, and buoyancy"
+      chapters:
+        - 16-surface-waves.qmd
+        - 17-atmosphere.qmd
+        - 18-convection.qmd
+        - 19-spacetime-symmetries.qmd
+    - part: "V · From particles to fluids"
+      chapters:
+        - 20-bbgky.qmd
+        - 21-boltzmann.qmd
+        - 22-kinetic-hydrodynamics.qmd
+        - 23-ballistic-viscous.qmd
+    - part: "VI · Broken and generalized symmetries"
+      chapters:
+        - 24-superfluids.qmd
+        - 25-two-fluid.qmd
+        - 26-strong-weak.qmd
+        - 27-higher-form.qmd
+        - 28-mhd.qmd
+    - part: "Study tools"
+      chapters:
+        - laboratory.qmd
+        - notation.qmd
+        - sources.qmd
+
+bibliography: assets/bibliography.bib
+csl: assets/american-physics-society.csl
+link-citations: true
+execute:
+  enabled: false
+
+format:
+  html:
+    theme:
+      light: [cosmo, assets/theme-light.scss]
+      dark: [darkly, assets/theme-dark.scss]
+    css: assets/styles.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    smooth-scroll: true
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: mathjax
+    include-in-header: assets/mathjax-config.html
+    include-after-body: assets/after-body.html
+    reference-location: section
+  pdf:
+    documentclass: scrreprt
+    pdf-engine: lualatex
+    output-file: hydrodynamics.pdf
+    papersize: a4
+    geometry:
+      - margin=25mm
+    fontsize: 11pt
+    monofont: DejaVu Sans Mono
+    colorlinks: true
+    linkcolor: teal
+    toc: true
+    toc-depth: 1
+    number-sections: true
+    include-in-header: assets/macros.sty
+    keep-tex: false
+    reference-location: document

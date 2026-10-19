@@ -1,0 +1,19 @@
+/*-- scss:defaults --*/
+$body-bg: #fbfaf6;
+$body-color: #242f38;
+$link-color: #16776f;
+$primary: #16776f;
+$secondary: #6c777d;
+$font-family-sans-serif: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+$headings-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+$font-size-base: 1.04rem;
+$line-height-base: 1.76;
+$headings-font-weight: 650;
+$sidebar-bg: #f1f2ed;
+$sidebar-fg: #475852;
+$sidebar-hl: #13766d;
+$code-bg: #edf0e9;
+$code-color: #486159;
+$border-color: #dce2da;
+/*-- scss:rules --*/
+.sidebar-title { letter-spacing: -.045em; font-size: 1.55rem; }

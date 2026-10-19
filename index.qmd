@@ -1,0 +1,108 @@
+---
+title: "Start here"
+number-sections: false
+---
+
+::: {.book-hero}
+::: {.book-kicker}
+A graduate field guide · Based on PHYS 7810, Spring 2026
+:::
+
+## From random motion to collective flow. {.unnumbered .unlisted}
+
+::: {.lead}
+Hydrodynamics is the physics of what remains slow. Learn how conservation laws turn microscopic motion into diffusion, sound, vortices, and the collective dynamics of quantum matter.
+:::
+
+![](figs/flow.svg){.hero-flow fig-alt="Schematic streamlines bending around a circular obstacle, illustrating collective flow."}
+
+[Begin with the foundations](prerequisites.qmd){.book-button}
+[Explore the lectures](01-stochastic.qmd){.book-button .secondary}
+
+::: {.book-stats}
+::: {}
+**28**
+lecture companions
+:::
+::: {}
+**6**
+connected themes
+:::
+::: {}
+**1**
+unifying language
+:::
+:::
+:::
+
+## What this book does
+
+This is an independent study companion to [Andrew Lucas’ Hydrodynamics course](https://www.alucasphys.com/s2026.html), taught at the University of Colorado Boulder in Spring 2026. Its 28 lecture chapters follow the course in order, explaining the physics in original prose and filling in intermediate algebra, assumptions, and examples. The handwritten source notes remain the reference for the course; each chapter links to the corresponding PDF. Lucas is the author of the source lectures. The additional explanations and exercises here are companion material, not an authorized edition or a transcription of his notes.
+
+The intended reader is a beginning graduate student with undergraduate mechanics, calculus, basic probability, and some thermodynamics. You do not need to know stochastic calculus, response fields, kinetic theory, superfluid hydrodynamics, or generalized symmetries before starting. These tools are introduced where they become useful. The [foundations chapter](prerequisites.qmd) supplies the mathematical and thermodynamic bridge.
+
+## A route through the subject
+
+::: {.reading-path}
+**I · Fluctuations and effective dynamics — Lectures 1–6**
+
+Start with noisy trajectories. Translate them into probability evolution and response, then see why conservation produces diffusion. Quasihydrodynamics explains how an almost conserved quantity remains slow for a finite time.
+
+[Start with stochastic differential equations →](01-stochastic.qmd)
+:::
+
+::: {.reading-path}
+**II · Conservation laws and ideal fluids — Lectures 7–11**
+
+Build the equations of a moving fluid from local conservation and symmetry. Learn how waves steepen into shocks, how pressure enforces incompressibility, and how vorticity organizes flow.
+
+[Start with the Navier–Stokes equations →](07-navier-stokes.qmd)
+:::
+
+::: {.reading-path}
+**III · Viscosity, instability, and turbulence — Lectures 12–15**
+
+Solve simple viscous flows, understand the singular role of boundaries, and study how laminar motion becomes unstable. Treat turbulence scaling as a physical phenomenology with a stated domain of validity.
+
+[Start with incompressible viscous flows →](12-viscous.qmd)
+:::
+
+::: {.reading-path}
+**IV · Waves, rotation, and buoyancy — Lectures 16–19**
+
+Add interfaces, gravity, a rotating frame, and temperature gradients. Then revisit how spacetime symmetries constrain the very form of the constitutive relations.
+
+[Start with surface tension and gravity waves →](16-surface-waves.qmd)
+:::
+
+::: {.reading-path}
+**V · From particles to fluids — Lectures 20–23**
+
+Derive reduced distribution functions and the Boltzmann equation. Identify collision invariants, local equilibrium, and transport coefficients; learn where the hydrodynamic approximation fails.
+
+[Start with the BBGKY hierarchy →](20-bbgky.qmd)
+:::
+
+::: {.reading-path}
+**VI · Broken and generalized symmetries — Lectures 24–28**
+
+Let an order-parameter phase become a slow field. Extend the symmetry viewpoint to mixed states and extended conserved objects, and finish with magnetic flux as a hydrodynamic degree of freedom.
+
+[Start with superfluids →](24-superfluids.qmd)
+:::
+
+## How to study a chapter
+
+Read the objectives, then work through the central derivation with pencil and paper. Pause whenever an approximation is introduced: identify the small parameter and the quantity being discarded. Try the exercises before opening the solutions. A result is much easier to remember once you know its units, limiting cases, and failure conditions.
+
+Supplemental derivations are explicitly marked. A callout can clarify a convention or an error-prone step without interrupting the main argument. The [notation guide](notation.qmd) helps reconcile symbols across topics, while the [interactive laboratory](laboratory.qmd) lets you change diffusion, relaxation, and surface-wave parameters. Its controls run in your browser; no server-side computation is needed.
+
+The sidebar provides the complete chapter tree, the right margin lists the sections of the current chapter, and search covers the book. Use the theme toggle for light or dark mode. The download icon in the sidebar provides the combined PDF.
+
+::: {.callout-note title="A careful reading convention"}
+An exact identity, a constitutive approximation, and an empirical scaling law have different status. This book states the relevant assumptions next to the result. In particular, a fluid equation is an effective description at long wavelengths, turbulence scaling requires additional statistical assumptions, and a quantum symmetry statement depends on which object the symmetry acts on.
+:::
+
+## Sources and coverage
+
+The [source guide](sources.qmd) lists all 28 original lecture PDFs and explains the coverage audit. The versioned `coverage/` directory maps inspected source pages to the companion sections and records interpretation notes. Original PDFs and temporary page images are excluded from Git and from the published site. The website is built from editable Markdown with Quarto; publication instructions are in the project README.

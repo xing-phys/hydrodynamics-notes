@@ -1,0 +1,63 @@
+# Sources, attribution, and coverage {.unnumbered #sec-sources}
+
+## The lecture sequence
+
+Andrew Lucas' [Spring 2026 course page](https://www.alucasphys.com/s2026.html) is the organizing source [@Lucas2026]. It lists 28 lectures. The companion preserves that sequence, then groups it into six thematic parts for navigation. Chapter numbers therefore agree with lecture numbers; the foundations and study tools are unnumbered.
+
+All **172 pages** of the 28 linked lecture PDFs were visually inspected for this edition. The source snapshot was retrieved on **19 October 2026**. The table gives the PDF page count, including its cover. The checksums and source-page topic mappings are versioned in `coverage/`. An original PDF may be updated on the author's website after this snapshot.
+
+| Lecture | Companion chapter | Original notes | Pages |
+|:--|:--|:--|--:|
+| 1 | [Stochastic differential equations](01-stochastic.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture1.pdf) | 6 |
+| 2 | [Fokker–Planck equation](02-fokker-planck.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture2.pdf) | 6 |
+| 3 | [Time-reversal symmetry](03-time-reversal.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture3.pdf) | 6 |
+| 4 | [MSR Lagrangian](04-msr.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture4.pdf) | 6 |
+| 5 | [Diffusion](05-diffusion.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture5.pdf) | 7 |
+| 6 | [Quasihydrodynamics and correlation functions](06-quasihydrodynamics.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture6.pdf) | 6 |
+| 7 | [Navier–Stokes equations](07-navier-stokes.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture7.pdf) | 6 |
+| 8 | [Galilean invariance](08-galilean.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture8.pdf) | 6 |
+| 9 | [Shock and rarefaction waves](09-shocks.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture9.pdf) | 6 |
+| 10 | [Incompressible inviscid flows](10-inviscid.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture10.pdf) | 6 |
+| 11 | [Vortex dynamics](11-vortices.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture11.pdf) | 6 |
+| 12 | [Incompressible viscous flows](12-viscous.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture12.pdf) | 6 |
+| 13 | [Boundary layers](13-boundary-layers.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture13.pdf) | 7 |
+| 14 | [Instabilities of viscous flows](14-instabilities.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture14.pdf) | 6 |
+| 15 | [Turbulence](15-turbulence.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture15.pdf) | 7 |
+| 16 | [Surface tension and gravity waves](16-surface-waves.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture16.pdf) | 6 |
+| 17 | [Atmospheric fluid flows](17-atmosphere.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture17.pdf) | 6 |
+| 18 | [Convection](18-convection.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture18.pdf) | 7 |
+| 19 | [Fluids with modified spacetime symmetries](19-spacetime-symmetries.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture19.pdf) | 6 |
+| 20 | [BBGKY hierarchy](20-bbgky.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture20.pdf) | 6 |
+| 21 | [Boltzmann equation](21-boltzmann.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture21.pdf) | 6 |
+| 22 | [Hydrodynamics from kinetic theory](22-kinetic-hydrodynamics.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture22.pdf) | 7 |
+| 23 | [Ballistic-to-viscous crossover](23-ballistic-viscous.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture23.pdf) | 6 |
+| 24 | [Superfluids](24-superfluids.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture24.pdf) | 6 |
+| 25 | [Superfluids with energy and momentum](25-two-fluid.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture25.pdf) | 5 |
+| 26 | [Strong-to-weak spontaneous symmetry breaking](26-strong-weak.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture26.pdf) | 6 |
+| 27 | [Higher-form symmetries](27-higher-form.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture27.pdf) | 6 |
+| 28 | [Magnetohydrodynamics](28-mhd.qmd) | [PDF](https://www.alucasphys.com/p7810s2026/p7810s2026_lecture28.pdf) | 6 |
+
+## How the source was used
+
+This book explains scientific content in original prose rather than reproducing the handwritten pages. Each companion chapter states its learning goals, develops the source topics, adds intermediate derivations, and supplies exercises with solutions. The PDFs remain the authoritative record of what Lucas wrote. Supplemental examples, clarifications, and editorial corrections here are the responsibility of this companion.
+
+The coverage records map source pages to chapter sections. Page numbers include the title page. The audit checks topic coverage; it does not imply an independent peer review or reproduce every handwritten line, side remark, or drawing. The source homework sheets are outside the lecture-note sequence and are not reproduced; the exercises in this companion were written for it.
+
+Several distinctions matter when extending the notes: a zero-noise constraint can be stronger than conservation only in expectation; a two-dimensional superfluid need not have true continuous-symmetry long-range order; Kolmogorov scaling is a phenomenological inertial-range description; and mixed-state strong/weak symmetry definitions should not be conflated with ordinary pure-state symmetry breaking. These issues are discussed in their relevant chapters rather than silently flattened into a common vocabulary.
+
+## Selected primary reading
+
+The original response-field construction is developed by Martin, Siggia, and Rose [@Martin1973]. It is useful after Lecture 4, once the purpose of the response field and the noise average are familiar. Its operator conventions need not look identical to a modern stochastic functional integral; compare definitions before comparing signs.
+
+Gaiotto, Kapustin, Seiberg, and Willett give a systematic account of generalized global symmetries [@Gaiotto2015]. This is a conceptual extension after Lecture 27, rather than a prerequisite for beginning the fluid course. The article is also available as [arXiv:1412.5148](https://arxiv.org/abs/1412.5148).
+
+## Editorial provenance
+
+This independent companion was prepared for Ze-Yu Xing with AI assistance. Andrew Lucas is credited for the source course and is not presented as the author or reviewer of the additional prose. Original source PDFs are linked to his website and excluded from the repository and site build. The original illustrations in this companion are generated from their stated analytic models.
+
+The editable Markdown, coverage records, bibliography, Julia figure script, and build configuration are under Git version control. When correcting a derivation, record the change in a commit and update its coverage note if the source interpretation changes. Keep the distinction between an exact result, a controlled approximation, and a phenomenological argument explicit.
+
+## Bibliography
+
+::: {#refs}
+:::

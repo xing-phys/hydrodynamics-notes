@@ -1,0 +1,94 @@
+# Interactive laboratory {.unnumbered #sec-laboratory}
+
+These small experiments use exact formulas for deliberately simple models. Change one parameter at a time, predict the result, and then move the control. They illustrate the derivations in the lecture chapters; they are not simulations of a turbulent fluid or a microscopic gas.
+
+## Diffusion broadens a packet
+
+For an infinite one-dimensional system with an initially normalized Gaussian of variance $a^2$, the diffusion equation gives
+
+$$
+P(x,t)=\frac{\exp[-x^2/(2(a^2+2Dt))]}{\sqrt{2\pi(a^2+2Dt)}},
+\qquad \langle x^2\rangle=a^2+2Dt.
+$$ {#eq-lab-diffusion}
+
+The plot uses dimensionless units with $a=1$. Its shaded curve is the initial packet. The height decreases while the width increases, with total probability exactly one on the full infinite line. The finite plot window may omit tails at large $Dt$.
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="lab-panel" id="diffusion-lab">
+  <div class="lab-controls">
+    <label for="diffusion-D">Diffusivity D <input id="diffusion-D" type="range" min="0.1" max="2" step="0.1" value="0.5"><output id="diffusion-D-value" for="diffusion-D">0.5</output></label>
+    <label for="diffusion-t">Time t <input id="diffusion-t" type="range" min="0" max="8" step="0.1" value="1"><output id="diffusion-t-value" for="diffusion-t">1.0</output></label>
+  </div>
+  <svg id="diffusion-plot" viewBox="0 0 720 320" role="img" aria-labelledby="diffusion-title diffusion-desc"><title id="diffusion-title">Gaussian diffusion</title><desc id="diffusion-desc">A normalized Gaussian packet broadens as diffusivity or time increases.</desc></svg>
+  <p class="lab-caption" id="diffusion-status" aria-live="polite"></p>
+</div>
+```
+:::
+
+**Try this:** double $D$ and halve $t$. Why does the profile stay the same? At late times, show that the central height falls as $t^{-1/2}$. Compare with [Lecture 5](05-diffusion.qmd).
+
+## A relaxing current connects waves and diffusion
+
+Consider the model from the foundations chapter, with $c=\Gamma=1$:
+
+$$
+\omega_\pm(k)=-\frac{i}{2}\pm\sqrt{k^2-\frac14}.
+$$ {#eq-lab-crossover}
+
+At small $k$, a slow diffusive mode coexists with a fast relaxing mode. At $k=1/2$ the poles merge. Beyond it their real parts split and their imaginary parts coincide. This is an exact statement about this two-field model. The location and shape of a crossover in a real fluid depend on its microscopic dynamics.
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="lab-panel" id="modes-lab">
+  <label for="modes-k">Wave number k <input id="modes-k" type="range" min="0" max="2" step="0.01" value="0.3"><output id="modes-k-value" for="modes-k">0.30</output></label>
+  <svg id="modes-plot" viewBox="0 0 720 340" role="img" aria-labelledby="modes-title modes-desc"><title id="modes-title">Poles in the complex frequency plane</title><desc id="modes-desc">Two poles start on the negative imaginary axis, merge, and then separate horizontally.</desc></svg>
+  <p class="lab-caption" id="modes-status" aria-live="polite"></p>
+</div>
+```
+:::
+
+**Try this:** expand the square root at small $k$ and recover $D=c^2/\Gamma=1$. Compare [Lecture 6](06-quasihydrodynamics.qmd) with the kinetic crossover in [Lecture 23](23-ballistic-viscous.qmd). A toy two-mode crossover is not the full collision-operator problem.
+
+## Gravity and capillarity select wave speeds
+
+For inviscid, incompressible, irrotational surface waves of small amplitude on depth $H$, with a passive atmosphere and no background flow,
+
+$$
+\omega^2=\left(gk+\frac{\sigma}{\rho}k^3\right)\tanh(kH).
+$$ {#eq-lab-waves}
+
+Set $q=kH$ and $\alpha=\sigma/(\rho gH^2)$, the inverse Bond number. The dimensionless phase speed is
+
+$$
+\frac{c_{\rm ph}}{\sqrt{gH}}=
+\sqrt{\left(\frac1q+\alpha q\right)\tanh q}.
+$$ {#eq-lab-phase}
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="lab-panel" id="waves-lab">
+  <label for="waves-alpha">log₁₀ α <input id="waves-alpha" type="range" min="-4" max="0" step="0.1" value="-2"><output id="waves-alpha-value" for="waves-alpha">−2.0</output></label>
+  <svg id="waves-plot" viewBox="0 0 720 320" role="img" aria-labelledby="waves-title waves-desc"><title id="waves-title">Surface-wave phase speed</title><desc id="waves-desc">Phase speed versus dimensionless wave number for tunable surface tension, compared with pure gravity waves.</desc></svg>
+  <p class="lab-caption" id="waves-status" aria-live="polite"></p>
+</div>
+```
+:::
+
+**Try this:** find the shallow-water limit $q\ll1$ and the deep-water gravity limit $1\ll q\ll\alpha^{-1/2}$. Why do short capillary waves become faster as their wavelength decreases? The group speed is $d\omega/dk$, which generally differs from the plotted phase speed. Derive the dispersion relation in [Lecture 16](16-surface-waves.qmd).
+
+::: {.content-visible when-format="pdf"}
+![Analytical snapshots of the three experiments. Top: Gaussian diffusion at $D=1/2$ and several times. Middle: two relaxing-current poles as $k$ increases; damping remains nonpositive. Bottom: surface-wave phase speeds for several inverse Bond numbers. The web edition supplies the controls.](figs/laboratory.pdf){width=95%}
+:::
+
+::: {.callout-note title="Reproduce the formulas in Julia"}
+These functions have no package dependencies. They evaluate the analytic models rather than discretizing a stochastic or fluid equation.
+
+```julia
+packet(x, D, t; a=1) = exp(-x^2 / (2(a^2 + 2D*t))) /
+                       sqrt(2π * (a^2 + 2D*t))
+poles(k; c=1, Γ=1) = (-im*Γ/2 + sqrt(complex(c^2*k^2 - Γ^2/4)),
+                       -im*Γ/2 - sqrt(complex(c^2*k^2 - Γ^2/4)))
+phase_speed(q, α) = iszero(q) ? 1.0 : sqrt((1/q + α*q) * tanh(q))
+```
+:::

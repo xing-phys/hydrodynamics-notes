@@ -1,0 +1,161 @@
+# Mathematical and physical foundations {.unnumbered #sec-foundations}
+
+::: {.callout-tip title="What you need before Lecture 1"}
+Understand a probability density, a Taylor expansion, a Fourier mode, and a local conservation law. This chapter develops these tools and the thermodynamic conventions used later. Return to individual sections as needed; you do not need to memorize the whole chapter.
+:::
+
+## Why an effective theory can be predictive
+
+An interacting many-body system has an enormous number of microscopic degrees of freedom. Hydrodynamics does not track them individually. It tracks a few coarse-grained densities that change slowly because they can only relax by moving their conserved quantities elsewhere. If particle number is conserved, a density modulation of wavelength $L$ cannot disappear by a local microscopic collision. Matter must travel over a distance comparable to $L$.
+
+Let $\ell_{\mathrm{micro}}$ and $\tau_{\mathrm{micro}}$ denote typical microscopic relaxation scales. A derivative expansion assumes
+
+$$
+k\ell_{\mathrm{micro}}\ll1,\qquad |\omega|\tau_{\mathrm{micro}}\ll1.
+$$ {#eq-found-scales}
+
+This does not require weak microscopic interactions. A strongly interacting system can have simple hydrodynamics if local nonconserved disturbances relax quickly. Conversely, a weakly interacting gas has a long mean free path, so its hydrodynamic regime may require very large distances. An additional almost conserved quantity introduces an extra long time and must be kept if the experiment resolves it.
+
+The key assumption is **local equilibrium**: on an intermediate cell that is large compared with microscopic scales but small compared with $1/k$, fast variables have equilibrated at local temperature, chemical potential, and velocity. Constitutive relations express the currents in terms of those local variables and their gradients. Conservation laws alone do not determine the equation of state or the transport coefficients.
+
+## Probability, expectation values, and Gaussian integrals
+
+A continuous variable $x$ has density $P(x)$, normalized by $\int P(x)\,dx=1$. Its expectation is $\langle f(x)\rangle=\int f(x)P(x)\,dx$. The variance is $\langle(x-\langle x\rangle)^2\rangle$, not $\langle x^2\rangle$ unless the mean vanishes. For a Gaussian,
+
+$$
+P(x)=\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\!\left[-\frac{(x-\mu)^2}{2\sigma^2}\right],
+\qquad \langle x\rangle=\mu,\quad
+\langle(x-\mu)^2\rangle=\sigma^2.
+$$ {#eq-found-gaussian}
+
+One useful proof starts from $I(a)=\int_{-\infty}^{\infty}e^{-a x^2/2}dx=\sqrt{2\pi/a}$. Differentiating under the integral gives $\int x^2e^{-a x^2/2}dx=I(a)/a$. Repeated differentiation generates every even Gaussian moment. Odd moments vanish by symmetry. For a zero-mean Gaussian vector with covariance $C_{ij}=\langle x_i x_j\rangle$, the generating function is $\langle e^{J_i x_i}\rangle=e^{J_i C_{ij}J_j/2}$. Its expansion gives Wick's rule: a fourth moment is the sum of its three pairings.
+
+The conditional density $P(x,t\mid y,s)$ tells us where a system is at time $t$ given its state at $s$. A Markov description assumes the present state contains all the information needed for future statistics. It can be excellent after coarse graining even when the full microscopic system is deterministic. A one-time density and a two-time conditional density contain different information; identical equilibrium distributions need not imply identical dynamics.
+
+## White noise is a distribution
+
+Brownian motion $W_t$ has independent increments, mean zero, and $\langle(W_{t+\Delta t}-W_t)^2\rangle=\Delta t$. Its typical increment scales as $\sqrt{\Delta t}$. Writing $\xi(t)=dW_t/dt$ is a formal convenience: an ordinary pointwise derivative does not exist. The useful identity is
+
+$$
+\langle\xi(t)\xi(t')\rangle=\delta(t-t'),\qquad
+\left\langle\left(\int_0^t\xi(s)\,ds\right)^2\right\rangle=t.
+$$ {#eq-found-white}
+
+The delta function has units of inverse time, so white noise has units $\mathrm{time}^{-1/2}$. In $dx=a\,dt+b\,dW_t$, $a$ has units $x/\mathrm{time}$ and $b$ has units $x/\sqrt{\mathrm{time}}$. Keeping these units prevents a common factor-of-time mistake in numerical noise generation.
+
+For a smooth function of an Itô process, Taylor expand $f(x+dx)$ through second order. Since $(dW_t)^2$ contributes $dt$ after stochastic averaging, the quadratic term survives:
+
+$$
+df=f'(x)a\,dt+f'(x)b\,dW_t+\frac12 f''(x)b^2\,dt.
+$$ {#eq-found-ito}
+
+This is Itô's formula. The extra term is why ordinary calculus cannot simply be applied to noisy paths. For state-dependent $b(x)$ the choice of stochastic convention changes the drift that represents a given physical process. Lecture 1 explains that distinction.
+
+## Local conservation from a control volume
+
+Let $n(\mathbf x,t)$ be a density and $\mathbf j$ its current. For any fixed region $V$, conservation says that the rate of change inside equals minus the outward flux:
+
+$$
+\frac{d}{dt}\int_V n\,d^d x
+=-\oint_{\partial V}\mathbf j\cdot\hat{\mathbf n}\,dA
+=-\int_V\nabla\cdot\mathbf j\,d^d x.
+$$
+
+Because $V$ is arbitrary, the integrands give
+
+$$
+\partial_t n+\nabla\cdot\mathbf j=0.
+$$ {#eq-found-continuity}
+
+There is no automatic statement that $n$ remains constant at each point. A local density changes when current converges or diverges. Total charge is constant for a closed system with no boundary flux, or with periodic boundaries. A source $s$ changes the right side to $s$; a weak relaxation term $s=-\Gamma\delta n$ is the simplest quasihydrodynamic modification.
+
+The same reasoning applies to energy. For momentum, the current itself has two indices: $\partial_t\pi_i+\partial_j\Pi_{ij}=f_i$. Here $\Pi_{ij}$ means the flux in direction $j$ of momentum component $i$. Some authors define a stress with the opposite sign; verify the conservation equation before comparing formulas.
+
+### Material derivative and acceleration
+
+A particle following the fluid has $d\mathbf x/dt=\mathbf v(\mathbf x,t)$. The chain rule for a field $f$ along its path gives
+
+$$
+\frac{df(\mathbf x(t),t)}{dt}
+=\partial_t f+v_i\partial_i f
+\equiv D_t f.
+$$ {#eq-found-material}
+
+Thus fluid acceleration is $D_t\mathbf v$, including the convective term $(\mathbf v\cdot\nabla)\mathbf v$ even in a stationary velocity field. A steady flow around a bend accelerates because a moving element samples different velocity directions.
+
+## Fourier modes and the sign of damping
+
+We use the inverse transform convention
+
+$$
+f(\mathbf x,t)=\int\frac{d^d k\,d\omega}{(2\pi)^{d+1}}
+e^{i\mathbf k\cdot\mathbf x-i\omega t}f(\mathbf k,\omega).
+$$ {#eq-found-fourier}
+
+Then $\partial_t\to-i\omega$, $\nabla\to i\mathbf k$, and $\nabla^2\to-k^2$. A mode is damped when $\operatorname{Im}\omega<0$: writing $\omega=\omega_R-i\gamma$ gives $e^{-i\omega t}=e^{-i\omega_Rt}e^{-\gamma t}$. In the alternative convention $e^{st}$, stability means $\operatorname{Re}s<0$, with $s=-i\omega$.
+
+For diffusion, $\partial_t n=D\nabla^2n$ becomes $-i\omega=-Dk^2$, hence $\omega=-iDk^2$. The time to relax a length scale $L\sim k^{-1}$ is $L^2/D$. A sound mode instead has $\omega\simeq\pm c_s k-i\gamma_s k^2$, with propagation at leading order and attenuation at the next order.
+
+To solve coupled fields, collect linear deviations into a vector $\delta\boldsymbol\phi$ and write $\partial_t\delta\boldsymbol\phi=M(\mathbf k)\delta\boldsymbol\phi$. Find the eigenvalues $s_a$ from $\det(sI-M)=0$; then $\omega_a=is_a$. Eigenvectors tell you which combinations of densities move together. A conserved density produces a mode with $\omega\to0$ as $k\to0$ unless it mixes with constraints in a way that removes it as an independent variable.
+
+::: {.callout-note title="Supplemental worked example: coupled propagating fields"}
+Suppose $\partial_t n+\partial_x j=0$ and $\partial_t j+c^2\partial_x n=-\Gamma j$. Eliminating $j$ gives $\partial_t^2 n+\Gamma\partial_t n-c^2\partial_x^2 n=0$. Therefore
+
+$$
+\omega_\pm=-\frac{i\Gamma}{2}\pm\sqrt{c^2k^2-\frac{\Gamma^2}{4}}.
+$$
+
+For $ck\ll\Gamma$, one mode has $\omega=-i(c^2/\Gamma)k^2+O(k^4)$ and the other has a finite gap $-i\Gamma$. For $ck>\Gamma/2$, both oscillate. Diffusion emerges after a relaxing current has been eliminated; it does not imply microscopic particles literally obey a diffusion equation at arbitrarily short times.
+:::
+
+## Thermodynamics in local variables
+
+For a simple one-component fluid in its rest frame, let $\epsilon$ be energy density, $s$ entropy density, and $n$ particle density. At fixed volume the first law and Euler relation read
+
+$$
+d\epsilon=T\,ds+\mu\,dn,\qquad
+\epsilon+p=Ts+\mu n.
+$$ {#eq-found-thermo}
+
+Differentiate the second identity and use the first to obtain the Gibbs–Duhem relation $dp=s\,dT+n\,d\mu$. These relations assume an extensive equilibrium system with no extra thermodynamic variables. Magnetic fields, strain, or a superfluid relative velocity add work terms, so the simple form must then be enlarged.
+
+The Helmholtz free-energy density is $f=\epsilon-Ts$, with $df=-s\,dT+\mu\,dn$. The static susceptibility at fixed temperature is
+
+$$
+\chi=\left(\frac{\partial n}{\partial\mu}\right)_T.
+$$ {#eq-found-chi}
+
+A stable homogeneous phase has $\chi>0$ when this ensemble is well defined. Expanding free energy around equilibrium gives a quadratic penalty $(\delta n)^2/(2\chi)$ per unit volume. A coarse-grained cell of volume $V$ consequently has $\langle(\delta n)^2\rangle=T\chi/V$ when $k_B=1$. Equilibrium fluctuations therefore know about a response coefficient before any transport equation is specified.
+
+::: {.callout-note title="Physical and dimensionless chemical potentials"}
+The stochastic chapters often use the dimensionless equilibrium functional $\Phi=F/T$ and its conjugate $\mu_\Phi=\delta\Phi/\delta n$, at fixed uniform temperature. In that convention $\chi_\Phi=T\chi$ and a mobility multiplying $-\nabla\mu_\Phi$ is $\sigma_\Phi=T\sigma$. The ratio $D=\sigma/\chi=\sigma_\Phi/\chi_\Phi$ is unchanged, while the equilibrium density variance becomes $\chi_\Phi/V$. Read the local definition before inserting a temperature into a fluctuation formula.
+:::
+
+Pressure is a function of thermodynamic state, not an independently adjustable force in a compressible fluid. For an ideal gas $p=n k_BT$. The adiabatic sound speed is $c_s^2=(\partial p/\partial\rho)_{s/n}$, where $\rho=mn$ and entropy per particle is fixed. It differs from the isothermal derivative. In an incompressible approximation the density ceases to be a dynamical thermodynamic variable, and pressure instead enforces $\nabla\cdot\mathbf v=0$.
+
+## Dissipation and entropy production
+
+The second law constrains constitutive coefficients. If a scalar conserved density has current $\mathbf j=-\sigma\nabla\mu$ at fixed temperature, then $\dot F=\int\mu\,\partial_tn\,d^dx=-\int\sigma(\nabla\mu)^2d^dx\le0$ for closed or periodic boundaries. Here integration by parts used the continuity equation. With $\delta n=\chi\delta\mu$, the diffusion constant is $D=\sigma/\chi$.
+
+This derivation also shows why $D<0$ would make a homogeneous state unstable in the simple gradient theory. Noise must be added if one wants the correct equilibrium fluctuations rather than only the mean relaxation. Fluctuation–dissipation relations connect the strength of that noise to the dissipative coefficient and temperature. Dissipation and noise are two aspects of the same coupling to unresolved degrees of freedom.
+
+## Scaling, units, and approximations
+
+Compare terms before discarding them. In Navier–Stokes, inertial acceleration has size $U^2/L$ while kinematic viscosity contributes $\nu U/L^2$. Their ratio is the Reynolds number $\mathrm{Re}=UL/\nu$. Small $\mathrm{Re}$ supports a viscous-dominated approximation. Large $\mathrm{Re}$ does not justify neglecting viscosity at a no-slip wall, where gradients can become parametrically large.
+
+The Mach number $\mathrm{Ma}=U/c_s$ compares flow and sound speeds; incompressible motion often requires $\mathrm{Ma}\ll1$ together with compatible forcing and small density variations. The Knudsen number $\mathrm{Kn}=\ell_{\mathrm{mfp}}/L$ compares mean free path and observation scale. Small Mach number and small Knudsen number answer different questions: one concerns compressibility, the other local equilibration.
+
+Boundary conditions are part of the model. A second-order spatial equation needs enough boundary data, but those data must match the physical wall: no flux, fixed chemical potential, no slip, free slip, or an interface condition. Global conservation can fail through an open boundary even when the bulk continuity equation is exact.
+
+## Check your understanding
+
+1. A density mode obeys $\partial_t n_k=-Dk^2n_k$. How does doubling its wavelength change its lifetime?
+2. Use @eq-found-ito for $f(x)=x^2$ and $dx=\sqrt{2D}\,dW_t$ to find the mean-squared displacement.
+3. Show that a steady shear $\mathbf v=(\dot\gamma y,0,0)$ has zero convective acceleration, while rigid rotation $\mathbf v=\boldsymbol\Omega\times\mathbf r$ does not.
+
+::: {.callout-note collapse="true" title="Solutions"}
+1. The lifetime is $(Dk^2)^{-1}$, so doubling the wavelength multiplies it by four.
+2. $d(x^2)=2x\sqrt{2D}\,dW_t+2D\,dt$. The Itô integral has zero expectation; for $x(0)=0$, $\langle x^2(t)\rangle=2Dt$.
+3. For shear, $\mathbf v\cdot\nabla=\dot\gamma y\,\partial_x$ and the field has no $x$ dependence. For rotation, $D_t\mathbf v=\boldsymbol\Omega\times(\boldsymbol\Omega\times\mathbf r)$, the centripetal acceleration.
+:::

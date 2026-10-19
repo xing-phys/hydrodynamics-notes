@@ -1,0 +1,202 @@
+{
+  "course_url": "https://www.alucasphys.com/s2026.html",
+  "retrieved_on": "2026-10-19",
+  "lectures": [
+    {
+      "lecture": 1,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture1.pdf",
+      "cache_file": ".cache/sources/lecture-01.pdf",
+      "pages": 6,
+      "sha256": "4bf85800e04e78b88c385852b80e6d93c611eb2bd1caac61f3c2816be053c6a5"
+    },
+    {
+      "lecture": 2,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture2.pdf",
+      "cache_file": ".cache/sources/lecture-02.pdf",
+      "pages": 6,
+      "sha256": "4c5ba12e37252361d03c5ec5dbbd246b44612efaeada98b6eb0edf41b358955e"
+    },
+    {
+      "lecture": 3,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture3.pdf",
+      "cache_file": ".cache/sources/lecture-03.pdf",
+      "pages": 6,
+      "sha256": "e14b993e1e4ffc5a3d2acf4bc50bc0d58401c5ae0d3ecafbd0b5964b8301ed71"
+    },
+    {
+      "lecture": 4,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture4.pdf",
+      "cache_file": ".cache/sources/lecture-04.pdf",
+      "pages": 6,
+      "sha256": "8eaa8778b99afc0c68aab74018222c9bddd9f323238b3e0a70b73930d43aa9b8"
+    },
+    {
+      "lecture": 5,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture5.pdf",
+      "cache_file": ".cache/sources/lecture-05.pdf",
+      "pages": 7,
+      "sha256": "fbe6e5880c5f6b2ba07dea117b346ae835c30047db0e9a705b2a61e9f3d370e4"
+    },
+    {
+      "lecture": 6,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture6.pdf",
+      "cache_file": ".cache/sources/lecture-06.pdf",
+      "pages": 6,
+      "sha256": "11a179b54067eccf3b4f57c29aaa4aa08aa7ab30f5b40a14b33106c1e72f2095"
+    },
+    {
+      "lecture": 7,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture7.pdf",
+      "cache_file": ".cache/sources/lecture-07.pdf",
+      "pages": 6,
+      "sha256": "1b874e29514afc90cb6aaecd0f5afa7ce0a6f21d9628bc18c40e320685ca9b5c"
+    },
+    {
+      "lecture": 8,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture8.pdf",
+      "cache_file": ".cache/sources/lecture-08.pdf",
+      "pages": 6,
+      "sha256": "3c5edc42e9814fcf139d467c32da5f7c6c3d3d074d2de5b8fe6b6b8499dfd104"
+    },
+    {
+      "lecture": 9,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture9.pdf",
+      "cache_file": ".cache/sources/lecture-09.pdf",
+      "pages": 6,
+      "sha256": "287b6025cd75193ddb21256e3ddf4a14ccae66c9336c7d5b31453a372849cf11"
+    },
+    {
+      "lecture": 10,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture10.pdf",
+      "cache_file": ".cache/sources/lecture-10.pdf",
+      "pages": 6,
+      "sha256": "8b8292094854efbd95992511a2146abf7c8eb075e9429478e01440779a0a15da"
+    },
+    {
+      "lecture": 11,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture11.pdf",
+      "cache_file": ".cache/sources/lecture-11.pdf",
+      "pages": 6,
+      "sha256": "815dc8dd1ed29358923648842c954ff37b1f19bfd9d36045bbeab01da30ea080"
+    },
+    {
+      "lecture": 12,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture12.pdf",
+      "cache_file": ".cache/sources/lecture-12.pdf",
+      "pages": 6,
+      "sha256": "db42a7f37536d6ffcb4e8d50f51250fc402a5e125f5a6ee732d915c0b43f7b90"
+    },
+    {
+      "lecture": 13,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture13.pdf",
+      "cache_file": ".cache/sources/lecture-13.pdf",
+      "pages": 7,
+      "sha256": "963615701133ae41c5f9968f17ed82726aac9cda5f7989424703580f34539306"
+    },
+    {
+      "lecture": 14,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture14.pdf",
+      "cache_file": ".cache/sources/lecture-14.pdf",
+      "pages": 6,
+      "sha256": "c52ff624c34741452b83c07a17bc7cacbc8153d75ddf57dd42c7e83a31cf0b6e"
+    },
+    {
+      "lecture": 15,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture15.pdf",
+      "cache_file": ".cache/sources/lecture-15.pdf",
+      "pages": 7,
+      "sha256": "f2453f84bb2809c3f8296003eefa00b70bf58d2a865961be8959c7db8a039c12"
+    },
+    {
+      "lecture": 16,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture16.pdf",
+      "cache_file": ".cache/sources/lecture-16.pdf",
+      "pages": 6,
+      "sha256": "ce01f36caa2c9eb15222644604780c411de44d5991043197672f2432286f9d34"
+    },
+    {
+      "lecture": 17,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture17.pdf",
+      "cache_file": ".cache/sources/lecture-17.pdf",
+      "pages": 6,
+      "sha256": "0cd88e3264e3a12db6b1c4c6c8f496f9d31ae8f07d6479ad39b560f5e2c8c8ce"
+    },
+    {
+      "lecture": 18,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture18.pdf",
+      "cache_file": ".cache/sources/lecture-18.pdf",
+      "pages": 7,
+      "sha256": "cabd6f12b4a38289e5b4b89a25e0553116f78589d4316dfbf18d21c955a6cfd0"
+    },
+    {
+      "lecture": 19,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture19.pdf",
+      "cache_file": ".cache/sources/lecture-19.pdf",
+      "pages": 6,
+      "sha256": "263b94cd84716f602ea132c6ea33f67d8135e53cbbdf89c2820c784fe6bf40e4"
+    },
+    {
+      "lecture": 20,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture20.pdf",
+      "cache_file": ".cache/sources/lecture-20.pdf",
+      "pages": 6,
+      "sha256": "5cce5c01f5a6e8b84e26e9160081391168f5066cdf48894dd4d4f6fa6c833be1"
+    },
+    {
+      "lecture": 21,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture21.pdf",
+      "cache_file": ".cache/sources/lecture-21.pdf",
+      "pages": 6,
+      "sha256": "c2d6153b3b71c26a5e622c4a37b39ce717fa88e0519cec2c7bb6cfd473215165"
+    },
+    {
+      "lecture": 22,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture22.pdf",
+      "cache_file": ".cache/sources/lecture-22.pdf",
+      "pages": 7,
+      "sha256": "d2590837e2c0fb1103ced3765e5fb608012b249149a25b0778f2c325b74c2b93"
+    },
+    {
+      "lecture": 23,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture23.pdf",
+      "cache_file": ".cache/sources/lecture-23.pdf",
+      "pages": 6,
+      "sha256": "a0169429bee6182c25836912de0a8d802b4b8e258121ee98e793c86ea7844259"
+    },
+    {
+      "lecture": 24,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture24.pdf",
+      "cache_file": ".cache/sources/lecture-24.pdf",
+      "pages": 6,
+      "sha256": "d6e980f071ba482247f73e89f64c2fcf3a646d295ce3a536a22b8e9891cc826d"
+    },
+    {
+      "lecture": 25,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture25.pdf",
+      "cache_file": ".cache/sources/lecture-25.pdf",
+      "pages": 5,
+      "sha256": "15577c7168ef1a9e3cc9e1b4603e4d2bbd5cb5df27ada178166cffd6cba4f2aa"
+    },
+    {
+      "lecture": 26,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture26.pdf",
+      "cache_file": ".cache/sources/lecture-26.pdf",
+      "pages": 6,
+      "sha256": "3829bb112da3ddb0d5a4df83814a3ab65cbd17b5f16d90bbd66d8f001ae40daf"
+    },
+    {
+      "lecture": 27,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture27.pdf",
+      "cache_file": ".cache/sources/lecture-27.pdf",
+      "pages": 6,
+      "sha256": "04e23202752d9e736efdade55b5466128f1ffb782923db7e9bdae2623ffa446e"
+    },
+    {
+      "lecture": 28,
+      "url": "https://www.alucasphys.com/p7810s2026/p7810s2026_lecture28.pdf",
+      "cache_file": ".cache/sources/lecture-28.pdf",
+      "pages": 6,
+      "sha256": "9b0b626abb9fd9ee29064d5f078dc7ec13b463521540c48940c360d5d02f2794"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+# Notation and a map of approximations {.unnumbered #sec-notation}
+
+## Fields and thermodynamics
+
+Symbols change roles between the stochastic and fluid chapters. Always read the local definition: $p$ may mean probability density, pressure, or single-particle momentum; $\rho$ may mean mass density or a quantum density matrix. Indices $i,j$ label spatial directions unless explicitly identified as state-space indices. Repeated spatial indices are summed.
+
+| Symbol | Meaning | Useful units or qualification |
+|:--|:--|:--|
+| $n,\mathbf j$ | Number density and number current | $[n]=L^{-d}$, $[j]=L^{1-d}/t$ |
+| $\rho=mn$ | Mass density in a one-species Galilean fluid | Distinct from a density matrix $\hat\rho$ |
+| $\boldsymbol\pi,\Pi_{ij}$ | Momentum density and its flux | $\pi_i=\rho v_i$ only with suitable boost symmetry |
+| $\epsilon,p,s$ | Internal energy density, pressure, entropy density | Rest-frame quantities unless stated otherwise |
+| $T,\mu$ | Temperature and chemical potential | Often $k_B=1$ |
+| $\chi$ | Static susceptibility | Commonly $(\partial n/\partial\mu)_T$ |
+| $\mathbf v,\mathbf u$ | Fluid velocity or a specified drift | Check local convention |
+| $D,\nu,\eta,\zeta$ | Diffusivity, kinematic/shear/bulk viscosity | $\nu=\eta/\rho$ for a simple fluid |
+| $\kappa$ | Thermal conductivity, or a circulation quantum | Meaning stated in each chapter |
+| $\sigma$ | Conductivity, noise amplitude, or surface tension | These are different quantities |
+| $\Gamma,\tau$ | Relaxation rate and time | $\Gamma=1/\tau$ for a single exponential |
+| $\phi,\theta$ | Superfluid phase or a scalar fluctuation | Defined where introduced |
+| $\mathbf B,\mathbf E$ | Magnetic and electric fields | Electromagnetic unit conventions stated locally |
+
+## Derivatives and transform conventions
+
+The material derivative is $D_t=\partial_t+v_i\partial_i$. Vorticity is $\boldsymbol\omega=\nabla\times\mathbf v$ in three spatial dimensions; in a two-dimensional flow its perpendicular component is often treated as a scalar. Do not confuse vorticity with frequency $\omega$.
+
+Unless a chapter defines otherwise, perturbations have dependence $e^{i\mathbf k\cdot\mathbf x-i\omega t}$. Stable damping means $\operatorname{Im}\omega<0$. A growth rate $s$ in $e^{st}$ is related by $s=-i\omega$. With this convention a retarded response is Fourier transformed using $e^{+i\omega t}$ in the forward time transform; poles of stable retarded response functions lie below the real frequency axis.
+
+The common mode types are
+
+$$
+\begin{aligned}
+\text{diffusion:}\quad &\omega=-iDk^2+\cdots,\\
+\text{sound:}\quad &\omega=\pm c_s k-i\gamma_s k^2+\cdots,\\
+\text{relaxation:}\quad &\omega=-i\Gamma+O(k^2).
+\end{aligned}
+$$
+
+Only modes whose frequency vanishes at $k=0$ are strictly hydrodynamic. A gapped mode with small $\Gamma$ belongs in an enlarged quasihydrodynamic theory when the observation time is not much longer than $1/\Gamma$.
+
+## Which approximation answers which question?
+
+| Approximation | Typical condition | What must still be checked |
+|:--|:--|:--|
+| Hydrodynamic derivative expansion | $k\ell_{\rm micro},\omega\tau_{\rm micro}\ll1$ | All relevant slow variables retained |
+| Local equilibrium | Microscopic equilibration faster than macroscopic change | Extra conservation laws, integrability, collisionless regime |
+| Incompressible fluid | Small density variation; often low Mach number | Acoustic transients, imposed heating, boundary conditions |
+| Inviscid bulk | Large Reynolds number, smooth interior flow | Boundary layers and singular gradients |
+| Stokes flow | $\mathrm{Re}\ll1$; small unsteady inertia if neglected | Far-field matching and wall effects |
+| Boussinesq fluid | Weak density variation, retained only in buoyancy | Stratification and thermal boundary conditions |
+| Geostrophic balance | Small Rossby number away from singular regions | Equator, friction, time dependence |
+| Dilute-gas Boltzmann closure | Binary short collisions and molecular chaos | Dense correlations, memory, quantum degeneracy |
+| Relaxation-time collision model | A model spectrum for nonconserved modes | Conservation-preserving projection, coefficient accuracy |
+| Ideal MHD | Negligible resistive effects on the time/length scale | Boundary fluxes, current sheets, reconnection |
+| Kolmogorov inertial-range scaling | Scale separation, steady cascade, local isotropy assumptions | Intermittency, anisotropy, finite Reynolds number |
+
+## Reconstructing a derivation when you get stuck
+
+1. List the independent fields and their equilibrium values. State the spatial dimension and boundary conditions.
+2. Write conservation equations before constitutive relations. Identify which coefficients need thermodynamics or microscopic input.
+3. State the expansion: small amplitude, small gradients, small Reynolds number, or another parameter. These expansions are not interchangeable.
+4. Check every retained term has the same units. Positive dissipative coefficients should damp stable equilibrium fluctuations.
+5. Check the $k\to0$, zero-dissipation, and static limits. Compare the number of independent modes with the number of dynamical variables after constraints.
+
+For detailed conventions in the source notes, use the original PDF linked at the top of the relevant lecture chapter. The [source guide](sources.qmd) describes how the source and companion differ.
