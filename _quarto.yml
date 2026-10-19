@@ -11,13 +11,11 @@ book:
   output-file: hydrodynamics
   subtitle: "From fluctuations to flowing matter"
   author:
-    - name: Ze-Yu Xing
-      orcid: 0009-0009-5655-0187
+    - name: Andrew Lucas
       affiliations:
-        - Institute of Physics, Chinese Academy of Sciences
-        - University of Chinese Academy of Sciences
+        - University of Colorado Boulder
   date: "2026-10-19"
-  description: "An independent graduate study companion to Andrew Lucas' Spring 2026 hydrodynamics lectures, with derivations, examples, and exercises."
+  description: "A study companion to Andrew Lucas' original Spring 2026 hydrodynamics lectures, with AI-assisted supplemental derivations, examples, and exercises."
   search: true
   downloads: [pdf]
   sidebar:
@@ -26,8 +24,8 @@ book:
     logo: assets/mark.svg
     title: "Hydrodynamics"
   page-footer:
-    left: "A graduate study companion · PHYS 7810 / Spring 2026"
-    right: "Based on Andrew Lucas’ course · Independent explanatory notes"
+    left: "Unofficial study companion · PHYS 7810 / Spring 2026"
+    right: "[Original lectures by Andrew Lucas](https://www.alucasphys.com/s2026.html)"
   chapters:
     - index.qmd
     - prerequisites.qmd
@@ -80,6 +78,8 @@ book:
 bibliography: assets/bibliography.bib
 csl: assets/american-physics-society.csl
 link-citations: true
+language:
+  title-block-author-single: "Original lectures by"
 execute:
   enabled: false
 
@@ -112,6 +112,8 @@ format:
     toc: true
     toc-depth: 1
     number-sections: true
-    include-in-header: assets/macros.sty
+    include-in-header:
+      - assets/macros.sty
+      - assets/attribution.tex
     keep-tex: false
     reference-location: document

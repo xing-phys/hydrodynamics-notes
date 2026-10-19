@@ -1,6 +1,14 @@
 # Hydrodynamics — a graduate study companion
 
-An independent web book following all 28 lectures in [Andrew Lucas' PHYS 7810, Spring 2026](https://www.alucasphys.com/s2026.html). Includes foundations, original explanations, worked derivations, solved exercises, an interactive laboratory, source-page coverage records, and a combined PDF. This is companion material, not an authorized edition of Lucas' notes.
+**Original course and lecture notes: Andrew Lucas, University of Colorado Boulder.** This web book is an unofficial study companion to his [Hydrodynamics course, PHYS 7810, Spring 2026](https://www.alucasphys.com/s2026.html), following all 28 lectures.
+
+## Attribution and acknowledgments
+
+All credit for the original course and lecture material belongs to **Andrew Lucas**. This project gratefully acknowledges his work in developing the lectures and making his handwritten notes publicly available. The original notes are the authoritative source for the course; readers should cite them when referring to the lecture material.
+
+This repository is a reading aid and claims no original scientific contribution or personal authorship credit. Its supplemental explanations, derivations, exercises, illustrations, and website implementation were prepared with AI assistance. These additions are not attributed to Lucas, and no review or endorsement by him is implied. Any errors introduced in the additions should not be attributed to him. The web book and PDF credit Andrew Lucas as the author of the original lectures; no personal author or contributor byline is included.
+
+The companion includes foundations, worked derivations, solved exercises, an interactive laboratory, source-page coverage records, and a combined PDF. See [NOTICE.md](NOTICE.md) for attribution and [the source guide](sources.qmd) for the original lecture links.
 
 The initial edition builds to 33 web pages and a 146-page PDF. See [VALIDATION.md](VALIDATION.md) for the completed checks and the remaining live-browser verification limit.
 
@@ -57,4 +65,4 @@ git push
 
 Equations use native Quarto labels, e.g. `{#eq-l05-diffusion}`, and references such as `@eq-l05-diffusion`. Lecture numbers, source links, assumptions, and distinctions between exact results, approximations, and empirical statements belong in the chapter. New supplements should be marked as supplements. Do not silently import a different Fourier sign, noise normalization, stress convention, or electromagnetic unit system.
 
-The accompanying explanations were drafted with AI assistance and checked against all source pages. This is an editable first edition; the coverage records document the audit and specific interpretive choices rather than asserting an external scientific peer review. Original lecture authorship remains with Andrew Lucas. See `NOTICE.md` for attribution.
+The accompanying explanations were drafted with AI assistance and checked against all source pages. This is an editable first edition; the coverage records document the audit and specific interpretive choices rather than asserting an external scientific peer review. Credit for the original lectures belongs to Andrew Lucas; the supplemental text does not imply his authorship or approval.

@@ -1,5 +1,11 @@
 # Sources, attribution, and coverage {.unnumbered #sec-sources}
 
+## Attribution and acknowledgments
+
+**Andrew Lucas is the author of the original course and lecture notes, and all credit for that material belongs to him.** This companion gratefully acknowledges his work in developing PHYS 7810 and making the notes publicly available. Please cite his [original Spring 2026 lectures](https://www.alucasphys.com/s2026.html) when referring to the course material [@Lucas2026].
+
+This repository is a reading aid and claims no original scientific contribution or personal authorship credit. The additional explanations, derivations, exercises, and illustrations were prepared with AI assistance. They are not attributed to Lucas; no authorship, review, or endorsement of them by him is implied. Errors introduced in these additions should not be attributed to him. The original handwritten notes remain the authoritative source for the lectures.
+
 ## The lecture sequence
 
 Andrew Lucas' [Spring 2026 course page](https://www.alucasphys.com/s2026.html) is the organizing source [@Lucas2026]. It lists 28 lectures. The companion preserves that sequence, then groups it into six thematic parts for navigation. Chapter numbers therefore agree with lecture numbers; the foundations and study tools are unnumbered.
@@ -53,7 +59,7 @@ Gaiotto, Kapustin, Seiberg, and Willett give a systematic account of generalized
 
 ## Editorial provenance
 
-This independent companion was prepared for Ze-Yu Xing with AI assistance. Andrew Lucas is credited for the source course and is not presented as the author or reviewer of the additional prose. Original source PDFs are linked to his website and excluded from the repository and site build. The original illustrations in this companion are generated from their stated analytic models.
+The book credits Andrew Lucas as the author of the original lectures. No personal author or contributor byline is claimed for this companion. The supplemental prose and illustrations were prepared with AI assistance and do not imply his authorship or review. Original source PDFs are linked to his website and excluded from the repository and site build. The additional illustrations are generated from their stated analytic models.
 
 The editable Markdown, coverage records, bibliography, Julia figure script, and build configuration are under Git version control. When correcting a derivation, record the change in a commit and update its coverage note if the source interpretation changes. Keep the distinction between an exact result, a controlled approximation, and a phenomenological argument explicit.
 

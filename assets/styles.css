@@ -18,6 +18,8 @@ div.callout-tip { border-left-color: var(--book-accent); }
 .book-hero { padding: 1rem 0 1.6rem; border-bottom: 1px solid var(--book-rule); }
 .book-hero h2 { font-size: clamp(2.6rem, 5vw, 4.3rem); line-height: 1.06; letter-spacing: -.055em; margin: .8rem 0 1.1rem; max-width: 760px; padding: 0; border: 0; }
 .book-hero .lead { font-family: Georgia, serif; font-size: 1.25rem; line-height: 1.65; max-width: 670px; color: var(--book-muted); }
+.book-credit { font-size: .92rem; color: var(--book-muted); margin: 1rem 0; }
+.book-credit strong { color: var(--book-accent); font-weight: 600; }
 .hero-flow { width: 100%; height: auto; margin: .8rem 0 1.5rem; }
 .book-stats { display: flex; gap: 2.3rem; flex-wrap: wrap; margin: 1.4rem 0 .2rem; font-size: .77rem; color: var(--book-muted); }
 .book-stats strong { display: block; color: var(--book-accent); font-size: 1.4rem; line-height: 1.4; font-weight: 550; }

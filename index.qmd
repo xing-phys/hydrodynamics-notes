@@ -2,13 +2,17 @@
 
 ::: {.book-hero}
 ::: {.book-kicker}
-A graduate field guide · Based on PHYS 7810, Spring 2026
+Andrew Lucas’ Hydrodynamics · PHYS 7810, Spring 2026
 :::
 
 ## From random motion to collective flow. {.unnumbered .unlisted}
 
 ::: {.lead}
 Hydrodynamics is the physics of what remains slow. Learn how conservation laws turn microscopic motion into diffusion, sound, vortices, and the collective dynamics of quantum matter.
+:::
+
+::: {.book-credit}
+**Original lectures by [Andrew Lucas](https://www.alucasphys.com/s2026.html)** · University of Colorado Boulder
 :::
 
 ::: {.content-visible when-format="html"}
@@ -38,9 +42,15 @@ unifying language
 :::
 :::
 
+## Attribution and acknowledgments
+
+**All credit for the original course and lecture notes belongs to Andrew Lucas.** This book follows his [Spring 2026 Hydrodynamics lectures](https://www.alucasphys.com/s2026.html) at the University of Colorado Boulder. We gratefully acknowledge the work he put into developing the course and making the notes publicly available. Readers should cite his original lectures when referring to the course material.
+
+This repository is a study aid and claims no original scientific contribution. Supplemental explanations, derivations, exercises, and illustrations were prepared with AI assistance. They are additions to Lucas’ lectures; no authorship, review, or endorsement of these additions by him is implied. Any errors introduced in the supplemental material should not be attributed to him. His handwritten notes remain the authoritative source for the lectures.
+
 ## What this book does
 
-This is an independent study companion to [Andrew Lucas’ Hydrodynamics course](https://www.alucasphys.com/s2026.html), taught at the University of Colorado Boulder in Spring 2026. Its 28 lecture chapters follow the course in order, explaining the physics in original prose and filling in intermediate algebra, assumptions, and examples. The handwritten source notes remain the reference for the course; each chapter links to the corresponding PDF. Lucas is the author of the source lectures. The additional explanations and exercises here are companion material, not an authorized edition or a transcription of his notes.
+The 28 lecture chapters follow Lucas’ course in order and link to each original PDF. They fill in intermediate algebra, assumptions, and examples to support reading the source notes. This is an unofficial companion, not an authorized edition or a transcription.
 
 The intended reader is a beginning graduate student with undergraduate mechanics, calculus, basic probability, and some thermodynamics. You do not need to know stochastic calculus, response fields, kinetic theory, superfluid hydrodynamics, or generalized symmetries before starting. These tools are introduced where they become useful. The [foundations chapter](prerequisites.qmd) supplies the mathematical and thermodynamic bridge.
 

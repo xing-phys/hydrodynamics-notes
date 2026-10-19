@@ -5,13 +5,15 @@ Built with Quarto 1.10.18 and LuaLaTeX (TeX Live 2023). The final `quarto render
 - 28 lecture companions, plus foundations and study tools: 33 HTML pages.
 - Combined PDF: `_site/hydrodynamics.pdf`, 146 A4 pages.
 - All 28 source PDF checksums verified; 172 source pages visually inspected and mapped in `coverage/`.
-- `python3 scripts/check_book.py`: 453 unique content labels, 106 source cross-references, and 2,697 local links/anchors checked. Lecture numbers match chapter numbers; source-page maps include every PDF page. Quarto's deliberately repeated alternate-theme stylesheet IDs are excluded from content-anchor duplication checks.
+- `python3 scripts/check_book.py`: 453 unique content labels, 106 source cross-references, and 2,700 local links/anchors checked after the attribution update. Lecture numbers match chapter numbers; source-page maps include every PDF page. Quarto's deliberately repeated alternate-theme stylesheet IDs are excluded from content-anchor duplication checks.
 - Search index contains both introductory and advanced topics. Representative served HTML pages and the PDF were checked against the final files byte for byte. The external MathJax script responded successfully.
 - `git diff --check`, Python compilation, and Node syntax checks passed.
 - Interactive plotting handlers were exercised in a DOM stub at zero time, large diffusion width, zero wave number, pole merger, propagating poles, and capillary crossover endpoints. Redraws produced finite SVG paths.
 - PDF pages inspected visually: title, contents, foundations, stochastic calculus, Galilean constitutive equations, anisotropic fluids, mixed-state symmetry, MHD, and laboratory plots. Revised contents and figure layouts were inspected again after the last build.
 
 The chapters received independent mathematical consistency passes in addition to source inspection. Specific source-convention corrections and qualifications are recorded in the lecture audits. The exact kinetic resolvent in Lecture 23 was additionally compared with direct numerical matrix inversion.
+
+The attribution update was rebuilt in both formats. Andrew Lucas is credited as the author of the original lectures in the HTML author label, every page footer, and the PDF title page and author metadata. Personal author credit, ORCID, and affiliations were removed and checked across the source, rendered HTML, search index, and PDF. The revised title page, opening acknowledgments, and source-guide acknowledgments were inspected visually in the PDF. Supplemental AI-assisted material is distinguished from Lucas' original lectures.
 
 ## Verification limits
 
