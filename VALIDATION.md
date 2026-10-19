@@ -13,7 +13,7 @@ Built with Quarto 1.10.18 and LuaLaTeX (TeX Live 2023). The final `quarto render
 
 The chapters received independent mathematical consistency passes in addition to source inspection. Specific source-convention corrections and qualifications are recorded in the lecture audits. The exact kinetic resolvent in Lecture 23 was additionally compared with direct numerical matrix inversion.
 
-The attribution update was rebuilt in both formats with the companion's author field left blank. Andrew Lucas is acknowledged for his source lectures in the page footers, title-page source note, and acknowledgments, without assigning him authorship or responsibility for this companion. Author bylines, ORCID, and affiliations were removed and checked across the source, rendered HTML, search index, and PDF. The revised title page, opening acknowledgments, and source-guide acknowledgments were inspected visually in the PDF. Supplemental material is distinguished from Lucas' original lectures.
+The acknowledgments were simplified and rebuilt in both formats with the author field left blank. Metadata was checked across the source, rendered HTML, search index, and PDF. The revised title page and acknowledgment passages were inspected visually in the PDF.
 
 ## Verification limits
 

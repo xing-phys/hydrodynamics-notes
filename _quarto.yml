@@ -12,7 +12,7 @@ book:
   subtitle: "From fluctuations to flowing matter"
   author: []
   date: "2026-10-19"
-  description: "An unofficial study companion to Andrew Lucas' Spring 2026 hydrodynamics lectures, with supplemental derivations, examples, and exercises."
+  description: "A graduate study companion to Andrew Lucas' Spring 2026 hydrodynamics lectures, with supplemental derivations, examples, and exercises."
   search: true
   downloads: [pdf]
   sidebar:
@@ -21,7 +21,7 @@ book:
     logo: assets/mark.svg
     title: "Hydrodynamics"
   page-footer:
-    left: "Unofficial study companion · PHYS 7810 / Spring 2026"
+    left: "Graduate study companion · PHYS 7810 / Spring 2026"
     right: "[Original lectures by Andrew Lucas](https://www.alucasphys.com/s2026.html)"
   chapters:
     - index.qmd

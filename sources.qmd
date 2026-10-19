@@ -2,9 +2,7 @@
 
 ## Attribution and acknowledgments
 
-**Andrew Lucas is the author of the original course and lecture notes, and all credit for that material belongs to him.** This companion gratefully acknowledges his work in developing PHYS 7810 and making the notes publicly available. Please cite his [original Spring 2026 lectures](https://www.alucasphys.com/s2026.html) when referring to the course material [@Lucas2026].
-
-This repository is an unofficial reading aid and claims no original scientific contribution. The companion's author field is left blank. **Andrew Lucas is not the author of this companion and is not responsible for its contents.** No review or endorsement by him is implied. The additional explanations, derivations, exercises, and illustrations are not attributed to him, and errors introduced in them should not be attributed to him. His handwritten notes remain the authoritative source for the lectures.
+This book is based on [Andrew Lucas’ Spring 2026 hydrodynamics lectures](https://www.alucasphys.com/s2026.html) [@Lucas2026]. We gratefully acknowledge his work in developing PHYS 7810 and making his lecture notes publicly available.
 
 ## The lecture sequence
 
@@ -45,7 +43,7 @@ All **172 pages** of the 28 linked lecture PDFs were visually inspected for this
 
 ## How the source was used
 
-This book explains scientific content in original prose rather than reproducing the handwritten pages. Each companion chapter states its learning goals, develops the source topics, adds intermediate derivations, and supplies exercises with solutions. The PDFs remain the authoritative record of what Lucas wrote. Supplemental examples, clarifications, and editorial corrections here are the responsibility of this companion.
+Each companion chapter states its learning goals, develops the source topics, adds intermediate derivations, and supplies exercises with solutions. The original PDFs provide the source lecture material.
 
 The coverage records map source pages to chapter sections. Page numbers include the title page. The audit checks topic coverage; it does not imply an independent peer review or reproduce every handwritten line, side remark, or drawing. The source homework sheets are outside the lecture-note sequence and are not reproduced; the exercises in this companion were written for it.
 
@@ -59,7 +57,7 @@ Gaiotto, Kapustin, Seiberg, and Willett give a systematic account of generalized
 
 ## Editorial provenance
 
-No author or contributor byline is given for this companion. Andrew Lucas is acknowledged for his original lectures, without implying his authorship, review, or responsibility for this book. Original source PDFs are linked to his website and excluded from the repository and site build. The additional illustrations are generated from their stated analytic models.
+Original source PDFs are linked to Lucas’ website and excluded from the repository and site build. The additional illustrations are generated from their stated analytic models.
 
 The editable Markdown, coverage records, bibliography, Julia figure script, and build configuration are under Git version control. When correcting a derivation, record the change in a commit and update its coverage note if the source interpretation changes. Keep the distinction between an exact result, a controlled approximation, and a phenomenological argument explicit.
 

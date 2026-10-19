@@ -44,13 +44,11 @@ unifying language
 
 ## Attribution and acknowledgments
 
-**All credit for the original course and lecture notes belongs to Andrew Lucas.** This book follows his [Spring 2026 Hydrodynamics lectures](https://www.alucasphys.com/s2026.html) at the University of Colorado Boulder. We gratefully acknowledge the work he put into developing the course and making the notes publicly available. Readers should cite his original lectures when referring to the course material.
-
-This is an unofficial study companion whose author field is left blank. **Andrew Lucas is not the author of this companion and is not responsible for its contents.** No review or endorsement by him is implied. Supplemental explanations, derivations, exercises, and illustrations are additions to his lectures; any errors in those additions should not be attributed to him. His handwritten notes remain the authoritative source for the lectures.
+This book is based on [Andrew Lucas’ Spring 2026 Hydrodynamics lectures](https://www.alucasphys.com/s2026.html) at the University of Colorado Boulder. We gratefully acknowledge his work in developing the course and making his lecture notes publicly available.
 
 ## What this book does
 
-The 28 lecture chapters follow Lucas’ course in order and link to each original PDF. They fill in intermediate algebra, assumptions, and examples to support reading the source notes. This is an unofficial companion, not an authorized edition or a transcription.
+The 28 lecture chapters follow Lucas’ course in order and link to each original PDF. They fill in intermediate algebra, assumptions, and examples to support reading the source notes.
 
 The intended reader is a beginning graduate student with undergraduate mechanics, calculus, basic probability, and some thermodynamics. You do not need to know stochastic calculus, response fields, kinetic theory, superfluid hydrodynamics, or generalized symmetries before starting. These tools are introduced where they become useful. The [foundations chapter](prerequisites.qmd) supplies the mathematical and thermodynamic bridge.
 

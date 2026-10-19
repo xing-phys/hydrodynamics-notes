@@ -2,9 +2,7 @@
 
 The organizing source is Andrew Lucas, *Hydrodynamics*, PHYS 7810, University of Colorado Boulder, Spring 2026: https://www.alucasphys.com/s2026.html.
 
-**All credit for the original course and lecture notes belongs to Andrew Lucas.** This project gratefully acknowledges his work in developing the course and making the notes publicly available. Readers should cite the original lectures when referring to the course material.
-
-This repository is an unofficial reading aid and claims no original scientific contribution. The companion's author field is left blank. Andrew Lucas is acknowledged as the author of the source lectures, not as the author of this companion, and he is not responsible for its contents. No authorship, review, or endorsement of the companion by him or the University of Colorado Boulder is implied. Supplemental explanations, derivations, exercises, and illustrations are additions to the lectures; errors introduced in them should not be attributed to him.
+We gratefully acknowledge Andrew Lucas for developing the course and making his lecture notes publicly available.
 
 Original source PDFs are linked, not distributed. The source guide retains links and citations to the original lectures and other primary works.
 
